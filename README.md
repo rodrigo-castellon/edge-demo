@@ -1,36 +1,40 @@
-# edging
-deploying EDGE as a demo website
+## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
-# Barebones React App
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Just wanted a simple barebones React application boilerplate that:
+> Free React Admin Dashboard made with Material-UI components and React.
 
-- Can transpile
-  - Specifically because JSX
-  - But also so you can use the latest JavaScript features
-- Uses [sourcemaps]
-- Uses [Hot Module Replacement][hmr]
-- Can build a basic production `dist/` output for easy deployment
-- Doesn't have a bunch of unnecessary dependencies
+![preview](public/assets/preview.jpg)
 
-## Required Software
+| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
+| ----------------------------------------------------- | :---------------------------------------------------------------- |
+| **6** Demo pages                                      | **50+** demo pages                                                |
+| -                                                     | ✓ Multi-language                                                  |
+| -                                                     | ✓ Dark/Light Mode 🌓                                              |
+| -                                                     | ✓ [More components](https://minimals.cc/components)               |
+| -                                                     | ✓ Next.js version                                                 |
+| -                                                     | ✓ TypeScript version                                              |
+| -                                                     | ✓ Design files (Figma & Sketch)                                   |
 
-- [npm] version 6.4.1 or above
-- [node] version 10.13.0 or above
+## Page demo
 
-## Getting Started
+- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
+- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
+- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
+- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
+- [Login](https://minimal-kit-react.vercel.app/login)
+- [Not Found](https://minimal-kit-react.vercel.app/404)
 
-1. `npm install` - to install the dependencies
-1. `npm run dev` - to run the application in dev mode (using webpack-dev-server)
-1. Open up http://localhost:3000 to view the app
-1. Open up `src/App.js` and hack away. Hit save and enjoy the magic!
+## Getting started
 
-## Other useful commands
+- Recommended `node js 16.x` and `npm 6+`. (suggestion v16.15.0)
+- Install dependencies: `npm install` / `yarn install`
+- Start the project: `npm run start` / `yarn start`
 
-- `npm run dist` - to generate the production version of the application's script(s)
+## License
 
-[sourcemaps]: https://survivejs.com/webpack/building/source-maps/
-[hmr]: https://survivejs.com/webpack/appendices/hmr/
-[npm]: https://www.npmjs.com
-[node]: https://nodejs.org
+Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
 
+## Contact us
+
+Email Us: support@minimals.cc
