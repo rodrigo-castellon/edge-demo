@@ -22,26 +22,6 @@ export function Hiphop(props) {
         console.log(actions);
         console.log(Object.keys(actions))
         actions['Armature|mixamo.com|Layer0'].play()
-        // console.log(nodes);
-        // console.log(nodes.Scene);
-        // gltf.scene.traverse((object) => {
-        //     if (object instanceof Mesh) {
-        //         console.log('yoo!!!')
-        //         console.log(object);
-        //         object.castShadow = true;
-        //         object.receiveShadow = true;
-        //         object.material.envMapIntensity = 20;
-        //     }
-        // })
-        nodes.Scene.traverse((object) => {
-            if (object instanceof Mesh) {
-                console.log('yoo!!!')
-                console.log(object);
-                // object.castShadow = true;
-                // object.receiveShadow = true;
-                // object.material.envMapIntensity = 20;
-            }
-        })
     });
 
     // return <primitive object={gltf.scene} />;
@@ -63,7 +43,11 @@ export function Hiphop(props) {
                     material={materials.Alpha_Body_MAT}
                     skeleton={nodes.Alpha_Surface.skeleton}
                     receiveShadow
-                    castShadow />
+                    castShadow>
+                        <meshPhongMaterial
+                            color="#3399ff"
+                            shininess={1000} />
+                    </skinnedMesh>
                 </group>
             </group>
         </group>
