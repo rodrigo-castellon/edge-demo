@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// css
-// import './App.css';
 
 // custom components
 import NavbarCustom from "./components/NavbarCustom";
@@ -11,7 +9,6 @@ import NavbarCustom from "./components/NavbarCustom";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 
-// ----------------------------------------------------------------------
 function App() {
     return (
         <Router>

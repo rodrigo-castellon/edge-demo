@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <Navbar bg="dark" variant="dark">
         <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand as={Link} to="/">
                 <img
                         alt=""
                         src="https://react-bootstrap.github.io/logo.svg"
@@ -18,7 +18,6 @@ export default function Home() {
                 EDGE: Editable Dance Generation From Music
                 </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/about">About</Nav.Link>
                 </Nav>
         </Container>
