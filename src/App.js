@@ -14,24 +14,25 @@ import { useRef, useState, useEffect, Suspense } from 'react'
 import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber'
 import { OrbitControls, MeshReflectorMaterial, Stats } from '@react-three/drei'
 import { LinearEncoding, RepeatWrapping, TextureLoader } from "three";
+import { Hiphop } from './components/Hiphop';
 
 export function Ground() {
     // thanks to https://polyhaven.com/a/rough_plasterbrick_05 !
-    // const [roughness, normal] = useLoader(TextureLoader, [
-    //   process.env.PUBLIC_URL + "textures/terrain-roughness.jpg",
-    //   process.env.PUBLIC_URL + "textures/terrain-normal.jpg",
-    // ]);
+    const [roughness, normal] = useLoader(TextureLoader, [
+      "assets/textures/terrain-roughness.jpeg",
+      "assets/textures/terrain-normal.jpeg",
+    ]);
   
-    // useEffect(() => {
-    //   [normal, roughness].forEach((t) => {
-    //     t.wrapS = RepeatWrapping;
-    //     t.wrapT = RepeatWrapping;
-    //     t.repeat.set(5, 5);
-    //     t.offset.set(0, 0);
-    //   });
+    useEffect(() => {
+      [normal, roughness].forEach((t) => {
+        t.wrapS = RepeatWrapping;
+        t.wrapT = RepeatWrapping;
+        t.repeat.set(5, 5);
+        t.offset.set(0, 0);
+      });
   
-    //   normal.encoding = LinearEncoding;
-    // }, [normal, roughness]);
+      normal.encoding = LinearEncoding;
+    }, [normal, roughness]);
   
     // useFrame((state, delta) => {
     //   let t = -state.clock.getElapsedTime() * 0.128;
@@ -44,9 +45,9 @@ export function Ground() {
         <planeGeometry args={[30, 30]} />
         <MeshReflectorMaterial
           envMapIntensity={0}
-          //normalMap={normal}
-          //normalScale={[0.15, 0.15]}
-          //roughnessMap={roughness}
+          normalMap={normal}
+          normalScale={[0.15, 0.15]}
+          roughnessMap={roughness}
           dithering={true}
           color={[0.015, 0.015, 0.015]}
           roughness={0.7}
@@ -135,13 +136,14 @@ function App() {
                         shadow-bias={-0.0001}
                     />
                     <ambientLight intensity={0.5} />
-                    <Box position={[-1.2, 0, 0]} />
-                    <Box position={[1.2, 0, 0]} />
+                    {/* <Box position={[-1.2, 0, 0]} />
+                    <Box position={[1.2, 0, 0]} /> */}
                     <Ground />
                     <OrbitControls 
                         target={[0, 0.35, 0]}
                         maxPolarAngle={1.45}
                     />
+                    <Hiphop />
                     <Stats />
                 </Canvas>
             </Suspense>
