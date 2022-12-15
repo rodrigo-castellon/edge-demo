@@ -10,18 +10,23 @@ import React from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Stats } from '@react-three/drei';
-import { Ground } from './components/Ground';
-import { Hiphop } from './components/Hiphop';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// custom pages
+// import Topbar from "./components/topbar/Topbar";
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
+// import Login from "./pages/login/Login";
+// import Register from "./pages/register/Register";
+// import Settings from "./pages/settings/Settings";
+// import Single from "./pages/single/Single";
+// import Write from "./pages/write/Write";
 
 // ----------------------------------------------------------------------
 function App() {
 
     return (
-        <div>
+        <Router>
             <Navbar bg="dark" variant="dark">
                 <Container>
                         <Navbar.Brand href="#home">
@@ -36,38 +41,11 @@ function App() {
                         </Navbar.Brand>
                 </Container>
             </Navbar>
-            <Suspense fallback={null}>
-                <Canvas shadows camera={{ fov: 75, position: [-2, 4, 4], rotation: [30,0,0]}}>
-                    <color args={[0, 0, 0]} attach="background" />
-                    <spotLight
-                        color={[1, 0.25, 0.7]}
-                        intensity={1.5}
-                        angle={0.6}
-                        penumbra={0.5}
-                        position={[5, 5, 0]}
-                        castShadow
-                        shadow-bias={-0.0001}
-                    />
-                    <spotLight
-                        color={[0.14, 0.5, 1]}
-                        intensity={2}
-                        angle={0.6}
-                        penumbra={0.5}
-                        position={[-5, 5, 0]}
-                        castShadow
-                        shadow-bias={-0.0001}
-                    />
-                    <ambientLight intensity={0.5} />
-                    <Ground />
-                    <OrbitControls 
-                        target={[0, 0.35, 0]}
-                        maxPolarAngle={1.45}
-                    />
-                    <Hiphop />
-                    <Stats />
-                </Canvas>
-            </Suspense>
-        </div>
+            <Routes>
+                <Route exact path="/" element={<Home/>} />
+                <Route exact path="/about" element={<About/>} />
+            </Routes>
+        </Router>
     );
   }
 
