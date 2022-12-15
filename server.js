@@ -4,9 +4,11 @@ const express = require("express");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
-const app = express();
-
 const url = require('url');
+
+const youtubedl = require('youtube-dl-exec')
+
+const app = express();
 
 const compiler = webpack(webpackConfig);
 
@@ -44,10 +46,23 @@ app.post('/api/request_song', function(req, res) {
 
     const link = queryObject.link;
 
-    const video_id = link.split("v=")[1];
-
-    // make request to youtube api to get the video title
-
+    // make request to youtube api to download the video
+    // as an mp3 file
+    youtubedl(link, {
+        x: true,
+        audioFormat: "mp3",
+        noCheckCertificates: true,
+        noWarnings: true,
+        preferFreeFormats: true,
+        addHeader: [
+            'referer:youtube.com',
+            'user-agent:googlebot'
+        ]
+    
+    }).then(output => {
+        console.log(output);
+        console.log('yoyoyo!');
+    })
     
 
     res.send("Hello World");
