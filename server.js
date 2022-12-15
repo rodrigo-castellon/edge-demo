@@ -1,3 +1,5 @@
+const path = require('node:path');
+
 const express = require("express");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
@@ -20,6 +22,14 @@ app.use(
 
 app.use(express.static(__dirname + "/www"));
 app.use(express.static(__dirname + "/public"));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'www/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 const server = app.listen(3000, function() {
   const host = server.address().address;

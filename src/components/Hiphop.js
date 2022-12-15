@@ -19,8 +19,6 @@ export function Hiphop(props) {
     const { actions } = useAnimations(animations, group);
 
     useEffect(() => {
-        console.log(actions);
-        console.log(Object.keys(actions))
         actions['Armature|mixamo.com|Layer0'].play()
     });
 
