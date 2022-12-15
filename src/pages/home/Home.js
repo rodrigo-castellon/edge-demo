@@ -36,7 +36,6 @@ export default function Home() {
                 maxPolarAngle={1.45}
             />
             <Hiphop />
-            <Stats />
         </Canvas>
     </Suspense>);
 }
