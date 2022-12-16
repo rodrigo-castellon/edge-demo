@@ -15,7 +15,7 @@ export default function Home() {
                         height="30"
                         className="d-inline-block align-top"
                 />{' '}
-                EDGE: Editable Dance Generation From Music
+                Endless Dancer
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/about">About</Nav.Link>
