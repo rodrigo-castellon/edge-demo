@@ -24,7 +24,7 @@ var admin = require("firebase-admin");
 
 // https://firebase.google.com/docs/database/admin/save-data
 // https://console.firebase.google.com/u/0/project/edging-abb31/database/edging-abb31-default-rtdb/data
-var serviceAccount = require(__dirname + "/edging-abb31-firebase-adminsdk-8f00j-721d54f56d.json")
+var serviceAccount = require(__dirname + "/edging-6301e-firebase-adminsdk-la5eu-f8ab970f3d.json")
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
