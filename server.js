@@ -88,12 +88,14 @@ app.get('/about', function(req, res) {
     })
 });
 
-function addSongToQueue(videoId, res) {
+function addSongToQueue(videoId, uuid) {
     return new Promise((resolve, reject) => {
         const dateObject = new Date();
         const timestamp = dateObject.getTime();
 
-        queueRef.push({
+        const userRef = queueRef.child(uuid);
+
+        userRef.push({
             timestamp: timestamp,
             videoId: videoId
         }, (error) => {
@@ -122,7 +124,7 @@ async function getQueueVideoIds() {
     return queueVideoIds;
 }
 
-async function handleLink(link, res) {
+async function handleLink(link, uuid, res) {
     const videoId = link.split('v=')[1];
 
     // validate link
@@ -165,7 +167,7 @@ async function handleLink(link, res) {
     }
 
     try {
-        const result = await addSongToQueue(videoId, res);
+        const result = await addSongToQueue(videoId, uuid);
         res.send({"status": 200, "message": "song added to queue"});
     } catch (error) {
         console.log(error);
@@ -178,10 +180,6 @@ app.post('/api/request_song', function(req, res) {
     // the user wants to request a song to be put onto
     // the queue
 
-    // check the cookie
-    console.log('hey!!!');
-    console.log(req.cookies.uuid)
-
     // the request contains a youtube link, so we need to
     // parse the link and get the video id
 
@@ -193,7 +191,7 @@ app.post('/api/request_song', function(req, res) {
     // the queue is too long, and that they need to wait for
     // a while before requesting another song
 
-    handleLink(link, res);
+    handleLink(link, req.cookies.uuid, res);
 });
 
 const server = app.listen(8080, function() {
