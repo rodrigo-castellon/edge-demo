@@ -1,8 +1,8 @@
 /**
  * The general architecture is roughly as follows:
  * - The client sends a request to the server to request a song
- * - The server checks various conditions (song length, queue length, etc.).
- *   If these conditions are met, the server sends a success response to the
+ * - The server validates the request (song length, queue length, etc.).
+ *   If the song is validated, the server sends a success response to the
  *   client and adds the song to the Firebase queue. Otherwise, it sends a
  *   failure response to the client.
  * - In the end, there should be another bucket that contains a sequence of FBX/GLTF
@@ -21,6 +21,8 @@ const webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
 const url = require('url');
 var admin = require("firebase-admin");
+const cookieParser = require('cookie-parser');
+const crypto = require('crypto');
 
 // https://firebase.google.com/docs/database/admin/save-data
 // https://console.firebase.google.com/u/0/project/edging-abb31/database/edging-abb31-default-rtdb/data
@@ -28,7 +30,7 @@ var serviceAccount = require(__dirname + "/edging-6301e-firebase-adminsdk-la5eu-
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://edging-abb31-default-rtdb.firebaseio.com"
+  databaseURL: "https://edging-6301e-default-rtdb.firebaseio.com"
 });
 
 const MAX_QUEUE_LENGTH = 500;
@@ -61,6 +63,22 @@ app.use(
 
 app.use(express.static(__dirname + "/www"));
 app.use(express.static(__dirname + "/public"));
+
+// cookie middleware
+app.use(cookieParser());
+
+// get the cookie incoming request
+app.get('/getcookie', (req, res) => {
+    //show the saved cookies
+    console.log('yoyoyoyoyo')
+    if (Object.keys(req.cookies).length != 0) {
+        res.send(req.cookies);
+    } else {
+        const cookie = crypto.randomUUID();
+        res.cookie(`uid`, cookie);
+        res.send({'uid': cookie});
+    }
+});
 
 app.get('/about', function(req, res) {
     res.sendFile(__dirname + '/www/index.html', function(err) {
@@ -139,12 +157,6 @@ async function handleLink(link, res) {
         res.send({"status": 500, "message": "error getting queue length"});
         return;
     }
-
-    // check length TODO
-
-    // try {
-    //     const songLength
-    // }
 
     try {
         const result = await addSongToQueue(videoId, res);

@@ -13,7 +13,7 @@ function Search({ }) {
             const link = e.target.value;
 
             // make request to server
-            const response = fetch("http://localhost:3000/api/request_song?link=" + link, {
+            const response = fetch("http://localhost:8080/api/request_song?link=" + link, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
