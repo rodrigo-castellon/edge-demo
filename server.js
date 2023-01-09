@@ -47,6 +47,21 @@ const queueRef = db.ref('/queue');
 
 const app = express();
 
+// cookie middleware
+app.use(cookieParser());
+
+app.use((req, res, next) => {
+    if (!req.cookies.uuid) {
+        const uuid = generateUUID();
+        res.cookie('uuid', uuid);
+    }
+    next();
+});
+
+function generateUUID() {
+    return crypto.randomBytes(16).toString('hex');
+}
+
 const compiler = webpack(webpackConfig);
 
 app.use(
@@ -64,21 +79,6 @@ app.use(
 app.use(express.static(__dirname + "/www"));
 app.use(express.static(__dirname + "/public"));
 
-// cookie middleware
-app.use(cookieParser());
-
-// get the cookie incoming request
-app.get('/getcookie', (req, res) => {
-    //show the saved cookies
-    console.log('yoyoyoyoyo')
-    if (Object.keys(req.cookies).length != 0) {
-        res.send(req.cookies);
-    } else {
-        const cookie = crypto.randomUUID();
-        res.cookie(`uid`, cookie);
-        res.send({'uid': cookie});
-    }
-});
 
 app.get('/about', function(req, res) {
     res.sendFile(__dirname + '/www/index.html', function(err) {
@@ -125,6 +125,12 @@ async function getQueueVideoIds() {
 async function handleLink(link, res) {
     const videoId = link.split('v=')[1];
 
+    // validate link
+    if (videoId == null) {
+        res.send({"status": 500, "message": "error adding song to queue"});
+        return;
+    }
+
     // perform a couple checks:
     // 1. check if the video is already in the queue
     // 2. check if the queue is too long
@@ -166,11 +172,15 @@ async function handleLink(link, res) {
         res.send({"status": 500, "message": "error adding song to queue"});
         return;
     }
-};
+}
 
 app.post('/api/request_song', function(req, res) {
     // the user wants to request a song to be put onto
     // the queue
+
+    // check the cookie
+    console.log('hey!!!');
+    console.log(req.cookies.uuid)
 
     // the request contains a youtube link, so we need to
     // parse the link and get the video id
