@@ -109,12 +109,12 @@ function addSongToQueue(videoId, uuid) {
 }
 
 async function getQueueLength() {
-    const snapshot = await queueRef.get();
+    const snapshot = await queueRef.child(uuid).get();
     return snapshot.numChildren();
 }
 
-async function getQueueVideoIds() {
-    const snapshot = await queueRef.get();
+async function getQueueVideoIds(uuid) {
+    const snapshot = await queueRef.child(uuid).get();
     const queueVideoIds = [];
     snapshot.forEach((childSnapshot) => {
         const childData = childSnapshot.val();
@@ -140,7 +140,7 @@ async function handleLink(link, uuid, res) {
     // if any of the above trigger, send a message to the client
     // saying that the song cannot be added to the queue
     try {
-        const queueVideoIds = await getQueueVideoIds();
+        const queueVideoIds = await getQueueVideoIds(uuid);
 
         if (queueVideoIds.includes(videoId)) {
             res.send({"status": 500, "message": "song is already in queue"});
@@ -154,7 +154,7 @@ async function handleLink(link, uuid, res) {
     }
 
     try {
-        const queueLength = await getQueueLength();
+        const queueLength = await getQueueLength(uuid);
         console.log('the queue length is: ', queueLength);
         if (queueLength > MAX_QUEUE_LENGTH) {
             res.send({"status": 500, "message": "queue is too long"});
