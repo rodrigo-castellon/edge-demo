@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Affix, Button } from "@mantine/core";
+import { Button } from "@mantine/core";
 
-function getNextSong() {
-    console.log("hello!");
-}
-
-function Nextsong() {
-    return <Button onClick={() => getNextSong()}>Next Song</Button>;
+function Nextsong(props) {
+    console.log(props);
+    return <Button onClick={props.onClickHandler}>Next Song</Button>;
 }
 
 // function Nextsong({}) {
