@@ -1,14 +1,20 @@
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
-import { Ground } from './Ground';
-import { Hiphop } from './Hiphop';
+import { Ground } from "./Ground";
+// import { Hiphop } from "./Hiphop";
+import { Rickroll } from "./Rickroll";
+// import { Wave } from "./Wave";
+import { Toxic } from "./Toxic";
 
 export default function Display() {
     return (
         <Suspense fallback={null}>
-            <Canvas shadows camera={{ fov: 75, position: [-2, 4, 4], rotation: [30,0,0]}}>
+            <Canvas
+                shadows
+                camera={{ fov: 75, position: [-2, 4, 4], rotation: [30, 0, 0] }}
+            >
                 <color args={[0, 0, 0]} attach="background" />
                 <spotLight
                     color={[1, 0.25, 0.7]}
@@ -30,11 +36,11 @@ export default function Display() {
                 />
                 <ambientLight intensity={0.5} />
                 <Ground />
-                <OrbitControls 
-                    target={[0, 0.35, 0]}
-                    maxPolarAngle={1.45}
-                />
-                <Hiphop />
+                <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+                {/* <Hiphop /> */}
+                <Toxic />
+                {/* <Rickroll /> */}
+                {/* <Wave /> */}
             </Canvas>
         </Suspense>
     );

@@ -19,25 +19,26 @@ const express = require("express");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
-const url = require('url');
+const url = require("url");
 var admin = require("firebase-admin");
-const cookieParser = require('cookie-parser');
-const crypto = require('crypto');
+const cookieParser = require("cookie-parser");
+const crypto = require("crypto");
 
 // https://firebase.google.com/docs/database/admin/save-data
 // https://console.firebase.google.com/u/0/project/edging-abb31/database/edging-abb31-default-rtdb/data
-var serviceAccount = require(__dirname + "/edging-6301e-firebase-adminsdk-la5eu-f8ab970f3d.json")
+var serviceAccount = require(__dirname +
+    "/edging-6301e-firebase-adminsdk-la5eu-f8ab970f3d.json");
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://edging-6301e-default-rtdb.firebaseio.com"
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://edging-6301e-default-rtdb.firebaseio.com",
 });
 
 const MAX_QUEUE_LENGTH = 500;
 
 // As an admin, the app has access to read and write all data, regardless of Security Rules
 var db = admin.database();
-const queueRef = db.ref('/queue');
+const usersRef = db.ref("/users");
 
 // Initialize Realtime Database and get a reference to the service
 // const database = getDatabase(app);
@@ -53,13 +54,16 @@ app.use(cookieParser());
 app.use((req, res, next) => {
     if (!req.cookies.uuid) {
         const uuid = generateUUID();
-        res.cookie('uuid', uuid);
+        res.cookie("uuid", uuid);
+
+        // talk to QueueManager and let it know to create a user
+        // under this UID in firebase
     }
     next();
 });
 
 function generateUUID() {
-    return crypto.randomBytes(16).toString('hex');
+    return crypto.randomBytes(16).toString("hex");
 }
 
 const compiler = webpack(webpackConfig);
@@ -70,22 +74,21 @@ app.use(
         filename: "bundle.js",
         publicPath: "/",
         stats: {
-            colors: true
+            colors: true,
         },
-        historyApiFallback: true
+        historyApiFallback: true,
     })
 );
 
 app.use(express.static(__dirname + "/www"));
 app.use(express.static(__dirname + "/public"));
 
-
-app.get('/about', function(req, res) {
-    res.sendFile(__dirname + '/www/index.html', function(err) {
+app.get("/about", function (req, res) {
+    res.sendFile(__dirname + "/www/index.html", function (err) {
         if (err) {
-            res.status(500).send(err)
+            res.status(500).send(err);
         }
-    })
+    });
 });
 
 function addSongToQueue(videoId, uuid) {
@@ -93,28 +96,31 @@ function addSongToQueue(videoId, uuid) {
         const dateObject = new Date();
         const timestamp = dateObject.getTime();
 
-        const userRef = queueRef.child(uuid);
+        const userRef = usersRef.child(uuid);
 
-        userRef.push({
-            timestamp: timestamp,
-            videoId: videoId
-        }, (error) => {
-            if (error) {
-                reject(error);
+        userRef.push(
+            {
+                timestamp: timestamp,
+                videoId: videoId,
+            },
+            (error) => {
+                if (error) {
+                    reject(error);
+                }
             }
-        });
+        );
 
         resolve();
     });
 }
 
-async function getQueueLength() {
-    const snapshot = await queueRef.child(uuid).get();
+async function getQueueLength(uuid) {
+    const snapshot = await usersRef.child(uuid).get();
     return snapshot.numChildren();
 }
 
 async function getQueueVideoIds(uuid) {
-    const snapshot = await queueRef.child(uuid).get();
+    const snapshot = await usersRef.child(uuid).get();
     const queueVideoIds = [];
     snapshot.forEach((childSnapshot) => {
         const childData = childSnapshot.val();
@@ -125,11 +131,11 @@ async function getQueueVideoIds(uuid) {
 }
 
 async function handleLink(link, uuid, res) {
-    const videoId = link.split('v=')[1];
+    const videoId = link.split("v=")[1];
 
     // validate link
     if (videoId == null) {
-        res.send({"status": 500, "message": "error adding song to queue"});
+        res.send({ status: 500, message: "error adding song to queue" });
         return;
     }
 
@@ -143,40 +149,76 @@ async function handleLink(link, uuid, res) {
         const queueVideoIds = await getQueueVideoIds(uuid);
 
         if (queueVideoIds.includes(videoId)) {
-            res.send({"status": 500, "message": "song is already in queue"});
+            res.send({ status: 500, message: "song is already in queue" });
             return;
         }
-
     } catch (error) {
         console.log(error);
-        res.send({"status": 500, "message": "error getting queue"});
+        res.send({ status: 500, message: "error getting queue" });
         return;
     }
 
     try {
         const queueLength = await getQueueLength(uuid);
-        console.log('the queue length is: ', queueLength);
+        console.log("the queue length is: ", queueLength);
         if (queueLength > MAX_QUEUE_LENGTH) {
-            res.send({"status": 500, "message": "queue is too long"});
+            res.send({ status: 500, message: "queue is too long" });
             return;
         }
     } catch (error) {
         console.log(error);
-        res.send({"status": 500, "message": "error getting queue length"});
+        res.send({ status: 500, message: "error getting queue length" });
         return;
     }
 
     try {
         const result = await addSongToQueue(videoId, uuid);
-        res.send({"status": 200, "message": "song added to queue"});
+        res.send({ status: 200, message: "song added to queue" });
     } catch (error) {
         console.log(error);
-        res.send({"status": 500, "message": "error adding song to queue"});
+        res.send({ status: 500, message: "error adding song to queue" });
         return;
     }
 }
 
-app.post('/api/request_song', function(req, res) {
+// GET endpoints
+app.get("/api/get_motions", function (req, res) {
+    // get the motions for the given index in the linked list + timestamps
+    // get the linked list (/api/get_linked_list)
+    // index into it and get link to bucket file
+    // download the bucket file
+    // move into the right folder and name it correctly
+    // move
+});
+
+app.get("/api/get_linked_list", function (req, res) {
+    // return an ordered list of video id’s along with which queue they are in (from the linked list)
+});
+
+// POST endpoints
+
+app.post("/api/create_user", function (req, res) {
+    // create a new user with the given uid.
+    // under the hood: lays out the two queues + linked list + ensures that you can get the motions for current song and next song
+});
+
+app.post("/api/add_song", function (req, res) {
+    // adds a song to the foreground queue.
+    // DO NOT IMPLEMENT UNTIL WE GIVE WRITE-ACCESS!!!
+});
+
+app.post("/api/finish_song", function (req, res) {
+    // indicates that we have finished the current song.
+    // under the hood, this just shifts things around (delete song from foreground queue if it’s foreground, reassign the “firstSong” pointer) and computes new motions
+});
+
+app.post("/api/recompute_motions", function (req, res) {
+    // recomputes the motions for current and next song assuming that we are cutting to the next song at the given cutTime timestamp within the song. infill everything after infillStartTime.
+    // if vertex AI doesn’t give back the motions within “timeout”, then just return an error.
+    // DO NOT IMPLEMENT UNTIL WE GIVE WRITE-ACCESS!!!
+});
+
+app.post("/api/request_song", function (req, res) {
     // the user wants to request a song to be put onto
     // the queue
 
@@ -194,7 +236,7 @@ app.post('/api/request_song', function(req, res) {
     handleLink(link, req.cookies.uuid, res);
 });
 
-const server = app.listen(8080, function() {
+const server = app.listen(8080, function () {
     const host = server.address().address;
     const port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
