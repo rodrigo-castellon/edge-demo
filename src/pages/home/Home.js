@@ -10,19 +10,24 @@ export default class Home extends React.Component {
         super(props);
         this.handleClicks = this.handleClicks.bind(this);
 
-        this.state = { path: "/test_toxic2_out/test_toxic2-transformed.glb" };
+        this.main = "/test_toxic2_out/test_toxic2-transformed.glb";
+        this.alternate = "/test_toxic3_out/test_toxic3-transformed.glb";
+        this.alternate = "hiphop2_out/hiphop2-transformed.glb";
+        this.alternate = "spin_out/spin-transformed.glb";
+        this.alternate = "wave_out/wave-transformed.glb";
+        this.alternate = "toxic_upright_out/toxic_upright-transformed.glb";
+        this.alternate = "toxic_slow_out/toxic_slow-transformed.glb";
+
+        // this.state = { path: "/test_toxic2_out/test_toxic2-transformed.glb" };
+        this.state = { path: this.alternate };
     }
 
     handleClicks() {
-        console.log("hello!!!!");
-        console.log(this);
-        // this.setState({ isLoggedIn: true });
-        // Correct
         this.setState(function (state, props) {
-            if (state.path == "/test_toxic2_out/test_toxic2-transformed.glb") {
-                return { path: "/test_toxic3_out/test_toxic3-transformed.glb" };
+            if (state.path == this.main) {
+                return { path: this.alternate };
             } else {
-                return { path: "/test_toxic2_out/test_toxic2-transformed.glb" };
+                return { path: this.main };
             }
         });
 
@@ -47,8 +52,6 @@ export default class Home extends React.Component {
             backgroundColor: "#121417",
         };
 
-        console.log("IN HOME RN!!!");
-
         const elementsStyle = {
             width: "75%",
             margin: "auto",
@@ -58,12 +61,15 @@ export default class Home extends React.Component {
             padding: "20px",
         };
 
+        if (this.state.path === this.main) {
+        }
+
         return (
             <div style={backgroundstyle}>
                 <div style={elementsStyle}>
                     <Search />
                     <Button onClick={this.handleClicks}>Next Song</Button>
-                    <Display path={this.state.path} />
+                    <Display toxic={this.state.path == this.main ? 1 : 2} />
                     <p style={elementStyle}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
