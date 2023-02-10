@@ -8,9 +8,12 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 export function Toxic(props) {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        "/test_toxic2_out/test_toxic2-transformed.glb"
+        props.path
+        // "/test_toxic2_out/test_toxic2-transformed.glb"
     );
     const { actions } = useAnimations(animations, group);
+
+    console.log("in here");
 
     useEffect(() => {
         let k = "test_toxic.pkl";
@@ -19,6 +22,15 @@ export function Toxic(props) {
         console.log(actions);
         // console.log(actions[k]);
         actions[k].play();
+
+        // setTimeout(() => {
+        //     const { nodes, materials, animations } = useGLTF(
+        //         "/test_toxic2_out/test_toxic2-transformed.glb"
+        //     );
+        //     const { actions } = useAnimations(animations, group);
+
+        //     actions[k].play();
+        // }, 2000);
     });
 
     return (
@@ -39,7 +51,9 @@ export function Toxic(props) {
                         geometry={nodes.Alpha_Joints.geometry}
                         material={materials["Alpha_Joints_MAT.007"]}
                         skeleton={nodes.Alpha_Joints.skeleton}
-                    />
+                    >
+                        <meshPhongMaterial color="#3399ff" shininess={1000} />
+                    </skinnedMesh>
                 </group>
             </group>
         </group>

@@ -1,6 +1,7 @@
 // custom components
-import Display from '../../components/Display';
-import Search from '../../components/Search';
+import Display from "../../components/Display";
+import Search from "../../components/Search";
+import Nextsong from "../../components/Nextsong";
 
 export default function Home() {
     const backgroundstyle = {
@@ -16,6 +17,8 @@ export default function Home() {
         backgroundColor: "#121417",
     };
 
+    console.log("IN HOME RN!!!");
+
     const elementsStyle = {
         width: "75%",
         margin: "auto",
@@ -23,15 +26,23 @@ export default function Home() {
 
     const elementStyle = {
         padding: "20px",
-    }
+    };
 
     return (
         <div style={backgroundstyle}>
             <div style={elementsStyle}>
                 <Search />
-                <Display />
+                <Nextsong />
+                <Display path="/test_toxic2_out/test_toxic2-transformed.glb" />
                 <p style={elementStyle}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
                 </p>
             </div>
         </div>

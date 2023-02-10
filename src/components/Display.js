@@ -8,7 +8,7 @@ import { Rickroll } from "./Rickroll";
 // import { Wave } from "./Wave";
 import { Toxic } from "./Toxic";
 
-export default function Display() {
+export default function Display(props) {
     return (
         <Suspense fallback={null}>
             <Canvas
@@ -38,7 +38,7 @@ export default function Display() {
                 <Ground />
                 <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
                 {/* <Hiphop /> */}
-                <Toxic />
+                <Toxic path={props.path} />
                 {/* <Rickroll /> */}
                 {/* <Wave /> */}
             </Canvas>
