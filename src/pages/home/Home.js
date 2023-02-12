@@ -61,15 +61,15 @@ export default class Home extends React.Component {
             padding: "20px",
         };
 
-        if (this.state.path === this.main) {
-        }
+        // if (this.state.path === this.main) {
+        // }
 
         return (
             <div style={backgroundstyle}>
                 <div style={elementsStyle}>
                     <Search />
                     <Button onClick={this.handleClicks}>Next Song</Button>
-                    <Display toxic={this.state.path == this.main ? 1 : 2} />
+                    <Display path={this.state.path} />
                     <p style={elementStyle}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore
