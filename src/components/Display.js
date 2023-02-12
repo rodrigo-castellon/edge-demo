@@ -45,11 +45,7 @@ export default function Display(props) {
                 <ambientLight intensity={0.5} />
                 <Ground />
                 <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
-                {/* <Hiphop /> */}
                 <YBot path={props.path} />
-                {/* <Toxic path={props.path} /> */}
-                {/* <Rickroll /> */}
-                {/* <Wave /> */}
             </Canvas>
         </Suspense>
     );

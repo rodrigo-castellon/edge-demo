@@ -3,31 +3,29 @@ import Display from "../../components/Display";
 import Search from "../../components/Search";
 import { Button } from "@mantine/core";
 import React from "react";
+import { useGLTF } from "@react-three/drei";
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.handleClicks = this.handleClicks.bind(this);
 
-        this.main = "/test_toxic2_out/test_toxic2-transformed.glb";
-        this.alternate = "/test_toxic3_out/test_toxic3-transformed.glb";
-        this.alternate = "hiphop2_out/hiphop2-transformed.glb";
-        this.alternate = "spin_out/spin-transformed.glb";
-        this.alternate = "wave_out/wave-transformed.glb";
-        this.alternate = "toxic_upright_out/toxic_upright-transformed.glb";
-        this.alternate = "toxic_slow_out/toxic_slow-transformed.glb";
+        this.files = [
+            "/test_toxic2_out/test_toxic2-transformed.glb",
+            "/toxic_slow_out/toxic_slow-transformed.glb",
+        ];
 
-        // this.state = { path: "/test_toxic2_out/test_toxic2-transformed.glb" };
-        this.state = { path: this.alternate };
+        // preload everything to make things fast
+        for (const fpath of this.files) {
+            useGLTF.preload(fpath);
+        }
+
+        this.state = { pathIdx: 0 };
     }
 
     handleClicks() {
         this.setState(function (state, props) {
-            if (state.path == this.main) {
-                return { path: this.alternate };
-            } else {
-                return { path: this.main };
-            }
+            return { pathIdx: (state.pathIdx + 1) % this.files.length };
         });
     }
 
@@ -62,7 +60,7 @@ export default class Home extends React.Component {
                 <div style={elementsStyle}>
                     <Search />
                     <Button onClick={this.handleClicks}>Next Song</Button>
-                    <Display path={this.state.path} />
+                    <Display path={this.files[this.state.pathIdx]} />
                     <p style={elementStyle}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore

@@ -7,6 +7,8 @@ import { useGLTF, useAnimations } from "@react-three/drei";
 
 export function createYBotComponent(path) {
     function YBot(props) {
+        console.log("creating new ybot with animation path " + props.path);
+
         let group = useRef();
         let { nodes, materials, animations } = useGLTF(props.path);
 
@@ -50,5 +52,3 @@ export function createYBotComponent(path) {
 
     return YBot;
 }
-
-useGLTF.preload("/test_toxic2_out/test_toxic2-transformed.glb");
