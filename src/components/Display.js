@@ -7,14 +7,14 @@ import { Ground } from "./Ground";
 // import { Hiphop } from "./Hiphop";
 // import { Rickroll } from "./Rickroll";
 // import { Wave } from "./Wave";
-import { createToxicComponent } from "./Toxic";
+import { createYBotComponent } from "./YBot";
 
 export default function Display(props) {
-    const ToxicComponent = createToxicComponent(props.path);
+    const YBot = createYBotComponent(props.path);
 
-    extend({ ToxicComponent });
+    extend({ YBot });
 
-    console.log(ToxicComponent);
+    console.log(YBot);
 
     return (
         <Suspense fallback={null}>
@@ -49,7 +49,7 @@ export default function Display(props) {
                 <Ground />
                 <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
                 {/* <Hiphop /> */}
-                <ToxicComponent path={props.path} />
+                <YBot path={props.path} />
                 {/* <Toxic path={props.path} /> */}
                 {/* <Rickroll /> */}
                 {/* <Wave /> */}
