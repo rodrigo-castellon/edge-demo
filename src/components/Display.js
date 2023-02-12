@@ -4,9 +4,6 @@ import { OrbitControls } from "@react-three/drei";
 
 import { extend } from "@react-three/fiber";
 import { Ground } from "./Ground";
-// import { Hiphop } from "./Hiphop";
-// import { Rickroll } from "./Rickroll";
-// import { Wave } from "./Wave";
 import { createYBotComponent } from "./YBot";
 
 export default function Display(props) {

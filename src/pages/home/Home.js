@@ -1,7 +1,6 @@
 // custom components
 import Display from "../../components/Display";
 import Search from "../../components/Search";
-import Nextsong from "../../components/Nextsong";
 import { Button } from "@mantine/core";
 import React from "react";
 
@@ -30,12 +29,6 @@ export default class Home extends React.Component {
                 return { path: this.main };
             }
         });
-
-        // if (this.path == "/test_toxic2_out/test_toxic2-transformed.glb") {
-        //     this.path = "/test_toxic3_out/test_toxic3-transformed.glb";
-        // } else {
-        //     this.path = "/test_toxic2_out/test_toxic2-transformed.glb";
-        // }
     }
 
     render() {
