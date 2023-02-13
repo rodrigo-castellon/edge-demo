@@ -56,8 +56,15 @@ app.use((req, res, next) => {
         const uuid = generateUUID();
         res.cookie("uuid", uuid);
 
+        console.log("HELLO WORLD!!!!!!");
+
         // talk to QueueManager and let it know to create a user
         // under this UID in firebase
+        createUserFunc(uuid)
+            .then((result) => {})
+            .catch((error) => {
+                console.log(error);
+            });
     }
     next();
 });
@@ -91,24 +98,29 @@ app.get("/about", function (req, res) {
     });
 });
 
-function addSongToQueue(videoId, uuid) {
+function addSongToQueue(videoId, uuid, whichQueue = "foreground") {
+    // whichQueue can either be "foreground" or "background"
     return new Promise((resolve, reject) => {
         const dateObject = new Date();
         const timestamp = dateObject.getTime();
 
-        const userRef = usersRef.child(uuid);
-
-        userRef.push(
-            {
-                timestamp: timestamp,
-                videoId: videoId,
-            },
-            (error) => {
-                if (error) {
-                    reject(error);
+        usersRef
+            .child(uuid)
+            .child(whichQueue)
+            .push(
+                {
+                    left: null,
+                    right: null,
+                    motionLink: null,
+                    timestamp: timestamp,
+                    videoId: videoId,
+                },
+                (error) => {
+                    if (error) {
+                        reject(error);
+                    }
                 }
-            }
-        );
+            );
 
         resolve();
     });
@@ -184,22 +196,110 @@ async function handleLink(link, uuid, res) {
 // GET endpoints
 app.get("/api/get_motions", function (req, res) {
     // get the motions for the given index in the linked list + timestamps
+
+    const uuid = req.cookies.uuid;
+
+    const userRef = usersRef.child(uuid);
+
     // get the linked list (/api/get_linked_list)
-    // index into it and get link to bucket file
-    // download the bucket file
-    // move into the right folder and name it correctly
-    // move
+    // axios
+    //     .get("/api/get_linked_list")
+    //     .then((linkedListResponse) => {
+    //         // index into it and get link to bucket file
+
+    //         console.log(linkedListResponse);
+
+    //         // download the bucket file
+    //         // move into the right folder and name it correctly
+    //         // move
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //         res.send({ status: 500, message: "error encountered" });
+    //     });
 });
 
 app.get("/api/get_linked_list", function (req, res) {
     // return an ordered list of video id’s along with which queue they are in (from the linked list)
+
+    const uuid = req.cookies.uuid;
+
+    usersRef
+        .child(uuid)
+        .get()
+        .then((snapshot) => {
+            const queueIds = [];
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+                queueIds.push(childData.queueId + "/" + childData.videoId);
+            });
+
+            res.send({ status: 200, message: JSON.stringify(queueIds) });
+        })
+        .catch((error) => {
+            res.send({ status: 500, message: "error encountered" });
+        });
 });
 
 // POST endpoints
 
+async function createUserFunc(uuid) {
+    return new Promise((resolve, reject) => {
+        const dateObject = new Date();
+        const timestamp = dateObject.getTime();
+
+        const videoIds = [
+            "RnBT9uUYb1w",
+            "5dJG_DdOuOM",
+            "uhA55hYnoHw",
+            "W2TE0DjdNqI",
+            "gEABPD4wNCg",
+        ];
+
+        // set up the data struct locally
+        // now set up background queue
+        backgroundQueue = [];
+        for (const videoId of videoIds) {
+            backgroundQueue.push({
+                videoId: videoId,
+                left: null,
+                right: null,
+                motionLink: null,
+            });
+        }
+
+        const userRef = usersRef.child(uuid);
+
+        // push the entire background queue
+        var updates = {};
+        backgroundQueue.map((item) => {
+            var newPostKey = userRef.child("background").push().key;
+            // var newPostKey = firebase.database().ref().child(`boards/${boardId}/containers/`).push().key;
+            updates[`background/` + newPostKey] = item;
+        });
+        userRef.update(updates);
+
+        resolve();
+    });
+}
+
+async function createUser(res, uuid) {
+    try {
+        const result = await createUserFunc(uuid);
+        res.send({ status: 200, message: "created user" });
+    } catch (error) {
+        console.log(error);
+        res.send({ status: 500, message: "error creating user" });
+        return;
+    }
+}
+
 app.post("/api/create_user", function (req, res) {
     // create a new user with the given uid.
     // under the hood: lays out the two queues + linked list + ensures that you can get the motions for current song and next song
+
+    const uuid = req.cookies.uuid;
+    createUser(res, uuid);
 });
 
 app.post("/api/add_song", function (req, res) {
@@ -236,7 +336,7 @@ app.post("/api/request_song", function (req, res) {
     handleLink(link, req.cookies.uuid, res);
 });
 
-const server = app.listen(8080, function () {
+const server = app.listen(80, function () {
     const host = server.address().address;
     const port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port);
