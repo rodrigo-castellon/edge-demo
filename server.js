@@ -272,8 +272,8 @@ async function createUserFunc(uuid) {
         // now set up background queue
         backgroundQueue = [];
         for (let i = 0; i < videoIds.length; i++) {
-            let left = videoIds[mod(i - 1, videoIds.length)];
-            let right = videoIds[mod(i + 1, videoIds.length)];
+            let left = "background/" + videoIds[mod(i - 1, videoIds.length)];
+            let right = "background/" + videoIds[mod(i + 1, videoIds.length)];
 
             backgroundQueue.push({
                 videoId: videoIds[i],
