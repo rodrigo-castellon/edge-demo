@@ -249,6 +249,10 @@ app.get("/api/get_linked_list", function (req, res) {
         });
 });
 
+function mod(n, m) {
+    return ((n % m) + m) % m;
+}
+
 // POST endpoints
 
 async function createUserFunc(uuid) {
@@ -268,8 +272,8 @@ async function createUserFunc(uuid) {
         // now set up background queue
         backgroundQueue = [];
         for (let i = 0; i < videoIds.length; i++) {
-            let left = videoIds[(i - 1) % videoIds.length];
-            let right = videoIds[(i + 1) % videoIds.length];
+            let left = videoIds[mod(i - 1, videoIds.length)];
+            let right = videoIds[mod(i + 1, videoIds.length)];
 
             backgroundQueue.push({
                 videoId: videoIds[i],
