@@ -247,22 +247,6 @@ app.get("/api/get_linked_list", function (req, res) {
             console.log(error);
             res.send({ status: 500, message: "error encountered" });
         });
-
-    // usersRef
-    //     .child(uuid)
-    //     .get()
-    //     .then((snapshot) => {
-    //         const queueIds = [];
-    //         snapshot.forEach((childSnapshot) => {
-    //             const childData = childSnapshot.val();
-    //             queueIds.push(childData.queueId + "/" + childData.videoId);
-    //         });
-
-    //         res.send({ status: 200, message: JSON.stringify(queueIds) });
-    //     })
-    //     .catch((error) => {
-    //         res.send({ status: 500, message: "error encountered" });
-    //     });
 });
 
 // POST endpoints
@@ -283,11 +267,14 @@ async function createUserFunc(uuid) {
         // set up the data struct locally
         // now set up background queue
         backgroundQueue = [];
-        for (const videoId of videoIds) {
+        for (let i = 0; i < videoIds.length; i++) {
+            let left = videoIds[(i - 1) % videoIds.length];
+            let right = videoIds[(i + 1) % videoIds.length];
+
             backgroundQueue.push({
-                videoId: videoId,
-                left: null,
-                right: null,
+                videoId: videoIds[i],
+                left: left,
+                right: right,
                 motionLink: null,
             });
         }
