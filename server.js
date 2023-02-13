@@ -56,8 +56,6 @@ app.use((req, res, next) => {
         const uuid = generateUUID();
         res.cookie("uuid", uuid);
 
-        console.log("HELLO WORLD!!!!!!");
-
         // talk to QueueManager and let it know to create a user
         // under this UID in firebase
         createUserFunc(uuid)
@@ -202,28 +200,17 @@ app.get("/api/get_motions", function (req, res) {
     const userRef = usersRef.child(uuid);
 
     // get the linked list (/api/get_linked_list)
-    // axios
-    //     .get("/api/get_linked_list")
-    //     .then((linkedListResponse) => {
-    //         // index into it and get link to bucket file
-
-    //         console.log(linkedListResponse);
-
-    //         // download the bucket file
-    //         // move into the right folder and name it correctly
-    //         // move
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //         res.send({ status: 500, message: "error encountered" });
-    //     });
+    getLinkedList(uuid)
+        .then((linkedList) => {
+            console.log(linkedList);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 });
 
-app.get("/api/get_linked_list", function (req, res) {
+async function getLinkedList(uuid) {
     // return an ordered list of video id’s along with which queue they are in (from the linked list)
-
-    const uuid = req.cookies.uuid;
-
     usersRef
         .child(uuid)
         .get()
@@ -234,11 +221,48 @@ app.get("/api/get_linked_list", function (req, res) {
                 queueIds.push(childData.queueId + "/" + childData.videoId);
             });
 
-            res.send({ status: 200, message: JSON.stringify(queueIds) });
+            console.log("got linked list from inside the function");
+            console.log(queueIds);
+
+            return queueIds;
         })
         .catch((error) => {
+            console.log(error);
+            return [];
+        });
+}
+
+app.get("/api/get_linked_list", function (req, res) {
+    // return an ordered list of video id’s along with which queue they are in (from the linked list)
+
+    const uuid = req.cookies.uuid;
+
+    getLinkedList(uuid)
+        .then((linkedList) => {
+            console.log("got linked list");
+            console.log(linkedList);
+            res.send({ status: 200, message: JSON.stringify(linkedList) });
+        })
+        .catch((error) => {
+            console.log(error);
             res.send({ status: 500, message: "error encountered" });
         });
+
+    // usersRef
+    //     .child(uuid)
+    //     .get()
+    //     .then((snapshot) => {
+    //         const queueIds = [];
+    //         snapshot.forEach((childSnapshot) => {
+    //             const childData = childSnapshot.val();
+    //             queueIds.push(childData.queueId + "/" + childData.videoId);
+    //         });
+
+    //         res.send({ status: 200, message: JSON.stringify(queueIds) });
+    //     })
+    //     .catch((error) => {
+    //         res.send({ status: 500, message: "error encountered" });
+    //     });
 });
 
 // POST endpoints
@@ -270,12 +294,14 @@ async function createUserFunc(uuid) {
 
         const userRef = usersRef.child(uuid);
 
+        userRef.set({ firstSong: "background/" + videoIds[0] });
+
         // push the entire background queue
         var updates = {};
         backgroundQueue.map((item) => {
-            var newPostKey = userRef.child("background").push().key;
+            // var newPostKey = userRef.child("background").push().key;
             // var newPostKey = firebase.database().ref().child(`boards/${boardId}/containers/`).push().key;
-            updates[`background/` + newPostKey] = item;
+            updates[`background/` + item.videoId] = item;
         });
         userRef.update(updates);
 
