@@ -7,8 +7,9 @@ import { Ground } from "./Ground";
 import { createYBotComponent } from "./YBot";
 
 export default function Display(props) {
-    const YBot = createYBotComponent(props.path);
+    let YBot = null;
 
+    YBot = createYBotComponent(props.path);
     extend({ YBot });
 
     console.log(YBot);
