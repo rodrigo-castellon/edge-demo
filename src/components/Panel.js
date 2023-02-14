@@ -18,6 +18,8 @@ function Panel(props) {
                 <div className="right-div">
                     <button
                         style={{
+                            position: "relative",
+                            top: "50%",
                             float: "right",
                         }}
                         onClick={handleTogglePanel}
