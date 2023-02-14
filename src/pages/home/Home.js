@@ -10,11 +10,6 @@ export default class Home extends React.Component {
         super(props);
         this.handleClicks = this.handleClicks.bind(this);
 
-        // this.files = [
-        //     "/test_toxic2_out/test_toxic2-transformed.glb",
-        //     "/toxic_slow_out/toxic_slow-transformed.glb",
-        // ];
-
         this.files = [
             "https://storage.googleapis.com/edging-background/v1/glb/test_aint_no_mountain_high_enough.glb",
             "https://storage.googleapis.com/edging-background/v1/glb/test_andrew_belle_in_my_veins_official_song.glb",
@@ -24,11 +19,6 @@ export default class Home extends React.Component {
             "https://storage.googleapis.com/edging-background/v1/glb/test_britney_spears_toxic_official_hd_video.glb",
             "https://storage.googleapis.com/edging-background/v1/glb/test_chubby_checker_the_twist_official_music_video.glb",
         ];
-
-        // this.files = [
-        //     "/test_toxic2_out/test_toxic2.gltf",
-        //     "/toxic_slow_out/toxic_slow.gltf",
-        // ];
 
         // preload everything to make things fast
         for (const fpath of this.files) {
