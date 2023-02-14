@@ -8,9 +8,9 @@
     left: 0;
     width: 50%;
     height: 100vh;
-    background-color: #000000;
-    border: 1px solid #ccc;
-    color: white;
+    /* background-color: #000000; */
+    /* border: 1px solid #ccc; */
+    /* color: white; */
     padding: 0px;
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
@@ -25,6 +25,16 @@
 }
 
 .left-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    color: white;
+    padding: 20px;
+    overflow-wrap: break-word;
     height: 100%;
     width: 90%;
     float: left;

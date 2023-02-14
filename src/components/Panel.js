@@ -14,10 +14,7 @@ function Panel(props) {
             <div
                 className={`panel ${showPanel ? "panel-open" : "panel-closed"}`}
             >
-                <div className="left-div">
-                    {props.children}
-                    {/* <p>{props.text}</p> */}
-                </div>
+                <div className="left-div">{props.children}</div>
                 <div className="right-div">
                     <button
                         style={{
