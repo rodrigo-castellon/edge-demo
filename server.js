@@ -70,6 +70,19 @@ app.use((req, res, next) => {
             .catch((error) => {
                 console.log(error);
             });
+    } else {
+        // check if we already have it in our database, create if we don't
+        // this should not really trigger, but included for debugging purposes
+        usersRef
+            .child(req.cookies.uuid)
+            .get()
+            .then((data) => {
+                if (data.val() === null) {
+                    createUserFunc(req.cookies.uuid).catch((error) => {
+                        console.log(error);
+                    });
+                }
+            });
     }
     next();
 });
@@ -248,6 +261,36 @@ app.get("/api/get_motions/:idx", function (req, res) {
 
 async function getLinkedList(uuid) {
     // return an ordered list of video id’s along with which queue they are in (from the linked list)
+
+    const userRef = usersRef.child(uuid);
+    const firstSong = await (await userRef.child("firstSong").get()).val();
+
+    let songs = [];
+    let curSong = firstSong;
+
+    while (true) {
+        console.log(curSong);
+        songs.push(curSong);
+        curSong = (
+            await userRef
+                .child(curSong.split("/")[0])
+                .child(curSong.split("/")[1])
+                .child("right")
+                .get()
+        ).val();
+        if (songs.includes(curSong)) {
+            break;
+        }
+    }
+
+    return songs;
+
+    // while (true) {
+    //     userRef.get().then((snapshot) => {
+
+    //     })
+    // }
+
     usersRef
         .child(uuid)
         .get()
@@ -419,6 +462,8 @@ app.post("/api/finish_song", function (req, res) {
     // under the hood, this just shifts things around (delete song from foreground queue if it’s foreground, reassign the “firstSong” pointer) and computes new motions
 
     const uuid = req.cookies.uuid;
+
+    console.log("uuid", uuid);
 
     const userRef = usersRef.child(uuid);
 
