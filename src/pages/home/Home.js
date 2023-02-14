@@ -71,32 +71,34 @@ export default class Home extends React.Component {
 
         const elementStyle = {
             padding: "20px",
+            position: "relative",
         };
 
         return (
             <div style={backgroundstyle}>
                 <div style={elementsStyle}>
-                    <Search />
-                    <Button onClick={this.handleClicks}>Next Song</Button>
-                    <SongQueue queue={this.state.queue} />
-                    <Display
-                        path={
-                            "https://storage.googleapis.com/edging-background/v1/glb/" +
-                            this.state.queue[0].split("/")[1] +
-                            ".glb"
-                        }
-                    />
-                    <p style={elementStyle}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
+                    <div
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            height: "100%",
+                            width: "100%",
+                        }}
+                    >
+                        <Display
+                            path={
+                                "https://storage.googleapis.com/edging-background/v1/glb/" +
+                                this.state.queue[0].split("/")[1] +
+                                ".glb"
+                            }
+                        />
+                    </div>
+                    <div style={{ position: "absolute", top: 20, left: 20 }}>
+                        <Search />
+                        <Button onClick={this.handleClicks}>Next Song</Button>
+                        <SongQueue queue={this.state.queue} />
+                    </div>
                 </div>
             </div>
         );
