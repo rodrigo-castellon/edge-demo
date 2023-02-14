@@ -1,10 +1,12 @@
 // custom components
 import Display from "../../components/Display";
 import Search from "../../components/Search";
+import Panel from "../../components/Panel";
 import { Button } from "@mantine/core";
 import React from "react";
 import { useGLTF } from "@react-three/drei";
 import { SongQueue } from "../../components/SongQueue";
+import { ReactSlider } from "react-awesome-slider";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -51,6 +53,7 @@ export default class Home extends React.Component {
     }
 
     render() {
+        // const [showSlider, setShowSlider] = useState(false);
         const backgroundstyle = {
             // width: "100%",
             // minHeight: "calc(100vh - 80px)",
@@ -74,6 +77,8 @@ export default class Home extends React.Component {
             position: "relative",
         };
 
+        console.log(Panel);
+
         return (
             <div style={backgroundstyle}>
                 <div style={elementsStyle}>
@@ -94,11 +99,26 @@ export default class Home extends React.Component {
                             }
                         />
                     </div>
-                    <div style={{ position: "absolute", top: 20, left: 20 }}>
+                    <div style={{ backgroundColor: "black" }}>
+                        <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
+                    </div>
+                    {/* <ReactSlider
+                        show={false}
+                        headerTitle={"Header"}
+                        dataList={[]}
+                        itemElement={() => {}}
+                        position="right"
+                    /> */}
+                    {/* <div
+                        style={{
+                            position: "absolute",
+                            backgroundColor: "white",
+                        }}
+                    >
                         <Search />
                         <Button onClick={this.handleClicks}>Next Song</Button>
                         <SongQueue queue={this.state.queue} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
