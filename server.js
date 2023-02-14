@@ -19,6 +19,7 @@ const express = require("express");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config.js");
+const { Storage } = require("@google-cloud/storage");
 const url = require("url");
 var admin = require("firebase-admin");
 const cookieParser = require("cookie-parser");
@@ -40,13 +41,19 @@ const MAX_QUEUE_LENGTH = 500;
 var db = admin.database();
 const usersRef = db.ref("/users");
 
+const app = express();
+
+const storage = new Storage();
+// audio and FBXes stored here
+const backgroundBucket = storage.bucket("edging-background");
+// stores anything related to foreground queue here
+const foregroundBucket = storage.bucket("edging-foreground");
+
 // Initialize Realtime Database and get a reference to the service
 // const database = getDatabase(app);
 
 // For more information on ways to initialize Storage, please see
 // https://googleapis.dev/nodejs/storage/latest/Storage.html
-
-const app = express();
 
 // cookie middleware
 app.use(cookieParser());
@@ -191,21 +198,51 @@ async function handleLink(link, uuid, res) {
     }
 }
 
+function sendBackBucketFile(pointer, res) {
+    // only handle background for now
+    let file = "";
+    if (pointer.split("/")[0] === "background") {
+        file = backgroundBucket.file(
+            "v1/gltf/" + pointer.split("/")[1] + ".gltf"
+        );
+    }
+
+    file.createReadStream()
+        .on("error", (err) => {
+            console.error(err);
+            res.status(500).send(err.message);
+        })
+        .pipe(res);
+}
+
 // GET endpoints
-app.get("/api/get_motions", function (req, res) {
+app.get("/api/get_motions/:idx", function (req, res) {
     // get the motions for the given index in the linked list + timestamps
 
     const uuid = req.cookies.uuid;
 
     const userRef = usersRef.child(uuid);
 
-    // get the linked list (/api/get_linked_list)
-    getLinkedList(uuid)
-        .then((linkedList) => {
-            console.log(linkedList);
-        })
-        .catch((error) => {
-            console.log(error);
+    userRef
+        .child("firstSong")
+        .get()
+        .then((snapshot) => {
+            const firstSong = snapshot.val();
+
+            if (req.params.idx == 0) {
+                sendBackBucketFile(firstSong, res);
+            } else {
+                userRef
+                    .child(firstSong.split("/")[0])
+                    .child(firstSong.split("/")[1])
+                    .child("right")
+                    .get()
+                    .then((snapshot) => {
+                        const pointer = snapshot.val();
+
+                        sendBackBucketFile(pointer, res);
+                    });
+            }
         });
 });
 
@@ -258,14 +295,52 @@ function mod(n, m) {
 async function createUserFunc(uuid) {
     return new Promise((resolve, reject) => {
         const dateObject = new Date();
-        const timestamp = dateObject.getTime();
+
+        // const videoIds = [
+        //     "RnBT9uUYb1w",
+        //     "5dJG_DdOuOM",
+        //     "uhA55hYnoHw",
+        //     "W2TE0DjdNqI",
+        //     "gEABPD4wNCg",
+        // ];
 
         const videoIds = [
-            "RnBT9uUYb1w",
-            "5dJG_DdOuOM",
-            "uhA55hYnoHw",
-            "W2TE0DjdNqI",
-            "gEABPD4wNCg",
+            "test_aint_no_mountain_high_enough",
+            "test_andrew_belle_in_my_veins_official_song",
+            "test_baby_one_more_time_britney_spears_lyrics",
+            "test_bee_gees_stayin_alive_official_music_video",
+            "test_beyonce_crazy_in_love_ft_jay_z",
+            "test_britney_spears_toxic_official_hd_video",
+            "test_chubby_checker_the_twist_official_music_video",
+            "test_doja_cat_kiss_me_more_lyrics_ft_sza",
+            "test_doja_cat_woman_lyrics",
+            "test_dua_lipa_levitating_featuring_dababy_official_music_video_tuvczfqe",
+            "test_earth_wind_fire_boogie_wonderland_official_video",
+            "test_ed_sheeran_shape_of_you_lyrics",
+            "test_holiday",
+            "test_jump",
+            "test_justin_bieber_sorry_lyrics",
+            "test_katrina_and_the_waves_walking_on_sunshine_lyrics",
+            "test_kenny_loggins_footloose_lyrics",
+            "test_kylie_minogue_cant_get_you_out_of_my_head_official_video",
+            "test_le_freak_2006_remaster",
+            "test_like_a_virgin",
+            "test_lil_nas_x_industry_baby_lyrics_ft_jack_harlow",
+            "test_lil_nas_x_montero_call_me_by_your_name_lyrics",
+            "test_luis_fonsi_despacito_lyrics___lyric_video_ft_daddy_yankee_gm3",
+            "test_macarena_original_version",
+            "test_mark_ronson_uptown_funk_official_video_ft_bruno_mars",
+            "test_martha_reeves_the_vandellas_dancing_in_the_street_1964",
+            "test_michael_jackson_billie_jean_official_video",
+            "test_michael_jackson_dont_stop_til_you_get_enough_official_video",
+            "test_rhythm_is_a_dancer_p",
+            "test_sia_cheap_thrills_lyrics",
+            "test_the_black_eyed_peas_i_gotta_feeling_official_music_video",
+            "test_the_four_tops_i_cant_help_myself_sugar_pie_honey_bunch",
+            "test_toxic",
+            "test_twist_and_shout_remastered_2009",
+            "test_usher_yeah_official_video_ft_lil_jon_ludacris",
+            "test_you_should_be_dancing",
         ];
 
         // set up the data struct locally
@@ -324,9 +399,57 @@ app.post("/api/add_song", function (req, res) {
     // DO NOT IMPLEMENT UNTIL WE GIVE WRITE-ACCESS!!!
 });
 
+function getAllFunctions(obj) {
+    const allFunctionNames = [];
+    let currentObject = obj;
+
+    while (currentObject !== null) {
+        const prototype = Object.getPrototypeOf(currentObject);
+        const ownFunctionNames = Object.getOwnPropertyNames(currentObject); //.filter((name) => typeof currentObject[name] === "function");
+        allFunctionNames.push(...ownFunctionNames);
+
+        currentObject = prototype;
+    }
+
+    return allFunctionNames;
+}
+
 app.post("/api/finish_song", function (req, res) {
     // indicates that we have finished the current song.
     // under the hood, this just shifts things around (delete song from foreground queue if it’s foreground, reassign the “firstSong” pointer) and computes new motions
+
+    const uuid = req.cookies.uuid;
+
+    const userRef = usersRef.child(uuid);
+
+    userRef
+        .child("firstSong")
+        .get()
+        .then((snapshot) => {
+            const firstSong = snapshot.val();
+
+            const firstKey = firstSong.split("/")[0];
+            const secondKey = firstSong.split("/")[1];
+
+            // rewrite it with firstSong->right
+            userRef
+                .child(firstKey)
+                .child(secondKey)
+                .child("right")
+                .get()
+                .then((snapshot) => {
+                    userRef.child("firstSong").set(snapshot.val());
+                    res.send({ status: 200, message: "success" });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    res.send({ status: 500, message: "error encountered" });
+                });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.send({ status: 500, message: "error encountered" });
+        });
 });
 
 app.post("/api/recompute_motions", function (req, res) {
