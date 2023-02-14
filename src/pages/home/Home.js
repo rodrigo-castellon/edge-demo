@@ -15,10 +15,15 @@ export default class Home extends React.Component {
             "/toxic_slow_out/toxic_slow-transformed.glb",
         ];
 
-        // preload everything to make things fast
-        for (const fpath of this.files) {
-            useGLTF.preload(fpath);
-        }
+        // this.files = [
+        //     "/test_toxic2_out/test_toxic2.gltf",
+        //     "/toxic_slow_out/toxic_slow.gltf",
+        // ];
+
+        // // preload everything to make things fast
+        // for (const fpath of this.files) {
+        //     useGLTF.preload(fpath);
+        // }
 
         this.state = { pathIdx: 0 };
     }
@@ -51,9 +56,6 @@ export default class Home extends React.Component {
         const elementStyle = {
             padding: "20px",
         };
-
-        // if (this.state.path === this.main) {
-        // }
 
         return (
             <div style={backgroundstyle}>

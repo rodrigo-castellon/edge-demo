@@ -10,7 +10,13 @@ export function createYBotComponent(path) {
         console.log("creating new ybot with animation path " + props.path);
 
         let group = useRef();
-        let { nodes, materials, animations } = useGLTF(props.path);
+        let { nodes, materials, animations } = useGLTF(
+            // "/test_aint_no_mountain_high_enough.glb"
+            // "/mountainnew/test_aint_no_mountain_high_enough.glb"
+            "/mountain/test_aint_no_mountain_high_enough-transformed.glb"
+            // "/toxic_slow_out/toxic_slow-transformed.glb"
+            // "https://storage.googleapis.com/edging-background/v1/glb/test_aint_no_mountain_high_enough.glb"
+        );
 
         const actions = useAnimations(animations, group);
 
@@ -20,34 +26,723 @@ export function createYBotComponent(path) {
             actions.actions[k].play();
         });
 
-        return (
-            <group ref={group} {...props} dispose={null}>
-                <group name="Root_Scene">
-                    <group name="RootNode">
-                        <group name="Armature002">
-                            <primitive object={nodes.mixamorigHips} />
-                        </group>
-                        <skinnedMesh
-                            name="Alpha_Surface"
-                            geometry={nodes.Alpha_Surface.geometry}
-                            material={materials["Alpha_Body_MAT.007"]}
-                            skeleton={nodes.Alpha_Surface.skeleton}
-                        />
-                        <skinnedMesh
-                            name="Alpha_Joints"
-                            geometry={nodes.Alpha_Joints.geometry}
-                            material={materials["Alpha_Joints_MAT.007"]}
-                            skeleton={nodes.Alpha_Joints.skeleton}
-                        >
+        const a = true;
+
+        if (a) {
+            return (
+                <group ref={group} {...props} dispose={null}>
+                    <group name="Root_Scene">
+                        <group name="RootNode" position={[3, -1, 0]}>
+                            <group
+                                name="smpl"
+                                position={[-3.04, 0, 0]}
+                                scale={100}
+                            >
+                                <primitive object={nodes.m_avg_Pelvis} />
+                            </group>
+                            <skinnedMesh
+                                name="Alpha_Joints003"
+                                geometry={nodes.Alpha_Joints003.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints003.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface003"
+                                geometry={nodes.Alpha_Surface003.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface003.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface005"
+                                geometry={nodes.Alpha_Surface005.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface005.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface006"
+                                geometry={nodes.Alpha_Surface006.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface006.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface007"
+                                geometry={nodes.Alpha_Surface007.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface007.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface008"
+                                geometry={nodes.Alpha_Surface008.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface008.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface009"
+                                geometry={nodes.Alpha_Surface009.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface009.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface010"
+                                geometry={nodes.Alpha_Surface010.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface010.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface011"
+                                geometry={nodes.Alpha_Surface011.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface011.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface012"
+                                geometry={nodes.Alpha_Surface012.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface012.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface013"
+                                geometry={nodes.Alpha_Surface013.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface013.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface014"
+                                geometry={nodes.Alpha_Surface014.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface014.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface015"
+                                geometry={nodes.Alpha_Surface015.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface015.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface016"
+                                geometry={nodes.Alpha_Surface016.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface016.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface017"
+                                geometry={nodes.Alpha_Surface017.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface017.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface018"
+                                geometry={nodes.Alpha_Surface018.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface018.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface019"
+                                geometry={nodes.Alpha_Surface019.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface019.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface020"
+                                geometry={nodes.Alpha_Surface020.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface020.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface021"
+                                geometry={nodes.Alpha_Surface021.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface021.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface022"
+                                geometry={nodes.Alpha_Surface022.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface022.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface023"
+                                geometry={nodes.Alpha_Surface023.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface023.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface024"
+                                geometry={nodes.Alpha_Surface024.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface024.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface025"
+                                geometry={nodes.Alpha_Surface025.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface025.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface026"
+                                geometry={nodes.Alpha_Surface026.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface026.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface027"
+                                geometry={nodes.Alpha_Surface027.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface027.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface028"
+                                geometry={nodes.Alpha_Surface028.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface028.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface029"
+                                geometry={nodes.Alpha_Surface029.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface029.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface030"
+                                geometry={nodes.Alpha_Surface030.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface030.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface031"
+                                geometry={nodes.Alpha_Surface031.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface031.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface032"
+                                geometry={nodes.Alpha_Surface032.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface032.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface033"
+                                geometry={nodes.Alpha_Surface033.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface033.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface034"
+                                geometry={nodes.Alpha_Surface034.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface034.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface035"
+                                geometry={nodes.Alpha_Surface035.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface035.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface036"
+                                geometry={nodes.Alpha_Surface036.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface036.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface037"
+                                geometry={nodes.Alpha_Surface037.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface037.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface038"
+                                geometry={nodes.Alpha_Surface038.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface038.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface039"
+                                geometry={nodes.Alpha_Surface039.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface039.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface040"
+                                geometry={nodes.Alpha_Surface040.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface040.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface041"
+                                geometry={nodes.Alpha_Surface041.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface041.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface042"
+                                geometry={nodes.Alpha_Surface042.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface042.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface043"
+                                geometry={nodes.Alpha_Surface043.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface043.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface044"
+                                geometry={nodes.Alpha_Surface044.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface044.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface045"
+                                geometry={nodes.Alpha_Surface045.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface045.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface046"
+                                geometry={nodes.Alpha_Surface046.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface046.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface047"
+                                geometry={nodes.Alpha_Surface047.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface047.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface048"
+                                geometry={nodes.Alpha_Surface048.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface048.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface049"
+                                geometry={nodes.Alpha_Surface049.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface049.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface050"
+                                geometry={nodes.Alpha_Surface050.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface050.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Surface051"
+                                geometry={nodes.Alpha_Surface051.geometry}
+                                material={materials["Alpha_Body_MAT.050"]}
+                                skeleton={nodes.Alpha_Surface051.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints004"
+                                geometry={nodes.Alpha_Joints004.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints004.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints005"
+                                geometry={nodes.Alpha_Joints005.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints005.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints006"
+                                geometry={nodes.Alpha_Joints006.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints006.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints007"
+                                geometry={nodes.Alpha_Joints007.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints007.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints008"
+                                geometry={nodes.Alpha_Joints008.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints008.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints009"
+                                geometry={nodes.Alpha_Joints009.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints009.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints010"
+                                geometry={nodes.Alpha_Joints010.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints010.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints011"
+                                geometry={nodes.Alpha_Joints011.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints011.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints012"
+                                geometry={nodes.Alpha_Joints012.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints012.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints013"
+                                geometry={nodes.Alpha_Joints013.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints013.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints014"
+                                geometry={nodes.Alpha_Joints014.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints014.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints015"
+                                geometry={nodes.Alpha_Joints015.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints015.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints016"
+                                geometry={nodes.Alpha_Joints016.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints016.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints017"
+                                geometry={nodes.Alpha_Joints017.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints017.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints018"
+                                geometry={nodes.Alpha_Joints018.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints018.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints019"
+                                geometry={nodes.Alpha_Joints019.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints019.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints020"
+                                geometry={nodes.Alpha_Joints020.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints020.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints021"
+                                geometry={nodes.Alpha_Joints021.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints021.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints022"
+                                geometry={nodes.Alpha_Joints022.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints022.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints023"
+                                geometry={nodes.Alpha_Joints023.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints023.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints024"
+                                geometry={nodes.Alpha_Joints024.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints024.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints025"
+                                geometry={nodes.Alpha_Joints025.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints025.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints026"
+                                geometry={nodes.Alpha_Joints026.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints026.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints027"
+                                geometry={nodes.Alpha_Joints027.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints027.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints028"
+                                geometry={nodes.Alpha_Joints028.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints028.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints029"
+                                geometry={nodes.Alpha_Joints029.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints029.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints030"
+                                geometry={nodes.Alpha_Joints030.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints030.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints031"
+                                geometry={nodes.Alpha_Joints031.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints031.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints032"
+                                geometry={nodes.Alpha_Joints032.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints032.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints033"
+                                geometry={nodes.Alpha_Joints033.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints033.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints034"
+                                geometry={nodes.Alpha_Joints034.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints034.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints035"
+                                geometry={nodes.Alpha_Joints035.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints035.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints036"
+                                geometry={nodes.Alpha_Joints036.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints036.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints037"
+                                geometry={nodes.Alpha_Joints037.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints037.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints038"
+                                geometry={nodes.Alpha_Joints038.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints038.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints039"
+                                geometry={nodes.Alpha_Joints039.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints039.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints040"
+                                geometry={nodes.Alpha_Joints040.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints040.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints041"
+                                geometry={nodes.Alpha_Joints041.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints041.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints042"
+                                geometry={nodes.Alpha_Joints042.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints042.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints043"
+                                geometry={nodes.Alpha_Joints043.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints043.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints044"
+                                geometry={nodes.Alpha_Joints044.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints044.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints045"
+                                geometry={nodes.Alpha_Joints045.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints045.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints046"
+                                geometry={nodes.Alpha_Joints046.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints046.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints047"
+                                geometry={nodes.Alpha_Joints047.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints047.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints048"
+                                geometry={nodes.Alpha_Joints048.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints048.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints049"
+                                geometry={nodes.Alpha_Joints049.geometry}
+                                material={materials["Alpha_Joints_MAT.049"]}
+                                skeleton={nodes.Alpha_Joints049.skeleton}
+                                position={[-3.04, 0, 0]}
+                            />
                             <meshPhongMaterial
                                 color="#3399ff"
                                 shininess={1000}
                             />
-                        </skinnedMesh>
+                        </group>
                     </group>
                 </group>
-            </group>
-        );
+            );
+        } else {
+            return (
+                <group ref={group} {...props} dispose={null}>
+                    <group name="Root_Scene">
+                        <group name="RootNode">
+                            <group name="Armature002">
+                                <primitive object={nodes.mixamorigHips} />
+                            </group>
+                            <skinnedMesh
+                                name="Alpha_Surface"
+                                geometry={nodes.Alpha_Surface.geometry}
+                                material={materials["Alpha_Body_MAT.007"]}
+                                skeleton={nodes.Alpha_Surface.skeleton}
+                            />
+                            <skinnedMesh
+                                name="Alpha_Joints"
+                                geometry={nodes.Alpha_Joints.geometry}
+                                material={materials["Alpha_Joints_MAT.007"]}
+                                skeleton={nodes.Alpha_Joints.skeleton}
+                            >
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />
+                            </skinnedMesh>
+                        </group>
+                    </group>
+                </group>
+            );
+        }
     }
 
     return YBot;
