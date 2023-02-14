@@ -17,7 +17,6 @@ export default function Display(props) {
         <Suspense fallback={null}>
             <Canvas
                 shadows
-                shadowMap
                 camera={{
                     fov: 75,
                     position: [-2, 4, 4],
@@ -25,28 +24,38 @@ export default function Display(props) {
                 }}
             >
                 <color args={[0, 0, 0]} attach="background" />
-                <spotLight
-                    color={[1, 0.25, 0.7]}
-                    intensity={1.5}
-                    angle={0.6}
-                    penumbra={0.5}
-                    position={[5, 5, 0]}
-                    castShadow
-                    shadow-bias={-0.0001}
-                />
-                <spotLight
-                    color={[0.14, 0.5, 1]}
-                    intensity={2}
-                    angle={0.6}
-                    penumbra={0.5}
-                    position={[-5, 5, 0]}
-                    castShadow
-                    shadow-bias={-0.0001}
-                />
-                <ambientLight intensity={0.5} />
-                <Ground />
+                <Suspense fallback={null}>
+                    <spotLight
+                        color={[1, 0.25, 0.7]}
+                        intensity={1.5}
+                        angle={0.6}
+                        penumbra={0.5}
+                        position={[5, 5, 0]}
+                        castShadow
+                        shadow-bias={-0.0001}
+                    />
+                </Suspense>
+                <Suspense fallback={null}>
+                    <spotLight
+                        color={[0.14, 0.5, 1]}
+                        intensity={2}
+                        angle={0.6}
+                        penumbra={0.5}
+                        position={[-5, 5, 0]}
+                        castShadow
+                        shadow-bias={-0.0001}
+                    />
+                </Suspense>
+                <Suspense fallback={null}>
+                    <ambientLight intensity={0.5} />
+                </Suspense>
+                <Suspense fallback={null}>
+                    <Ground />
+                </Suspense>
                 <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
-                <YBot path={props.path} />
+                <Suspense fallback={null}>
+                    <YBot path={props.path} />
+                </Suspense>
             </Canvas>
         </Suspense>
     );

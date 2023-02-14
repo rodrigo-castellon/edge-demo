@@ -11,9 +11,10 @@ export function createYBotComponent(path) {
 
         let group = useRef();
         let { nodes, materials, animations } = useGLTF(
+            props.path
             // "/test_aint_no_mountain_high_enough.glb"
             // "/mountainnew/test_aint_no_mountain_high_enough.glb"
-            "/mountain/test_aint_no_mountain_high_enough-transformed.glb"
+            // "/mountain/test_aint_no_mountain_high_enough-transformed.glb"
             // "/toxic_slow_out/toxic_slow-transformed.glb"
             // "https://storage.googleapis.com/edging-background/v1/glb/test_aint_no_mountain_high_enough.glb"
         );
