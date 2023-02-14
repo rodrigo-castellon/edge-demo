@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function Search({ }) {
-
+function Search({}) {
     const [searchField, setSearchField] = useState("");
 
-    const handleChange = e => {
+    const handleChange = (e) => {
         setSearchField(e.target.value);
     };
 
@@ -13,30 +12,29 @@ function Search({ }) {
             const link = e.target.value;
 
             // make request to server
-            const response = fetch("http://localhost:8080/api/request_song?link=" + link, {
+            const response = fetch("/api/request_song?link=" + link, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            }
-            );
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                });
         }
     }
 
     return (
-        <section style={{width: "100%"}}>
-            <div className="pa2" style={{width: "100%"}}>
-                <input 
+        <section style={{ width: "80%" }}>
+            <div className="pa2" style={{ width: "80%" }}>
+                <input
                     className="pa3 bb br3 b--none bg-lightest-blue ma3"
-                    type = "search" 
-                    placeholder = "Youtube Link"
-                    onChange = {handleChange}
-                    onKeyDown = {handleKeyDown}
-                    style={{width: "100%"}}
+                    type="search"
+                    placeholder="Youtube Link"
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    style={{ width: "100%" }}
                 />
             </div>
         </section>

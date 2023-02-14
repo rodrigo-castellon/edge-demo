@@ -100,7 +100,13 @@ export default class Home extends React.Component {
                         />
                     </div>
                     {/* <div style={{ backgroundColor: "black" }}> */}
-                    <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
+                    <Panel>
+                        <h1>Infinite Dancer</h1>
+                        <p>
+                            Made with EDGE. See https://edge-dance.github.io/.
+                        </p>
+                        <Search />
+                    </Panel>
                     {/* </div> */}
                     {/* <ReactSlider
                         show={false}

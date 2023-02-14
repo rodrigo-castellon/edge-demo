@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./PanelStyle.css";
+import { FaArrowRight } from "react-icons/fa";
 
 function Panel(props) {
     const [showPanel, setShowPanel] = useState(false);
@@ -13,7 +14,8 @@ function Panel(props) {
             <div
                 className={`panel ${showPanel ? "panel-open" : "panel-closed"}`}
             >
-                <p>{props.text}</p>
+                {props.children}
+                {/* <p>{props.text}</p> */}
                 <button
                     style={{
                         // position: "absolute",
@@ -23,7 +25,7 @@ function Panel(props) {
                     }}
                     onClick={handleTogglePanel}
                 >
-                    Toggle Panel
+                    <FaArrowRight />
                 </button>
             </div>
         </div>
