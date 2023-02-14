@@ -61,8 +61,8 @@ export default class Home extends React.Component {
             // display: "flex",
             // flexDirection: "column",
             // align-items: "center",
-            paddingTop: "20px",
-            paddingBottom: "20px",
+            // paddingTop: "20px",
+            // paddingBottom: "20px",
             color: "white",
             backgroundColor: "#121417",
         };
@@ -100,7 +100,7 @@ export default class Home extends React.Component {
                         />
                     </div>
                     <div style={{ backgroundColor: "black" }}>
-                        <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
+                        <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
                     </div>
                     {/* <ReactSlider
                         show={false}

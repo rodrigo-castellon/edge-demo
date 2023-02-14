@@ -10,11 +10,21 @@ function Panel(props) {
 
     return (
         <div className="panel-container">
-            <button onClick={handleTogglePanel}>Toggle Panel</button>
             <div
                 className={`panel ${showPanel ? "panel-open" : "panel-closed"}`}
             >
                 <p>{props.text}</p>
+                <button
+                    style={{
+                        position: "absolute",
+                        marginLeft: "auto",
+                        marginRight: 0,
+                        float: "right",
+                    }}
+                    onClick={handleTogglePanel}
+                >
+                    Toggle Panel
+                </button>
             </div>
         </div>
     );
