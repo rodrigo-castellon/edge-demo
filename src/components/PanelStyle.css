@@ -23,4 +23,20 @@
 .panel-closed {
     transform: translateX(-130%);
 }
+
+.left-div {
+    height: 100%;
+    width: 90%;
+    float: left;
+    /* flex: 50%; Use flex-grow to occupy 90% of the width */
+    background-color: blue;
+}
+
+.right-div {
+    height: 100%;
+    float: right;
+    width: 10%;
+    /* flex: 50%; Use flex-grow to occupy 10% of the width */
+    background-color: red;
+}
   

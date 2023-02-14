@@ -14,19 +14,20 @@ function Panel(props) {
             <div
                 className={`panel ${showPanel ? "panel-open" : "panel-closed"}`}
             >
-                {props.children}
-                {/* <p>{props.text}</p> */}
-                <button
-                    style={{
-                        // position: "absolute",
-                        // marginLeft: "auto",
-                        // marginRight: 0,
-                        float: "right",
-                    }}
-                    onClick={handleTogglePanel}
-                >
-                    <FaArrowRight />
-                </button>
+                <div className="left-div">
+                    {props.children}
+                    {/* <p>{props.text}</p> */}
+                </div>
+                <div className="right-div">
+                    <button
+                        style={{
+                            float: "right",
+                        }}
+                        onClick={handleTogglePanel}
+                    >
+                        <FaArrowRight />
+                    </button>
+                </div>
             </div>
         </div>
     );
