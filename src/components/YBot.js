@@ -61,7 +61,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface005"
                                 geometry={nodes.Alpha_Surface005.geometry}
@@ -70,7 +76,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface006"
                                 geometry={nodes.Alpha_Surface006.geometry}
@@ -79,7 +91,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface007"
                                 geometry={nodes.Alpha_Surface007.geometry}
@@ -88,7 +106,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface008"
                                 geometry={nodes.Alpha_Surface008.geometry}
@@ -97,7 +121,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface009"
                                 geometry={nodes.Alpha_Surface009.geometry}
@@ -106,7 +136,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface010"
                                 geometry={nodes.Alpha_Surface010.geometry}
@@ -115,7 +151,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface011"
                                 geometry={nodes.Alpha_Surface011.geometry}
@@ -124,7 +166,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface012"
                                 geometry={nodes.Alpha_Surface012.geometry}
@@ -133,7 +181,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface013"
                                 geometry={nodes.Alpha_Surface013.geometry}
@@ -142,7 +196,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface014"
                                 geometry={nodes.Alpha_Surface014.geometry}
@@ -151,7 +211,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface015"
                                 geometry={nodes.Alpha_Surface015.geometry}
@@ -160,7 +226,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface016"
                                 geometry={nodes.Alpha_Surface016.geometry}
@@ -169,7 +241,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface017"
                                 geometry={nodes.Alpha_Surface017.geometry}
@@ -178,7 +256,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface018"
                                 geometry={nodes.Alpha_Surface018.geometry}
@@ -187,7 +271,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface019"
                                 geometry={nodes.Alpha_Surface019.geometry}
@@ -196,7 +286,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface020"
                                 geometry={nodes.Alpha_Surface020.geometry}
@@ -205,7 +301,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface021"
                                 geometry={nodes.Alpha_Surface021.geometry}
@@ -214,7 +316,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface022"
                                 geometry={nodes.Alpha_Surface022.geometry}
@@ -223,7 +331,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface023"
                                 geometry={nodes.Alpha_Surface023.geometry}
@@ -232,7 +346,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface024"
                                 geometry={nodes.Alpha_Surface024.geometry}
@@ -241,7 +361,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface025"
                                 geometry={nodes.Alpha_Surface025.geometry}
@@ -250,7 +376,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface026"
                                 geometry={nodes.Alpha_Surface026.geometry}
@@ -259,7 +391,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface027"
                                 geometry={nodes.Alpha_Surface027.geometry}
@@ -268,7 +406,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface028"
                                 geometry={nodes.Alpha_Surface028.geometry}
@@ -277,7 +421,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface029"
                                 geometry={nodes.Alpha_Surface029.geometry}
@@ -286,7 +436,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface030"
                                 geometry={nodes.Alpha_Surface030.geometry}
@@ -295,7 +451,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface031"
                                 geometry={nodes.Alpha_Surface031.geometry}
@@ -304,7 +466,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface032"
                                 geometry={nodes.Alpha_Surface032.geometry}
@@ -313,7 +481,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface033"
                                 geometry={nodes.Alpha_Surface033.geometry}
@@ -322,7 +496,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface034"
                                 geometry={nodes.Alpha_Surface034.geometry}
@@ -331,7 +511,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface035"
                                 geometry={nodes.Alpha_Surface035.geometry}
@@ -340,7 +526,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface036"
                                 geometry={nodes.Alpha_Surface036.geometry}
@@ -349,7 +541,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface037"
                                 geometry={nodes.Alpha_Surface037.geometry}
@@ -358,7 +556,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface038"
                                 geometry={nodes.Alpha_Surface038.geometry}
@@ -367,7 +571,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface039"
                                 geometry={nodes.Alpha_Surface039.geometry}
@@ -376,7 +586,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface040"
                                 geometry={nodes.Alpha_Surface040.geometry}
@@ -385,7 +601,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface041"
                                 geometry={nodes.Alpha_Surface041.geometry}
@@ -394,7 +616,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface042"
                                 geometry={nodes.Alpha_Surface042.geometry}
@@ -403,7 +631,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface043"
                                 geometry={nodes.Alpha_Surface043.geometry}
@@ -412,7 +646,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface044"
                                 geometry={nodes.Alpha_Surface044.geometry}
@@ -421,7 +661,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface045"
                                 geometry={nodes.Alpha_Surface045.geometry}
@@ -430,7 +676,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface046"
                                 geometry={nodes.Alpha_Surface046.geometry}
@@ -439,7 +691,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface047"
                                 geometry={nodes.Alpha_Surface047.geometry}
@@ -448,7 +706,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface048"
                                 geometry={nodes.Alpha_Surface048.geometry}
@@ -457,7 +721,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface049"
                                 geometry={nodes.Alpha_Surface049.geometry}
@@ -466,7 +736,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface050"
                                 geometry={nodes.Alpha_Surface050.geometry}
@@ -475,7 +751,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Surface051"
                                 geometry={nodes.Alpha_Surface051.geometry}
@@ -484,7 +766,13 @@ export function createYBotComponent(path) {
                                 position={[-3.04, 0, 0]}
                                 castShadow
                                 receiveShadow
-                            />
+                            >
+                                {" "}
+                                <meshPhongMaterial
+                                    color="#3399ff"
+                                    shininess={1000}
+                                />{" "}
+                            </skinnedMesh>
                             <skinnedMesh
                                 name="Alpha_Joints004"
                                 geometry={nodes.Alpha_Joints004.geometry}
@@ -899,10 +1187,6 @@ export function createYBotComponent(path) {
                                 castShadow
                                 receiveShadow
                             />
-                            {/* <meshPhongMaterial
-                                color="#3399ff"
-                                shininess={1000}
-                            /> */}
                         </group>
                     </group>
                 </group>
