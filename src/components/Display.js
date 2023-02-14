@@ -17,6 +17,7 @@ export default function Display(props) {
         <Suspense fallback={null}>
             <Canvas
                 shadows
+                shadowMap
                 camera={{
                     fov: 75,
                     position: [-2, 4, 4],

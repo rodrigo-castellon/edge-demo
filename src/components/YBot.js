@@ -30,15 +30,19 @@ export function createYBotComponent(path) {
 
         if (a) {
             return (
-                <group ref={group} {...props} dispose={null}>
-                    <group name="Root_Scene">
-                        <group name="RootNode" position={[3, -1, 0]}>
+                <group ref={group} {...props} dispose={null} castShadow>
+                    <group name="Root_Scene" castShadow>
+                        <group name="RootNode" position={[3, -1, 0]} castShadow>
                             <group
                                 name="smpl"
                                 position={[-3.04, 0, 0]}
                                 scale={100}
+                                castShadow
                             >
-                                <primitive object={nodes.m_avg_Pelvis} />
+                                <primitive
+                                    object={nodes.m_avg_Pelvis}
+                                    castShadow
+                                />
                             </group>
                             <skinnedMesh
                                 name="Alpha_Joints003"
@@ -46,6 +50,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints003.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface003"
@@ -53,6 +59,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface003.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface005"
@@ -60,6 +68,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface005.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface006"
@@ -67,6 +77,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface006.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface007"
@@ -74,6 +86,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface007.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface008"
@@ -81,6 +95,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface008.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface009"
@@ -88,6 +104,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface009.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface010"
@@ -95,6 +113,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface010.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface011"
@@ -102,6 +122,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface011.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface012"
@@ -109,6 +131,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface012.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface013"
@@ -116,6 +140,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface013.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface014"
@@ -123,6 +149,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface014.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface015"
@@ -130,6 +158,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface015.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface016"
@@ -137,6 +167,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface016.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface017"
@@ -144,6 +176,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface017.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface018"
@@ -151,6 +185,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface018.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface019"
@@ -158,6 +194,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface019.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface020"
@@ -165,6 +203,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface020.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface021"
@@ -172,6 +212,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface021.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface022"
@@ -179,6 +221,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface022.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface023"
@@ -186,6 +230,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface023.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface024"
@@ -193,6 +239,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface024.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface025"
@@ -200,6 +248,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface025.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface026"
@@ -207,6 +257,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface026.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface027"
@@ -214,6 +266,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface027.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface028"
@@ -221,6 +275,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface028.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface029"
@@ -228,6 +284,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface029.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface030"
@@ -235,6 +293,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface030.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface031"
@@ -242,6 +302,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface031.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface032"
@@ -249,6 +311,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface032.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface033"
@@ -256,6 +320,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface033.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface034"
@@ -263,6 +329,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface034.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface035"
@@ -270,6 +338,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface035.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface036"
@@ -277,6 +347,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface036.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface037"
@@ -284,6 +356,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface037.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface038"
@@ -291,6 +365,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface038.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface039"
@@ -298,6 +374,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface039.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface040"
@@ -305,6 +383,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface040.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface041"
@@ -312,6 +392,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface041.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface042"
@@ -319,6 +401,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface042.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface043"
@@ -326,6 +410,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface043.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface044"
@@ -333,6 +419,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface044.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface045"
@@ -340,6 +428,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface045.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface046"
@@ -347,6 +437,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface046.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface047"
@@ -354,6 +446,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface047.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface048"
@@ -361,6 +455,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface048.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface049"
@@ -368,6 +464,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface049.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface050"
@@ -375,6 +473,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface050.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Surface051"
@@ -382,6 +482,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Body_MAT.050"]}
                                 skeleton={nodes.Alpha_Surface051.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints004"
@@ -389,6 +491,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints004.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints005"
@@ -396,6 +500,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints005.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints006"
@@ -403,6 +509,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints006.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints007"
@@ -410,6 +518,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints007.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints008"
@@ -417,6 +527,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints008.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints009"
@@ -424,6 +536,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints009.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints010"
@@ -431,6 +545,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints010.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints011"
@@ -438,6 +554,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints011.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints012"
@@ -445,6 +563,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints012.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints013"
@@ -452,6 +572,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints013.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints014"
@@ -459,6 +581,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints014.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints015"
@@ -466,6 +590,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints015.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints016"
@@ -473,6 +599,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints016.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints017"
@@ -480,6 +608,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints017.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints018"
@@ -487,6 +617,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints018.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints019"
@@ -494,6 +626,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints019.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints020"
@@ -501,6 +635,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints020.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints021"
@@ -508,6 +644,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints021.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints022"
@@ -515,6 +653,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints022.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints023"
@@ -522,6 +662,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints023.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints024"
@@ -529,6 +671,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints024.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints025"
@@ -536,6 +680,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints025.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints026"
@@ -543,6 +689,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints026.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints027"
@@ -550,6 +698,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints027.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints028"
@@ -557,6 +707,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints028.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints029"
@@ -564,6 +716,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints029.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints030"
@@ -571,6 +725,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints030.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints031"
@@ -578,6 +734,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints031.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints032"
@@ -585,6 +743,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints032.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints033"
@@ -592,6 +752,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints033.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints034"
@@ -599,6 +761,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints034.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints035"
@@ -606,6 +770,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints035.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints036"
@@ -613,6 +779,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints036.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints037"
@@ -620,6 +788,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints037.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints038"
@@ -627,6 +797,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints038.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints039"
@@ -634,6 +806,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints039.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints040"
@@ -641,6 +815,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints040.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints041"
@@ -648,6 +824,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints041.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints042"
@@ -655,6 +833,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints042.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints043"
@@ -662,6 +842,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints043.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints044"
@@ -669,6 +851,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints044.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints045"
@@ -676,6 +860,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints045.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints046"
@@ -683,6 +869,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints046.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints047"
@@ -690,6 +878,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints047.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints048"
@@ -697,6 +887,8 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints048.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
                             <skinnedMesh
                                 name="Alpha_Joints049"
@@ -704,11 +896,13 @@ export function createYBotComponent(path) {
                                 material={materials["Alpha_Joints_MAT.049"]}
                                 skeleton={nodes.Alpha_Joints049.skeleton}
                                 position={[-3.04, 0, 0]}
+                                castShadow
+                                receiveShadow
                             />
-                            <meshPhongMaterial
+                            {/* <meshPhongMaterial
                                 color="#3399ff"
                                 shininess={1000}
-                            />
+                            /> */}
                         </group>
                     </group>
                 </group>
