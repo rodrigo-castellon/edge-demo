@@ -63,8 +63,8 @@ export default class Home extends React.Component {
             // align-items: "center",
             // paddingTop: "20px",
             // paddingBottom: "20px",
-            color: "white",
-            backgroundColor: "#121417",
+            // color: "white",
+            // backgroundColor: "#121417",
         };
 
         const elementsStyle = {
@@ -99,9 +99,9 @@ export default class Home extends React.Component {
                             }
                         />
                     </div>
-                    <div style={{ backgroundColor: "black" }}>
-                        <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
-                    </div>
+                    {/* <div style={{ backgroundColor: "black" }}> */}
+                    <Panel text="hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit.hello hello helloLorem ipsum dolor sit amet, consectetur adipiscing elit." />
+                    {/* </div> */}
                     {/* <ReactSlider
                         show={false}
                         headerTitle={"Header"}

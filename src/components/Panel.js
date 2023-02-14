@@ -16,9 +16,9 @@ function Panel(props) {
                 <p>{props.text}</p>
                 <button
                     style={{
-                        position: "absolute",
-                        marginLeft: "auto",
-                        marginRight: 0,
+                        // position: "absolute",
+                        // marginLeft: "auto",
+                        // marginRight: 0,
                         float: "right",
                     }}
                     onClick={handleTogglePanel}
