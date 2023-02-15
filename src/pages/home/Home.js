@@ -71,16 +71,7 @@ export default class Home extends React.Component {
                                         queue: queue,
                                         queueTitles: titles,
                                         panelActive: true,
-                                        // audioMap: audioMap,
                                         audio: new Audio(audioURL),
-                                        // ["audioMap/" + queue[queue.length - 1]]:
-                                        //     new Audio(preloadAudioURLs[0]),
-                                        // ["audioMap/" + queue[0]]: new Audio(
-                                        //     preloadAudioURLs[1]
-                                        // ),
-                                        // ["audioMap/" + queue[1]]: new Audio(
-                                        //     preloadAudioURLs[2]
-                                        // ),
                                     };
                                 });
                             });
@@ -293,13 +284,27 @@ export default class Home extends React.Component {
                         />
                     </div>
                     <Panel isActive={this.state.panelActive}>
-                        <div style={{ display: "flex" }}>
+                        <div
+                            style={{
+                                display: "flex",
+                                padding: "10px",
+                            }}
+                        >
                             <Arrow
                                 panelHandler={this.panelHandler}
                                 isActive={this.state.panelActive}
                             />
+                            {/* <div style={{ width: "3vh" }}></div> */}
                             {/* https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side */}
-                            <h1>Incredible Title</h1>
+                            <h1
+                                style={{
+                                    flexGrow: 1,
+                                    padding: "0px",
+                                    margin: "0px",
+                                }}
+                            >
+                                Incredible Title
+                            </h1>
                         </div>
                         <DisappearingDiv disappeared={!this.state.panelActive}>
                             <p>

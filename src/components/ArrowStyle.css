@@ -29,10 +29,33 @@
     border-top-color: grey;
 }
 
+.arrow-button {
+    position: relative;
+    /* top: 3vh; */
+    left: 1vh;
+    width: 35px;
+    height: 40px;
+    /* transform: rotate(45deg); */
+    border: 0px solid #ccc;
+    cursor: pointer;
+}
+
+.arrow-div {
+    position: relative;
+    /* position: absolute; */
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
 .active {
-    transform: rotate(90deg);
+    transform: translate(-50%, -50%) translate(0, -30%) rotate(135deg);
 }
 
 .inactive {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(45deg);
 }
