@@ -3,26 +3,53 @@
 }
 
 .panel {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 30%;
     height: 100vh;
-    /* background-color: #000000; */
-    /* border: 1px solid #ccc; */
-    /* color: white; */
     display: flex;
     padding: 0px;
-    transform: translateX(-100%);
+    /* background-color: green; */
     transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (min-aspect-ratio: 3/1) and (max-aspect-ratio: 10/1) {
+    .panel {
+        /* background-color: purple; */
+        width: 30%
+    }
+}
+
+@media screen and (min-aspect-ratio: 3/2) and (max-aspect-ratio: 3/1) {
+    .panel {
+        /* background-color: red; */
+        width: 40%
+    }
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 3/2) {
+    .panel {
+        /* background-color: orange; */
+        width: 50%
+    }
+}
+
+@media screen and (min-aspect-ratio: 1/4) and (max-aspect-ratio: 1/1) {
+    .panel {
+        /* background-color: yellow; */
+        width: 70%
+    }
 }
 
 .panel-open {
     transform: translateX(-33%);
+    transform: translateX(0%);
 }
 
 .panel-closed {
     transform: translateX(-130%);
+    transform: translateX(-95%);
 }
 
 .left-div {
@@ -45,4 +72,3 @@
     margin: 0;
     /* background-color: red; */
 }
-  

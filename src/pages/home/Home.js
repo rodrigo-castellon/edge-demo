@@ -99,32 +99,13 @@ export default class Home extends React.Component {
                             }
                         />
                     </div>
-                    {/* <div style={{ backgroundColor: "black" }}> */}
                     <Panel>
-                        <h1>Infinite Dancer</h1>
+                        <h1>Incredible Title</h1>
                         <p>
                             Made with EDGE. See https://edge-dance.github.io/.
                         </p>
                         <Search />
                     </Panel>
-                    {/* </div> */}
-                    {/* <ReactSlider
-                        show={false}
-                        headerTitle={"Header"}
-                        dataList={[]}
-                        itemElement={() => {}}
-                        position="right"
-                    /> */}
-                    {/* <div
-                        style={{
-                            position: "absolute",
-                            backgroundColor: "white",
-                        }}
-                    >
-                        <Search />
-                        <Button onClick={this.handleClicks}>Next Song</Button>
-                        <SongQueue queue={this.state.queue} />
-                    </div> */}
                 </div>
             </div>
         );
