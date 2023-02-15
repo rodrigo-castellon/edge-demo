@@ -262,7 +262,7 @@ export default class Home extends React.Component {
                     >
                         <Display
                             path={
-                                "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                                "https://storage.googleapis.com/edging-background/v1/glb_videoids_new/" +
                                 this.state.queue[0].split("/")[1] +
                                 ".glb"
                             }
