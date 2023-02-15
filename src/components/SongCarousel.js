@@ -8,6 +8,8 @@ const SongCarousel = ({
     prevSongHandler,
     nextSongHandler,
 }) => {
+    // cut the current song name short if it's too long
+
     return (
         <div>
             <div className="centered-elems-container">
@@ -24,7 +26,9 @@ const SongCarousel = ({
                 />
             </div>
             <div className="centered-elems-container">
-                <p color={"white"}>{currentSong}</p>
+                <p className="title" color={"white"}>
+                    {currentSong}
+                </p>
             </div>
             <div className="centered-elems-container">
                 <button onClick={prevSongHandler}>
