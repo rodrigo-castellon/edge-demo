@@ -1,0 +1,16 @@
+.song {
+    width: 100px;
+    height: 100px;
+}
+
+.left-song {
+    width: 100px;
+    height: 100px;
+    transform: perspective(400px) rotateY(50deg);
+}
+
+.right-song {
+    width: 100px;
+    height: 100px;
+    transform: perspective(400px) rotateY(-50deg);
+}

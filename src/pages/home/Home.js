@@ -111,6 +111,7 @@ export default class Home extends React.Component {
                         style={{
                             position: "absolute",
                             // float: "right",
+                            margin: "20px",
                             top: 0,
                             right: 0,
                             height: "25%",

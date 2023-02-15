@@ -1,39 +1,39 @@
 import React, { useState } from "react";
+import "./SongCarouselStyle.css";
 
 const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
     // const [currentIndex, setCurrentIndex] = useState(0);
 
     const handlePrevious = () => {
         console.log("previous!");
-        // setCurrentIndex(
-        //     currentIndex === 0 ? songs.length - 1 : currentIndex - 1
-        // );
     };
 
     const handleNext = () => {
         console.log("next!");
-        // setCurrentIndex(
-        //     currentIndex === songs.length - 1 ? 0 : currentIndex + 1
-        // );
     };
 
     return (
-        <div>
-            <div>
+        <div
+            style={{
+                backgroundColor: "yellow",
+            }}
+        >
+            <div
+                style={{
+                    margin: "auto",
+                    backgroundColor: "green",
+                }}
+            >
                 <img
                     src={albumCovers[0]}
                     alt="Previous Song"
-                    style={{ width: "100px", height: "100px" }}
+                    className="left-song"
                 />
-                <img
-                    src={albumCovers[1]}
-                    alt="Current Song"
-                    style={{ width: "100px", height: "100px" }}
-                />
+                <img src={albumCovers[1]} alt="Current Song" className="song" />
                 <img
                     src={albumCovers[2]}
                     alt="Next Song"
-                    style={{ width: "100px", height: "100px" }}
+                    className="right-song"
                 />
             </div>
             <div>
