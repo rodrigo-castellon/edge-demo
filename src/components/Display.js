@@ -12,8 +12,6 @@ export default function Display(props) {
     YBot = createYBotComponent(props.path);
     extend({ YBot });
 
-    console.log(YBot);
-
     return (
         <Suspense fallback={null}>
             <Canvas

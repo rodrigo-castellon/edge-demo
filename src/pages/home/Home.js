@@ -4,6 +4,7 @@ import Search from "../../components/Search";
 import Panel from "../../components/Panel";
 import SongCarousel from "../../components/SongCarousel";
 import React from "react";
+import Loading from "react-fullscreen-loading";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -25,8 +26,6 @@ export default class Home extends React.Component {
                         item.split("/")[1]
                     }&key=${apiKey}&part=snippet`;
 
-                    // console.log("GETTING FROM APIURL=", apiUrl);
-
                     return fetch(apiUrl)
                         .then((response) => response.json())
                         .then((data) => {
@@ -41,8 +40,8 @@ export default class Home extends React.Component {
                 Promise.all(promises)
                     .then((titles) => {
                         this.setState(function (state, props) {
-                            console.log("THE QUEUETITLES ARE", titles);
                             return {
+                                ready: true,
                                 queue: queue,
                                 queueTitles: titles,
                             };
@@ -57,29 +56,27 @@ export default class Home extends React.Component {
         this.state = {
             queue: ["background/1sqE6P3XyiQ"],
             queueTitles: ["You Should Be Dancing"],
+            ready: false,
         };
     }
 
     prevSongHandler() {
         // check time and see if we're close to the beginning
-        console.log("going to previous clip");
         const requestOptions = {
             method: "POST",
             // headers: { "Content-Type": "application/json" },
             // body: JSON.stringify({ title: "React POST Request Example" }),
         };
 
-        fetch("/api/prev_song", requestOptions).then((data) => {
-            console.log(data);
-        });
+        fetch("/api/prev_song", requestOptions);
 
         this.setState(function (state, props) {
             return {
                 queueTitles: [
                     state.queueTitles[state.queueTitles.length - 1],
-                ].concat(state.queueTitles.slice(0, 2)),
+                ].concat(state.queueTitles.slice(0, -1)),
                 queue: [state.queue[state.queue.length - 1]].concat(
-                    state.queue.slice(0, 2)
+                    state.queue.slice(0, -1)
                 ),
             };
         });
@@ -93,11 +90,7 @@ export default class Home extends React.Component {
             // body: JSON.stringify({ title: "React POST Request Example" }),
         };
 
-        fetch("/api/next_song", requestOptions)
-            // .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+        fetch("/api/next_song", requestOptions);
 
         this.setState(function (state, props) {
             return {
@@ -126,55 +119,67 @@ export default class Home extends React.Component {
             );
         });
 
-        return (
-            <div style={elementsStyle}>
-                <div
-                    style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        height: "100%",
-                        width: "100%",
-                    }}
-                >
-                    <Display
-                        path={
-                            "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
-                            this.state.queue[0].split("/")[1] +
-                            ".glb"
-                        }
-                    />
+        if (this.state.ready) {
+            return (
+                <div style={elementsStyle}>
+                    <div
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            height: "100%",
+                            width: "100%",
+                        }}
+                    >
+                        <Display
+                            path={
+                                "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                                this.state.queue[0].split("/")[1] +
+                                ".glb"
+                            }
+                        />
+                    </div>
+                    <Panel>
+                        <h1>Incredible Title</h1>
+                        <p>
+                            Made with EDGE. See https://edge-dance.github.io/.
+                        </p>
+                        <Search />
+                    </Panel>
+                    <div
+                        style={{
+                            position: "absolute",
+                            margin: "20px",
+                            top: 0,
+                            right: 0,
+                            // height: "25%",
+                            width: "25%",
+                            background: "rgba(72, 72, 72, 0.3)",
+                            border: "1px solid #ccc",
+                            borderRadius: "10px",
+                            color: "white",
+                            padding: "10px",
+                        }}
+                    >
+                        <SongCarousel
+                            currentSong={this.state.queueTitles[0]}
+                            // currentArtistName={"Britney Spears"}
+                            albumCovers={albumCovers}
+                            nextSongHandler={this.nextSongHandler}
+                            prevSongHandler={this.prevSongHandler}
+                        ></SongCarousel>
+                    </div>
                 </div>
-                <Panel>
-                    <h1>Incredible Title</h1>
-                    <p>Made with EDGE. See https://edge-dance.github.io/.</p>
-                    <Search />
-                </Panel>
-                <div
-                    style={{
-                        position: "absolute",
-                        margin: "20px",
-                        top: 0,
-                        right: 0,
-                        // height: "25%",
-                        width: "25%",
-                        background: "rgba(72, 72, 72, 0.3)",
-                        border: "1px solid #ccc",
-                        borderRadius: "10px",
-                        color: "white",
-                        padding: "10px",
-                    }}
-                >
-                    <SongCarousel
-                        currentSong={this.state.queueTitles[0]}
-                        // currentArtistName={"Britney Spears"}
-                        albumCovers={albumCovers}
-                        nextSongHandler={this.nextSongHandler}
-                        prevSongHandler={this.prevSongHandler}
-                    ></SongCarousel>
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <Loading
+                    loading={true}
+                    background="#404040"
+                    loaderColor="#3498db"
+                />
+            );
+        }
     }
 }
 

@@ -27,7 +27,7 @@ const SongCarousel = ({
             </div>
             <div className="centered-elems-container">
                 <p className="title" color={"white"}>
-                    {currentSong}
+                    {currentSong || "\u00a0"}
                 </p>
             </div>
             <div className="centered-elems-container">
