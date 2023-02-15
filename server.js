@@ -24,6 +24,7 @@ const url = require("url");
 var admin = require("firebase-admin");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
+const https = require("https");
 
 // https://firebase.google.com/docs/database/admin/save-data
 // https://console.firebase.google.com/u/0/project/edging-abb31/database/edging-abb31-default-rtdb/data
@@ -325,6 +326,34 @@ app.get("/api/get_linked_list", function (req, res) {
         })
         .catch((error) => {
             console.log(error);
+            res.send({ status: 500, message: "error encountered" });
+        });
+});
+
+app.get("/api/youtube_autocomplete", function (req, res) {
+    https
+        .get(
+            "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+                req.query.query,
+            (googleRes) => {
+                let data = "";
+
+                googleRes.on("data", (chunk) => {
+                    data += chunk;
+                });
+
+                googleRes.on("end", () => {
+                    console.log(JSON.parse(data));
+                    res.send({
+                        status: 200,
+                        message: JSON.stringify(JSON.parse(data)),
+                    });
+                    // do something with the data here
+                });
+            }
+        )
+        .on("error", (err) => {
+            console.log("Error: " + err.message);
             res.send({ status: 500, message: "error encountered" });
         });
 });
