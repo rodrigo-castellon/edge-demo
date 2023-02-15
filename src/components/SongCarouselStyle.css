@@ -41,3 +41,7 @@
     padding-right: 20px; */
     color: white;
 }
+
+.button:hover {
+    color: lightslategray;
+}
