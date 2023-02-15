@@ -21,10 +21,18 @@
     border-left-color: red; */
     border-right-color: white;
     border-top-color: white;
-    transform: rotate(45deg);
+    /* transform: rotate(45deg); */
 }
 
 .arrow-box:hover:before {
     border-right-color: grey;
     border-top-color: grey;
+}
+
+.active {
+    transform: rotate(90deg);
+}
+
+.inactive {
+    transform: rotate(0deg);
 }

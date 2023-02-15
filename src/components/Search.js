@@ -32,7 +32,7 @@ function Search({}) {
                 <input
                     className="searchbar"
                     type="search"
-                    placeholder="Youtube Search"
+                    placeholder=""
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
                     style={{

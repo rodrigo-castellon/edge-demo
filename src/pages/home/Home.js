@@ -3,9 +3,12 @@ import Display from "../../components/Display";
 import Search from "../../components/Search";
 import Panel from "../../components/Panel";
 import SongCarousel from "../../components/SongCarousel";
+import Arrow from "../../components/Arrow";
 import React, { useEffect } from "react";
 import Loading from "react-fullscreen-loading";
 import { useGLTF } from "@react-three/drei";
+import "../../main.css";
+import DisappearingDiv from "../../components/DisappearingDiv";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -13,6 +16,7 @@ export default class Home extends React.Component {
         this.nextSongHandler = this.nextSongHandler.bind(this);
         this.prevSongHandler = this.prevSongHandler.bind(this);
         this.playHandler = this.playHandler.bind(this);
+        this.panelHandler = this.panelHandler.bind(this);
 
         // AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug
 
@@ -66,6 +70,7 @@ export default class Home extends React.Component {
                                         ready: true,
                                         queue: queue,
                                         queueTitles: titles,
+                                        panelActive: true,
                                         // audioMap: audioMap,
                                         audio: new Audio(audioURL),
                                         // ["audioMap/" + queue[queue.length - 1]]:
@@ -99,7 +104,16 @@ export default class Home extends React.Component {
             // absolute unix time for when playing started (can be
             // false)
             playStartTimestamp: 0,
+            panelActive: true,
         };
+    }
+
+    panelHandler() {
+        this.setState(function (state, props) {
+            return {
+                panelActive: !state.panelActive,
+            };
+        });
     }
 
     prevSongHandler() {
@@ -271,18 +285,31 @@ export default class Home extends React.Component {
                         />
                     </div>
                     <Panel>
-                        <h1>Incredible Title</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Nulla efficitur id ipsum vitae mollis.
-                            Phasellus luctus libero ut nisi auctor vestibulum.
-                            Cras pulvinar augue non risus dictum ornare. Ut at
-                            fringilla enim. Quisque eu egestas urna, et pretium
-                            tortor. Etiam arcu magna, varius eu sagittis vel,
-                            vestibulum in mi. Nullam ac ultricies sem. Mauris at
-                            magna ut magna scelerisque commodo.
-                        </p>
-                        <Search />
+                        <div style={{ display: "flex" }}>
+                            <Arrow
+                                panelHandler={this.panelHandler}
+                                isActive={this.state.panelActive}
+                            />
+                            {/* https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side */}
+                            <h1>Incredible Title</h1>
+                        </div>
+                        <DisappearingDiv disappeared={!this.state.panelActive}>
+                            <p>
+                                Incredible Description. Lorem ipsum dolor sit
+                                amet, consectetur adipiscing elit. Nulla
+                                efficitur id ipsum vitae mollis. Phasellus
+                                luctus libero ut nisi auctor vestibulum. Cras
+                                pulvinar augue non risus dictum ornare. Ut at
+                                fringilla enim. Quisque eu egestas urna, et
+                                pretium tortor. Etiam arcu magna, varius eu
+                                sagittis vel, vestibulum in mi. Nullam ac
+                                ultricies sem. Mauris at magna ut magna
+                                scelerisque commodo.
+                            </p>
+                        </DisappearingDiv>
+                        <div style={{ gridArea: "inner-div" }}>
+                            <Search />
+                        </div>
                     </Panel>
                     <div
                         style={{
