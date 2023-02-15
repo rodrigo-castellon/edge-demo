@@ -52,52 +52,34 @@ export default class Home extends React.Component {
                 Promise.all(promises)
                     .then((titles) => {
                         // get the first musics: download and save to our dictionary
-
-                        let preloadIdxes = [queue.length - 1, 0, 1];
-                        const preloadPromises = preloadIdxes.map((idx) => {
-                            const url =
-                                "https://storage.googleapis.com/edging-background/v1/mp3/" +
+                        fetch(
+                            "https://storage.googleapis.com/edging-background/v1/mp3/" +
                                 queue[0].split("/")[1] +
-                                ".mp3";
-
-                            // now get the first music and download and save
-                            return fetch(url).then((response) => {
-                                response.blob().then((blob) => {
-                                    const audioURL =
-                                        window.URL.createObjectURL(blob);
-
-                                    return audioURL;
-                                });
-                            });
-                        });
-
-                        Promise.all(preloadPromises).then(
-                            (preloadAudioURLs) => {
-                                const audioMap = new Map();
-
-                                audioMap.set(
-                                    queue[queue.length - 1],
-                                    new Audio(preloadAudioURLs[0])
-                                );
-                                audioMap.set(
-                                    queue[0],
-                                    new Audio(preloadAudioURLs[1])
-                                );
-                                audioMap.set(
-                                    queue[1],
-                                    new Audio(preloadAudioURLs[2])
-                                );
+                                ".mp3"
+                        ).then((response) => {
+                            response.blob().then((blob) => {
+                                const audioURL =
+                                    window.URL.createObjectURL(blob);
 
                                 this.setState(function (state, props) {
                                     return {
                                         ready: true,
                                         queue: queue,
                                         queueTitles: titles,
-                                        audioMap: audioMap,
+                                        // audioMap: audioMap,
+                                        audio: new Audio(audioURL),
+                                        // ["audioMap/" + queue[queue.length - 1]]:
+                                        //     new Audio(preloadAudioURLs[0]),
+                                        // ["audioMap/" + queue[0]]: new Audio(
+                                        //     preloadAudioURLs[1]
+                                        // ),
+                                        // ["audioMap/" + queue[1]]: new Audio(
+                                        //     preloadAudioURLs[2]
+                                        // ),
                                     };
                                 });
-                            }
-                        );
+                            });
+                        });
                     })
                     .catch((error) => {
                         console.log(error);
@@ -135,22 +117,34 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
-        var resp = this.state.audioMap
-            .get(this.state.queue[this.state.queue.length - 1])
-            .play();
+        fetch(
+            "https://storage.googleapis.com/edging-background/v1/mp3/" +
+                this.state.queue[this.state.queue.length - 1].split("/")[1] +
+                ".mp3"
+        ).then((response) => {
+            response.blob().then((blob) => {
+                const audioURL = window.URL.createObjectURL(blob);
 
-        this.setState(function (state, props) {
-            return {
-                queueTitles: [
-                    state.queueTitles[state.queueTitles.length - 1],
-                ].concat(state.queueTitles.slice(0, -1)),
-                queue: [state.queue[state.queue.length - 1]].concat(
-                    state.queue.slice(0, -1)
-                ),
-                // this will be overwritten on playHandler() anyways...
-                playStartTimestamp: -1,
-                currentTimestamp: 0,
-            };
+                this.setState(function (state, props) {
+                    state.audio.pause();
+                    let newAudio = new Audio(audioURL);
+
+                    newAudio.play();
+
+                    return {
+                        queueTitles: [
+                            state.queueTitles[state.queueTitles.length - 1],
+                        ].concat(state.queueTitles.slice(0, -1)),
+                        queue: [state.queue[state.queue.length - 1]].concat(
+                            state.queue.slice(0, -1)
+                        ),
+                        // this will be overwritten on playHandler() anyways...
+                        playStartTimestamp: -1,
+                        currentTimestamp: 0,
+                        audio: newAudio,
+                    };
+                });
+            });
         });
     }
 
@@ -169,30 +163,41 @@ export default class Home extends React.Component {
 
         console.log(this.state.audioMap);
 
-        var resp = this.state.audioMap.get(this.state.queue[1]).play();
-
         fetch("/api/next_song", requestOptions);
 
-        this.setState(function (state, props) {
-            return {
-                queueTitles: state.queueTitles
-                    .slice(1)
-                    .concat([state.queueTitles[0]]),
-                queue: state.queue.slice(1).concat([state.queue[0]]),
-                playStartTimestamp: Date.now(),
-                currentTimestamp: 0,
-            };
+        fetch(
+            "https://storage.googleapis.com/edging-background/v1/mp3/" +
+                this.state.queue[1].split("/")[1] +
+                ".mp3"
+        ).then((response) => {
+            response.blob().then((blob) => {
+                const audioURL = window.URL.createObjectURL(blob);
+
+                this.setState(function (state, props) {
+                    state.audio.pause();
+                    let newAudio = new Audio(audioURL);
+
+                    newAudio.play();
+
+                    return {
+                        queueTitles: state.queueTitles
+                            .slice(1)
+                            .concat([state.queueTitles[0]]),
+                        queue: state.queue.slice(1).concat([state.queue[0]]),
+                        playStartTimestamp: Date.now(),
+                        currentTimestamp: 0,
+                        // this will be overwritten on playHandler() anyways...
+                        audio: newAudio,
+                    };
+                });
+            });
         });
     }
 
     playHandler() {
         if (!this.state.playing) {
             // play the audio
-            console.log(this.state.audioMap);
-            console.log(this.state.queue[0]);
-            console.log(this.state.audioMap.get(this.state.queue[0]));
-            var resp = this.state.audioMap.get(this.state.queue[0]).play();
-            // var resp = this.state.audio.play();
+            var resp = this.state.audio.play();
 
             this.setState(function (state, props) {
                 return {
@@ -201,8 +206,7 @@ export default class Home extends React.Component {
                 };
             });
         } else {
-            var resp = this.state.audioMap[this.state.queue[0]].pause();
-            // var resp = this.state.audio.pause();
+            var resp = this.state.audio.pause();
 
             this.setState(function (state, props) {
                 return {
@@ -211,6 +215,7 @@ export default class Home extends React.Component {
                 };
             });
         }
+        console.log("resp was", resp);
 
         if (resp !== undefined) {
             resp.then((_) => {

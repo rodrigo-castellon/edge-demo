@@ -399,7 +399,7 @@ async function createUserFunc(uuid) {
             "ABfQuZqq8wg", // Ain't No Mountain High Enough
             "BerNfXSuvJ0", // Justin Bieber - Sorry (Lyrics)
             "BRG03PZXo2w", // Doja Cat - Kiss Me More (Lyrics) ft. SZA
-            "dm0ndgjk9V4", // Britney Spears - Toxic (Lyrics)
+            // "dm0ndgjk9V4", // Britney Spears - Toxic (Lyrics)
             "g7X9X6TlrUo", // Doja Cat - Woman (Lyrics)
             "god7hAPv8f0", // Earth, Wind & Fire - Boogie Wonderland (Official Video)
             "HCq1OcAEAm0", // Lil Nas X - Industry Baby (Lyrics) ft. Jack Harlow
