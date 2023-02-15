@@ -23,6 +23,7 @@ const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
                     margin: "auto",
                     backgroundColor: "green",
                 }}
+                className="image-container"
             >
                 <img
                     src={albumCovers[0]}
