@@ -80,6 +80,13 @@ export default class Home extends React.Component {
             queueTitles: ["You Should Be Dancing"],
             ready: false,
             audio: null,
+            playing: false,
+            // number of seconds elapsed since the beginning of the
+            // clip
+            currentTimestamp: 0,
+            // absolute unix time for when playing started (can be
+            // false)
+            playStartTimestamp: 0,
         };
     }
 
@@ -106,6 +113,9 @@ export default class Home extends React.Component {
                 queue: [state.queue[state.queue.length - 1]].concat(
                     state.queue.slice(0, -1)
                 ),
+                // this will be overwritten on playHandler() anyways...
+                playStartTimestamp: -1,
+                currentTimestamp: 0,
             };
         });
     }
@@ -131,13 +141,33 @@ export default class Home extends React.Component {
                     .slice(1)
                     .concat([state.queueTitles[0]]),
                 queue: state.queue.slice(1).concat([state.queue[0]]),
+                playStartTimestamp: Date.now(),
+                currentTimestamp: 0,
             };
         });
     }
 
     playHandler() {
-        // play the audio
-        var resp = this.state.audio.play();
+        if (!this.state.playing) {
+            // play the audio
+            var resp = this.state.audio.play();
+
+            this.setState(function (state, props) {
+                return {
+                    playing: true,
+                    playStartTimestamp: Date.now() - state.currentTimestamp,
+                };
+            });
+        } else {
+            var resp = this.state.audio.pause();
+
+            this.setState(function (state, props) {
+                return {
+                    playing: false,
+                    currentTimestamp: Date.now() - state.playStartTimestamp,
+                };
+            });
+        }
 
         if (resp !== undefined) {
             resp.then((_) => {
@@ -156,7 +186,6 @@ export default class Home extends React.Component {
             margin: "auto",
         };
 
-        // const threeSongs = this.state.queue.slice(0, 2)
         const threeSongs = [
             this.state.queue[this.state.queue.length - 1],
         ].concat(this.state.queue.slice(0, 2));
@@ -185,6 +214,8 @@ export default class Home extends React.Component {
                                 this.state.queue[0].split("/")[1] +
                                 ".glb"
                             }
+                            playElement={this.state.playing}
+                            startTimestamp={this.state.currentTimestamp / 1000}
                         />
                     </div>
                     <Panel>

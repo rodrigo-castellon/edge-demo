@@ -9,7 +9,11 @@ import { createYBotComponent } from "./YBot";
 export default function Display(props) {
     let YBot = null;
 
-    YBot = createYBotComponent(props.path);
+    YBot = createYBotComponent(
+        props.path,
+        props.playElement,
+        props.startTimestamp
+    );
     extend({ YBot });
 
     return (
