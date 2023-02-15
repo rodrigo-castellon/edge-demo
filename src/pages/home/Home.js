@@ -63,32 +63,33 @@ export default class Home extends React.Component {
         this.state = {
             queue: ["background/1sqE6P3XyiQ"],
             queueTitles: ["You Should Be Dancing"],
-            startTime: -1,
+            // startTime: -1,
         };
     }
 
     prevSongHandler() {
         // check time and see if we're close to the beginning
-        if (
-            this.state.startTime != -1 &&
-            Date.now() - this.state.startTime < 5
-        ) {
-            console.log("going to previous clip");
-            const requestOptions = {
-                method: "POST",
-                // headers: { "Content-Type": "application/json" },
-                // body: JSON.stringify({ title: "React POST Request Example" }),
-            };
+        console.log("going to previous clip");
+        const requestOptions = {
+            method: "POST",
+            // headers: { "Content-Type": "application/json" },
+            // body: JSON.stringify({ title: "React POST Request Example" }),
+        };
 
-            fetch("/api/prev_song", requestOptions)
-                // .then((response) => response.json())
-                .then((data) => {
-                    console.log(data);
-                });
-        } else {
-            // just replay the current clip
-            console.log("replaying current");
-        }
+        fetch("/api/prev_song", requestOptions).then((data) => {
+            console.log(data);
+        });
+
+        this.setState(function (state, props) {
+            return {
+                queueTitles: [
+                    state.queueTitles[state.queueTitles.length - 1],
+                ].concat(state.queueTitles.slice(0, 2)),
+                queue: [state.queue[state.queue.length - 1]].concat(
+                    state.queue.slice(0, 2)
+                ),
+            };
+        });
     }
 
     nextSongHandler() {
@@ -140,22 +141,16 @@ export default class Home extends React.Component {
             position: "relative",
         };
 
-        console.log(Panel);
-
         // const threeSongs = this.state.queue.slice(0, 2)
         const threeSongs = [
             this.state.queue[this.state.queue.length - 1],
         ].concat(this.state.queue.slice(0, 2));
-
-        console.log(threeSongs);
 
         const albumCovers = threeSongs.map((song) => {
             return (
                 "https://img.youtube.com/vi/" + song.split("/")[1] + "/0.jpg"
             );
         });
-
-        console.log("albumCovers:", albumCovers);
 
         return (
             <div style={backgroundstyle}>
