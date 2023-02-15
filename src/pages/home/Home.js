@@ -306,6 +306,7 @@ export default class Home extends React.Component {
                             nextSongHandler={this.nextSongHandler}
                             prevSongHandler={this.prevSongHandler}
                             playHandler={this.playHandler}
+                            isPlaying={this.state.playing}
                         ></SongCarousel>
                     </div>
                 </div>

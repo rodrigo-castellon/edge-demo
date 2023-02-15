@@ -2,15 +2,49 @@ import React, { useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import "./SongCarouselStyle.css";
 
+function PlayPauseSVG({ isPlaying }) {
+    let playPauseSVG = null;
+    if (isPlaying) {
+        playPauseSVG = (
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="3em"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M8 7h3v10H8zm5 0h3v10h-3z"></path>
+            </svg>
+        );
+    } else {
+        playPauseSVG = (
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 24 24"
+                height="3em"
+                width="3em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M7 6v12l10-6z"></path>
+            </svg>
+        );
+    }
+
+    return playPauseSVG;
+}
+
 const SongCarousel = ({
     currentSong,
     albumCovers,
     prevSongHandler,
     nextSongHandler,
     playHandler,
+    isPlaying,
 }) => {
-    // cut the current song name short if it's too long
-
     return (
         <div>
             <div
@@ -49,18 +83,7 @@ const SongCarousel = ({
                     </svg>
                 </button>
                 <button className="button" onClick={playHandler}>
-                    <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        strokeWidth="0"
-                        viewBox="0 0 24 24"
-                        height="3em"
-                        width="3em"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path d="M7 6v12l10-6z"></path>
-                    </svg>
-                    {/* <BiIcons.BiPlay /> */}
+                    <PlayPauseSVG isPlaying={isPlaying} />
                 </button>
                 <button className="button" onClick={nextSongHandler}>
                     <svg
