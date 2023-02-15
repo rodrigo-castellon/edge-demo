@@ -3,9 +3,21 @@ import "./SearchStyle.css";
 
 function Search({}) {
     const [searchField, setSearchField] = useState("");
+    const [searchResults, setSearchResults] = useState([
+        "hello one",
+        "hello two",
+        "hello three",
+    ]);
 
     const handleChange = (e) => {
         setSearchField(e.target.value);
+
+        // get the
+        fetch("/api/youtube_autocomplete?query=" + e.target.value)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
     };
 
     function handleKeyDown(e) {
@@ -25,6 +37,19 @@ function Search({}) {
                 });
         }
     }
+    const divElements = searchResults.map((string, index) => (
+        <div
+            style={{
+                backgroundColor: "darkgrey",
+                padding: "0px",
+                margin: "0px",
+                height: "3vh",
+            }}
+            key={index}
+        >
+            {string}
+        </div>
+    ));
 
     return (
         <section style={{ width: "100%" }}>
@@ -40,6 +65,7 @@ function Search({}) {
                         backgroundColor: "rgba(77, 77, 77, 0.5)",
                     }}
                 />
+                {divElements}
             </div>
         </section>
     );

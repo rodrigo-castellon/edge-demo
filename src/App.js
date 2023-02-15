@@ -3,7 +3,7 @@ import React from "react";
 // custom pages
 import Home from "./pages/home/Home";
 import { Helmet } from "react-helmet";
-import "./Main.css";
+import "./main.css";
 
 // https://fonts.googleapis.com/css?family=Montserrat
 function App() {
