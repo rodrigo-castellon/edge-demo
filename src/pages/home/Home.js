@@ -28,7 +28,7 @@ export default class Home extends React.Component {
             .catch((error) => console.error(error));
 
         this.state = {
-            queue: ["background/test_aint_no_mountain_high_enough"],
+            queue: ["background/1sqE6P3XyiQ"],
         };
     }
 
@@ -98,7 +98,7 @@ export default class Home extends React.Component {
                     >
                         <Display
                             path={
-                                "https://storage.googleapis.com/edging-background/v1/glb/" +
+                                "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
                                 this.state.queue[0].split("/")[1] +
                                 ".glb"
                             }
