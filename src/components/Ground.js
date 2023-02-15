@@ -34,7 +34,7 @@ export function Ground() {
                 roughness={0.7}
                 blur={[1000, 400]} // Blur ground reflections (width, heigt), 0 skips blur
                 mixBlur={30} // How much blur mixes with surface roughness (default = 1)
-                mixStrength={80} // Strength of the reflections
+                mixStrength={0} // Strength of the reflections
                 mixContrast={1} // Contrast of the reflections
                 resolution={1024} // Off-buffer resolution, lower=faster, higher=better quality, slower
                 mirror={0} // Mirror environment, 0 = texture colors, 1 = pick up env colors

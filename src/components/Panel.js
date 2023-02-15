@@ -9,10 +9,8 @@ function Panel(props) {
 
     return (
         <div
-            className={`panel`}
-            // ${
-            //     props.isActive ? "panel-open" : "panel-closed"
-            // }`}
+            className={`panel
+            ${props.isActive ? "panel-open" : "panel-closed"}`}
         >
             {/* <div className={`panel panel-open"}`}> */}
             <div className="left-div" ref={childRef}>

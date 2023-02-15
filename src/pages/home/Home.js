@@ -112,6 +112,7 @@ export default class Home extends React.Component {
         this.setState(function (state, props) {
             return {
                 panelActive: !state.panelActive,
+                currentTimestamp: Date.now() - state.playStartTimestamp,
             };
         });
     }
@@ -284,7 +285,7 @@ export default class Home extends React.Component {
                             startTimestamp={this.state.currentTimestamp / 1000}
                         />
                     </div>
-                    <Panel>
+                    <Panel isActive={this.state.panelActive}>
                         <div style={{ display: "flex" }}>
                             <Arrow
                                 panelHandler={this.panelHandler}
@@ -321,7 +322,7 @@ export default class Home extends React.Component {
                             width: "25%",
                             background: "rgba(72, 72, 72, 0.3)",
                             border: "0px solid #ccc",
-                            borderRadius: "10px",
+                            borderRadius: "15px",
                             color: "white",
                             padding: "10px",
                         }}
