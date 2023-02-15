@@ -17,13 +17,9 @@
     transform: perspective(400px) rotateY(-50deg);
     border-radius: 10px;
 }
-.center {
-    /* display: block; */
-    margin-left: auto;
-    margin-right: auto;
-}
 
-.image-container {
+.centered-elems-container {
     display: flex;
     justify-content: center;
+    padding: 10px;
 }

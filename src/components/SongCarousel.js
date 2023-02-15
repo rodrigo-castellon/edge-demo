@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as BiIcons from "react-icons/bi";
 import "./SongCarouselStyle.css";
 
 const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
@@ -13,12 +14,8 @@ const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
     };
 
     return (
-        <div
-        // style={{
-        //     backgroundColor: "yellow",
-        // }}
-        >
-            <div className="image-container">
+        <div>
+            <div className="centered-elems-container">
                 <img
                     src={albumCovers[0]}
                     alt="Previous Song"
@@ -31,15 +28,21 @@ const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
                     className="right-song"
                 />
             </div>
-            <div>
+            <div className="centered-elems-container">
                 <p color={"white"}>
-                    {currentSongName} - {currentArtistName}
+                    {currentArtistName} - {currentSongName}
                 </p>
             </div>
-            <div>
-                <button onClick={handlePrevious}>Previous</button>
-                <button>Play</button>
-                <button onClick={handleNext}>Next</button>
+            <div className="centered-elems-container">
+                <button onClick={handlePrevious}>
+                    <BiIcons.BiSkipPrevious />
+                </button>
+                <button>
+                    <BiIcons.BiPlay />
+                </button>
+                <button onClick={handleNext}>
+                    <BiIcons.BiSkipNext />
+                </button>
             </div>
         </div>
     );

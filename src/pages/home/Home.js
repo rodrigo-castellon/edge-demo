@@ -110,11 +110,10 @@ export default class Home extends React.Component {
                     <div
                         style={{
                             position: "absolute",
-                            // float: "right",
                             margin: "20px",
                             top: 0,
                             right: 0,
-                            height: "25%",
+                            // height: "25%",
                             width: "25%",
                             background: "rgba(72, 72, 72, 0.3)",
                             border: "1px solid #ccc",
@@ -124,8 +123,8 @@ export default class Home extends React.Component {
                         }}
                     >
                         <SongCarousel
-                            currentSongName={"hello"}
-                            currentArtistName={"world"}
+                            currentSongName={"Toxic"}
+                            currentArtistName={"Britney Spears"}
                             albumCovers={[
                                 "/assets/album1.png",
                                 "/assets/album2.png",
