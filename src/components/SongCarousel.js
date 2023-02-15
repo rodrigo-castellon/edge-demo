@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import "./SongCarouselStyle.css";
 
-const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
-    // const [currentIndex, setCurrentIndex] = useState(0);
-
-    const handlePrevious = () => {
-        console.log("previous!");
-    };
-
-    const handleNext = () => {
-        console.log("next!");
-    };
-
+const SongCarousel = ({
+    currentSong,
+    albumCovers,
+    prevSongHandler,
+    nextSongHandler,
+}) => {
     return (
         <div>
             <div className="centered-elems-container">
@@ -29,18 +24,16 @@ const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
                 />
             </div>
             <div className="centered-elems-container">
-                <p color={"white"}>
-                    {currentArtistName} - {currentSongName}
-                </p>
+                <p color={"white"}>{currentSong}</p>
             </div>
             <div className="centered-elems-container">
-                <button onClick={handlePrevious}>
+                <button onClick={prevSongHandler}>
                     <BiIcons.BiSkipPrevious />
                 </button>
                 <button>
                     <BiIcons.BiPlay />
                 </button>
-                <button onClick={handleNext}>
+                <button onClick={nextSongHandler}>
                     <BiIcons.BiSkipNext />
                 </button>
             </div>

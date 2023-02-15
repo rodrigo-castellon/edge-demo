@@ -496,7 +496,46 @@ function getAllFunctions(obj) {
     return allFunctionNames;
 }
 
-app.post("/api/finish_song", function (req, res) {
+app.post("/api/prev_song", function (req, res) {
+    // inverse of /api/next_song
+
+    const uuid = req.cookies.uuid;
+
+    console.log("uuid", uuid);
+
+    const userRef = usersRef.child(uuid);
+
+    userRef
+        .child("firstSong")
+        .get()
+        .then((snapshot) => {
+            const firstSong = snapshot.val();
+
+            const firstKey = firstSong.split("/")[0];
+            const secondKey = firstSong.split("/")[1];
+
+            // rewrite it with firstSong->right
+            userRef
+                .child(firstKey)
+                .child(secondKey)
+                .child("left")
+                .get()
+                .then((snapshot) => {
+                    userRef.child("firstSong").set(snapshot.val());
+                    res.send({ status: 200, message: "success" });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    res.send({ status: 500, message: "error encountered" });
+                });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.send({ status: 500, message: "error encountered" });
+        });
+});
+
+app.post("/api/next_song", function (req, res) {
     // indicates that we have finished the current song.
     // under the hood, this just shifts things around (delete song from foreground queue if it’s foreground, reassign the “firstSong” pointer) and computes new motions
 

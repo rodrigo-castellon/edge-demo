@@ -3,36 +3,95 @@ import Display from "../../components/Display";
 import Search from "../../components/Search";
 import Panel from "../../components/Panel";
 import SongCarousel from "../../components/SongCarousel";
-import { Button } from "@mantine/core";
 import React from "react";
-import { useGLTF } from "@react-three/drei";
-import { SongQueue } from "../../components/SongQueue";
-import { ReactSlider } from "react-awesome-slider";
 
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClicks = this.handleClicks.bind(this);
+        this.nextSongHandler = this.nextSongHandler.bind(this);
+        this.prevSongHandler = this.prevSongHandler.bind(this);
+
+        // AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug
 
         // ask firebase for linked list
         fetch("/api/get_linked_list")
             .then((response) => response.json())
             .then((data) => {
                 let queue = JSON.parse(data.message);
-                this.setState(function (state, props) {
-                    return {
-                        queue: queue,
-                    };
+
+                const promises = queue.map((item) => {
+                    const apiKey = "AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug";
+                    const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${
+                        item.split("/")[1]
+                    }&key=${apiKey}&part=snippet`;
+
+                    // console.log("GETTING FROM APIURL=", apiUrl);
+
+                    return fetch(apiUrl)
+                        .then((response) => response.json())
+                        .then((data) => {
+                            // console.log("THE DATA HERE IS", data);
+                            return data.items[0].snippet.title;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 });
+
+                Promise.all(promises)
+                    .then((titles) => {
+                        this.setState(function (state, props) {
+                            console.log("THE QUEUETITLES ARE", titles);
+                            return {
+                                queue: queue,
+                                queueTitles: titles,
+                            };
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+
+                // this.setState(function (state, props) {
+                //     return {
+                //         queue: queue,
+                //     };
+                // });
             })
             .catch((error) => console.error(error));
 
         this.state = {
             queue: ["background/1sqE6P3XyiQ"],
+            queueTitles: ["You Should Be Dancing"],
+            startTime: -1,
         };
     }
 
-    handleClicks() {
+    prevSongHandler() {
+        // check time and see if we're close to the beginning
+        if (
+            this.state.startTime != -1 &&
+            Date.now() - this.state.startTime < 5
+        ) {
+            console.log("going to previous clip");
+            const requestOptions = {
+                method: "POST",
+                // headers: { "Content-Type": "application/json" },
+                // body: JSON.stringify({ title: "React POST Request Example" }),
+            };
+
+            fetch("/api/prev_song", requestOptions)
+                // .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                });
+        } else {
+            // just replay the current clip
+            console.log("replaying current");
+        }
+    }
+
+    nextSongHandler() {
         // tell firebase we're onto the next song
         const requestOptions = {
             method: "POST",
@@ -40,7 +99,7 @@ export default class Home extends React.Component {
             // body: JSON.stringify({ title: "React POST Request Example" }),
         };
 
-        fetch("/api/finish_song", requestOptions)
+        fetch("/api/next_song", requestOptions)
             // .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -48,6 +107,9 @@ export default class Home extends React.Component {
 
         this.setState(function (state, props) {
             return {
+                queueTitles: state.queueTitles
+                    .slice(1)
+                    .concat([state.queueTitles[0]]),
                 queue: state.queue.slice(1).concat([state.queue[0]]),
             };
         });
@@ -80,9 +142,20 @@ export default class Home extends React.Component {
 
         console.log(Panel);
 
-        const threeSongs = this.state.queue
-            .slice(1)
-            .concat([this.state.queue[0]]);
+        // const threeSongs = this.state.queue.slice(0, 2)
+        const threeSongs = [
+            this.state.queue[this.state.queue.length - 1],
+        ].concat(this.state.queue.slice(0, 2));
+
+        console.log(threeSongs);
+
+        const albumCovers = threeSongs.map((song) => {
+            return (
+                "https://img.youtube.com/vi/" + song.split("/")[1] + "/0.jpg"
+            );
+        });
+
+        console.log("albumCovers:", albumCovers);
 
         return (
             <div style={backgroundstyle}>
@@ -127,15 +200,11 @@ export default class Home extends React.Component {
                         }}
                     >
                         <SongCarousel
-                            currentSongName={"Toxic"}
-                            currentArtistName={"Britney Spears"}
-                            albumCovers={threeSongs.map((song) => {
-                                return (
-                                    "https://img.youtube.com/vi/" +
-                                    song.split("/")[1] +
-                                    "/0.jpg"
-                                );
-                            })}
+                            currentSong={this.state.queueTitles[0]}
+                            // currentArtistName={"Britney Spears"}
+                            albumCovers={albumCovers}
+                            nextSongHandler={this.nextSongHandler}
+                            prevSongHandler={this.prevSongHandler}
                         ></SongCarousel>
                     </div>
                 </div>
