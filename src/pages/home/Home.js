@@ -116,11 +116,13 @@ export default class Home extends React.Component {
                             right: 0,
                             height: "25%",
                             width: "25%",
-                            backgroundColor: "white",
+                            background: "rgba(72, 72, 72, 0.3)",
+                            border: "1px solid #ccc",
+                            borderRadius: "10px",
                             color: "white",
+                            padding: "10px",
                         }}
                     >
-                        yooooo
                         <SongCarousel
                             currentSongName={"hello"}
                             currentArtistName={"world"}

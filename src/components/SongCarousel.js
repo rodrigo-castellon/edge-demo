@@ -14,17 +14,11 @@ const SongCarousel = ({ currentSongName, currentArtistName, albumCovers }) => {
 
     return (
         <div
-            style={{
-                backgroundColor: "yellow",
-            }}
+        // style={{
+        //     backgroundColor: "yellow",
+        // }}
         >
-            <div
-                style={{
-                    margin: "auto",
-                    backgroundColor: "green",
-                }}
-                className="image-container"
-            >
+            <div className="image-container">
                 <img
                     src={albumCovers[0]}
                     alt="Previous Song"
