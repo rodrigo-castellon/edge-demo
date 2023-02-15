@@ -22,7 +22,7 @@ export default function Display(props) {
                 shadows
                 camera={{
                     fov: 75,
-                    position: [-2, 4, 4],
+                    position: [-1, 2, 2],
                     rotation: [30, 0, 0],
                 }}
             >

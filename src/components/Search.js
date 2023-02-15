@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SearchStyle.css";
 
 function Search({}) {
     const [searchField, setSearchField] = useState("");
@@ -26,15 +27,18 @@ function Search({}) {
     }
 
     return (
-        <section style={{ width: "80%" }}>
-            <div className="pa2" style={{ width: "80%" }}>
+        <section style={{ width: "100%" }}>
+            <div className="pa2" style={{ width: "100%" }}>
                 <input
-                    className="pa3 bb br3 b--none bg-lightest-blue ma3"
+                    className="searchbar"
                     type="search"
-                    placeholder="Youtube Link"
+                    placeholder="Youtube Search"
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{ width: "100%" }}
+                    style={{
+                        width: "100%",
+                        backgroundColor: "rgba(77, 77, 77, 0.5)",
+                    }}
                 />
             </div>
         </section>

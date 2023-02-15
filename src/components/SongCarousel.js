@@ -13,7 +13,10 @@ const SongCarousel = ({
 
     return (
         <div>
-            <div className="centered-elems-container">
+            <div
+                className="centered-elems-container"
+                style={{ overflow: "hidden" }}
+            >
                 <img
                     src={albumCovers[0]}
                     alt="Previous Song"
@@ -32,13 +35,13 @@ const SongCarousel = ({
                 </p>
             </div>
             <div className="centered-elems-container">
-                <button onClick={prevSongHandler}>
+                <button className="button" onClick={prevSongHandler}>
                     <BiIcons.BiSkipPrevious />
                 </button>
-                <button onClick={playHandler}>
+                <button className="button" onClick={playHandler}>
                     <BiIcons.BiPlay />
                 </button>
-                <button onClick={nextSongHandler}>
+                <button className="button" onClick={nextSongHandler}>
                     <BiIcons.BiSkipNext />
                 </button>
             </div>

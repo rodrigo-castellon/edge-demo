@@ -30,3 +30,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.button {
+    background-color: transparent;
+    border: none;
+    transform: scale(3);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}

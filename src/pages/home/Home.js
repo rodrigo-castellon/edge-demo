@@ -51,23 +51,53 @@ export default class Home extends React.Component {
 
                 Promise.all(promises)
                     .then((titles) => {
-                        const url =
-                            "https://storage.googleapis.com/edging-background/v1/mp3/1sqE6P3XyiQ.mp3";
-                        fetch(url).then((response) => {
-                            response.blob().then((blob) => {
-                                const audioURL =
-                                    window.URL.createObjectURL(blob);
+                        // get the first musics: download and save to our dictionary
+
+                        let preloadIdxes = [queue.length - 1, 0, 1];
+                        const preloadPromises = preloadIdxes.map((idx) => {
+                            const url =
+                                "https://storage.googleapis.com/edging-background/v1/mp3/" +
+                                queue[0].split("/")[1] +
+                                ".mp3";
+
+                            // now get the first music and download and save
+                            return fetch(url).then((response) => {
+                                response.blob().then((blob) => {
+                                    const audioURL =
+                                        window.URL.createObjectURL(blob);
+
+                                    return audioURL;
+                                });
+                            });
+                        });
+
+                        Promise.all(preloadPromises).then(
+                            (preloadAudioURLs) => {
+                                const audioMap = new Map();
+
+                                audioMap.set(
+                                    queue[queue.length - 1],
+                                    new Audio(preloadAudioURLs[0])
+                                );
+                                audioMap.set(
+                                    queue[0],
+                                    new Audio(preloadAudioURLs[1])
+                                );
+                                audioMap.set(
+                                    queue[1],
+                                    new Audio(preloadAudioURLs[2])
+                                );
 
                                 this.setState(function (state, props) {
                                     return {
                                         ready: true,
                                         queue: queue,
                                         queueTitles: titles,
-                                        audio: new Audio(audioURL),
+                                        audioMap: audioMap,
                                     };
                                 });
-                            });
-                        });
+                            }
+                        );
                     })
                     .catch((error) => {
                         console.log(error);
@@ -79,7 +109,7 @@ export default class Home extends React.Component {
             queue: ["background/1sqE6P3XyiQ"],
             queueTitles: ["You Should Be Dancing"],
             ready: false,
-            audio: null,
+            audioMap: null,
             playing: false,
             // number of seconds elapsed since the beginning of the
             // clip
@@ -104,6 +134,10 @@ export default class Home extends React.Component {
                 this.state.queue[this.state.queue.length - 2].split("/")[1] +
                 ".glb"
         );
+
+        var resp = this.state.audioMap
+            .get(this.state.queue[this.state.queue.length - 1])
+            .play();
 
         this.setState(function (state, props) {
             return {
@@ -133,6 +167,8 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
+        var resp = this.state.audioMap.get(this.state.queue[1]).play();
+
         fetch("/api/next_song", requestOptions);
 
         this.setState(function (state, props) {
@@ -150,7 +186,11 @@ export default class Home extends React.Component {
     playHandler() {
         if (!this.state.playing) {
             // play the audio
-            var resp = this.state.audio.play();
+            console.log(this.state.audioMap);
+            console.log(this.state.queue[0]);
+            console.log(this.state.audioMap.get(this.state.queue[0]));
+            var resp = this.state.audioMap.get(this.state.queue[0]).play();
+            // var resp = this.state.audio.play();
 
             this.setState(function (state, props) {
                 return {
@@ -159,7 +199,8 @@ export default class Home extends React.Component {
                 };
             });
         } else {
-            var resp = this.state.audio.pause();
+            var resp = this.state.audioMap[this.state.queue[0]].pause();
+            // var resp = this.state.audio.pause();
 
             this.setState(function (state, props) {
                 return {
@@ -177,6 +218,8 @@ export default class Home extends React.Component {
                 console.log(error);
                 //show error
             });
+        } else {
+            console.log("response was undefined!!");
         }
     }
 
@@ -184,6 +227,7 @@ export default class Home extends React.Component {
         const elementsStyle = {
             width: "75%",
             margin: "auto",
+            fontFamily: "Montserrat",
         };
 
         const threeSongs = [
@@ -201,6 +245,7 @@ export default class Home extends React.Component {
                 <div style={elementsStyle}>
                     <div
                         style={{
+                            fontFamily: "Montserrat",
                             position: "absolute",
                             top: 0,
                             left: 0,
@@ -221,7 +266,14 @@ export default class Home extends React.Component {
                     <Panel>
                         <h1>Incredible Title</h1>
                         <p>
-                            Made with EDGE. See https://edge-dance.github.io/.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Nulla efficitur id ipsum vitae mollis.
+                            Phasellus luctus libero ut nisi auctor vestibulum.
+                            Cras pulvinar augue non risus dictum ornare. Ut at
+                            fringilla enim. Quisque eu egestas urna, et pretium
+                            tortor. Etiam arcu magna, varius eu sagittis vel,
+                            vestibulum in mi. Nullam ac ultricies sem. Mauris at
+                            magna ut magna scelerisque commodo.
                         </p>
                         <Search />
                     </Panel>
@@ -234,7 +286,7 @@ export default class Home extends React.Component {
                             // height: "25%",
                             width: "25%",
                             background: "rgba(72, 72, 72, 0.3)",
-                            border: "1px solid #ccc",
+                            border: "0px solid #ccc",
                             borderRadius: "10px",
                             color: "white",
                             padding: "10px",
