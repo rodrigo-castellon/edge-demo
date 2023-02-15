@@ -5,6 +5,7 @@ import Panel from "../../components/Panel";
 import SongCarousel from "../../components/SongCarousel";
 import React from "react";
 import Loading from "react-fullscreen-loading";
+import { useGLTF } from "@react-three/drei";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -19,6 +20,16 @@ export default class Home extends React.Component {
             .then((response) => response.json())
             .then((data) => {
                 let queue = JSON.parse(data.message);
+
+                // preload to make things fast
+                // let idxToPreload = [queue.length - 1, 0, 1];
+                // for (const idx of idxToPreload) {
+                //     useGLTF.preload(
+                //         "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                //             queue[idx].split("/")[1] +
+                //             ".glb"
+                //     );
+                // }
 
                 const promises = queue.map((item) => {
                     const apiKey = "AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug";
@@ -64,11 +75,16 @@ export default class Home extends React.Component {
         // check time and see if we're close to the beginning
         const requestOptions = {
             method: "POST",
-            // headers: { "Content-Type": "application/json" },
-            // body: JSON.stringify({ title: "React POST Request Example" }),
         };
 
         fetch("/api/prev_song", requestOptions);
+
+        // preload to make things fast
+        useGLTF.preload(
+            "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                this.state.queue[this.state.queue.length - 2].split("/")[1] +
+                ".glb"
+        );
 
         this.setState(function (state, props) {
             return {
@@ -86,9 +102,14 @@ export default class Home extends React.Component {
         // tell firebase we're onto the next song
         const requestOptions = {
             method: "POST",
-            // headers: { "Content-Type": "application/json" },
-            // body: JSON.stringify({ title: "React POST Request Example" }),
         };
+
+        // preload to make things fast
+        useGLTF.preload(
+            "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                this.state.queue[2].split("/")[1] +
+                ".glb"
+        );
 
         fetch("/api/next_song", requestOptions);
 

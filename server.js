@@ -407,7 +407,6 @@ async function createUserFunc(uuid) {
             "JYIaWeVL1JM",
             "LOZuxwVk7TU",
             "LPYw3jXjd74",
-            "m2CFVWM",
             "niewe7xfoWs",
             "nsXwi67WgOo",
             "OPf0YbXqDm0",
