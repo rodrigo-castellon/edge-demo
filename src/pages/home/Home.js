@@ -167,6 +167,8 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
+        console.log(this.state.audioMap);
+
         var resp = this.state.audioMap.get(this.state.queue[1]).play();
 
         fetch("/api/next_song", requestOptions);
