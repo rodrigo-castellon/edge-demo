@@ -51,19 +51,12 @@ export default class Home extends React.Component {
                     .catch((error) => {
                         console.log(error);
                     });
-
-                // this.setState(function (state, props) {
-                //     return {
-                //         queue: queue,
-                //     };
-                // });
             })
             .catch((error) => console.error(error));
 
         this.state = {
             queue: ["background/1sqE6P3XyiQ"],
             queueTitles: ["You Should Be Dancing"],
-            // startTime: -1,
         };
     }
 
@@ -117,28 +110,9 @@ export default class Home extends React.Component {
     }
 
     render() {
-        // const [showSlider, setShowSlider] = useState(false);
-        const backgroundstyle = {
-            // width: "100%",
-            // minHeight: "calc(100vh - 80px)",
-            // height: "auto",
-            // display: "flex",
-            // flexDirection: "column",
-            // align-items: "center",
-            // paddingTop: "20px",
-            // paddingBottom: "20px",
-            // color: "white",
-            // backgroundColor: "#121417",
-        };
-
         const elementsStyle = {
             width: "75%",
             margin: "auto",
-        };
-
-        const elementStyle = {
-            padding: "20px",
-            position: "relative",
         };
 
         // const threeSongs = this.state.queue.slice(0, 2)
@@ -153,55 +127,51 @@ export default class Home extends React.Component {
         });
 
         return (
-            <div style={backgroundstyle}>
-                <div style={elementsStyle}>
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            height: "100%",
-                            width: "100%",
-                        }}
-                    >
-                        <Display
-                            path={
-                                "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
-                                this.state.queue[0].split("/")[1] +
-                                ".glb"
-                            }
-                        />
-                    </div>
-                    <Panel>
-                        <h1>Incredible Title</h1>
-                        <p>
-                            Made with EDGE. See https://edge-dance.github.io/.
-                        </p>
-                        <Search />
-                    </Panel>
-                    <div
-                        style={{
-                            position: "absolute",
-                            margin: "20px",
-                            top: 0,
-                            right: 0,
-                            // height: "25%",
-                            width: "25%",
-                            background: "rgba(72, 72, 72, 0.3)",
-                            border: "1px solid #ccc",
-                            borderRadius: "10px",
-                            color: "white",
-                            padding: "10px",
-                        }}
-                    >
-                        <SongCarousel
-                            currentSong={this.state.queueTitles[0]}
-                            // currentArtistName={"Britney Spears"}
-                            albumCovers={albumCovers}
-                            nextSongHandler={this.nextSongHandler}
-                            prevSongHandler={this.prevSongHandler}
-                        ></SongCarousel>
-                    </div>
+            <div style={elementsStyle}>
+                <div
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        height: "100%",
+                        width: "100%",
+                    }}
+                >
+                    <Display
+                        path={
+                            "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
+                            this.state.queue[0].split("/")[1] +
+                            ".glb"
+                        }
+                    />
+                </div>
+                <Panel>
+                    <h1>Incredible Title</h1>
+                    <p>Made with EDGE. See https://edge-dance.github.io/.</p>
+                    <Search />
+                </Panel>
+                <div
+                    style={{
+                        position: "absolute",
+                        margin: "20px",
+                        top: 0,
+                        right: 0,
+                        // height: "25%",
+                        width: "25%",
+                        background: "rgba(72, 72, 72, 0.3)",
+                        border: "1px solid #ccc",
+                        borderRadius: "10px",
+                        color: "white",
+                        padding: "10px",
+                    }}
+                >
+                    <SongCarousel
+                        currentSong={this.state.queueTitles[0]}
+                        // currentArtistName={"Britney Spears"}
+                        albumCovers={albumCovers}
+                        nextSongHandler={this.nextSongHandler}
+                        prevSongHandler={this.prevSongHandler}
+                    ></SongCarousel>
                 </div>
             </div>
         );
