@@ -80,6 +80,10 @@ export default class Home extends React.Component {
 
         console.log(Panel);
 
+        const threeSongs = this.state.queue
+            .slice(1)
+            .concat([this.state.queue[0]]);
+
         return (
             <div style={backgroundstyle}>
                 <div style={elementsStyle}>
@@ -125,11 +129,13 @@ export default class Home extends React.Component {
                         <SongCarousel
                             currentSongName={"Toxic"}
                             currentArtistName={"Britney Spears"}
-                            albumCovers={[
-                                "/assets/album1.png",
-                                "/assets/album2.png",
-                                "/assets/album3.png",
-                            ]}
+                            albumCovers={threeSongs.map((song) => {
+                                return (
+                                    "https://img.youtube.com/vi/" +
+                                    song.split("/")[1] +
+                                    "/0.jpg"
+                                );
+                            })}
                         ></SongCarousel>
                     </div>
                 </div>
