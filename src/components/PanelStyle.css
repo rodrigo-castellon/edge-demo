@@ -7,15 +7,17 @@
     top: 0;
     left: 0;
     width: 30%;
+    max-width: 30%;
     display: flex;
     padding: 0px;
-    transition: transform 0.3s ease-in-out;
+    /* transition: transform 0.3s ease-in-out; */
 }
 
 @media screen and (min-aspect-ratio: 3/1) and (max-aspect-ratio: 10/1) {
     .panel {
         /* background-color: purple; */
         width: 25%;
+        max-width: 25%;
     }
 }
 
@@ -23,6 +25,7 @@
     .panel {
         /* background-color: red; */
         width: 30%;
+        max-width: 30%;
     }
 }
 
@@ -30,6 +33,7 @@
     .panel {
         /* background-color: orange; */
         width: 35%;
+        max-width: 35%;
     }
 }
 
@@ -37,6 +41,7 @@
     .panel {
         /* background-color: yellow; */
         width: 60%;
+        max-width: 60%;
     }
 }
 
@@ -52,7 +57,7 @@
     transform: translateX(-95%); */
 }
 
-.left-div {
+.inner-div {
     height: 100vh;
     background: rgba(77, 77, 77, 0.5);
     border: 0px solid #ccc;
@@ -62,13 +67,6 @@
     height: 100%;
     flex-grow: 1;
     padding: 5%;
+    max-width: 100%;
     /* background-color: blue; */
-}
-
-.right-div {
-    height: 100vh;
-    float: right;
-    width: 30px;
-    margin: 0;
-    /* background-color: red; */
 }

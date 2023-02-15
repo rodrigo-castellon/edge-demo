@@ -13,7 +13,7 @@ function Panel(props) {
             ${props.isActive ? "panel-open" : "panel-closed"}`}
         >
             {/* <div className={`panel panel-open"}`}> */}
-            <div className="left-div" ref={childRef}>
+            <div className="inner-div" ref={childRef}>
                 {props.children}
             </div>
         </div>

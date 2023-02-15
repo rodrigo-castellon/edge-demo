@@ -7,6 +7,7 @@ function PlayPauseSVG({ isPlaying }) {
     if (isPlaying) {
         playPauseSVG = (
             <svg
+                className={"SVGButton"}
                 stroke="currentColor"
                 fill="currentColor"
                 strokeWidth="0"
@@ -21,6 +22,7 @@ function PlayPauseSVG({ isPlaying }) {
     } else {
         playPauseSVG = (
             <svg
+                className={"SVGButton"}
                 stroke="currentColor"
                 fill="currentColor"
                 strokeWidth="0"
@@ -71,6 +73,7 @@ const SongCarousel = ({
             <div className="centered-elems-container">
                 <button className="button" onClick={prevSongHandler}>
                     <svg
+                        className={"SVGButton"}
                         stroke="currentColor"
                         fill="currentColor"
                         strokeWidth="0"
@@ -87,6 +90,7 @@ const SongCarousel = ({
                 </button>
                 <button className="button" onClick={nextSongHandler}>
                     <svg
+                        className={"SVGButton"}
                         stroke="currentColor"
                         fill="currentColor"
                         strokeWidth="0"

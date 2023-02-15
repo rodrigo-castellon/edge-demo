@@ -3,3 +3,9 @@
     height: 5vh;
     border-radius: 1vh;
 }
+.result {
+    max-width: 80%; /* Change this value to adjust the maximum width */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

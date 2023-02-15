@@ -16,7 +16,12 @@ function Search({}) {
         fetch("/api/youtube_autocomplete?query=" + e.target.value)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
+                let titles = data.message.map((item) => {
+                    return item.channelTitle + " - " + item.title;
+                });
+                setSearchResults(titles);
+                // console.log(titles);
+                // console.log(data);
             });
     };
 
@@ -44,10 +49,11 @@ function Search({}) {
                 padding: "0px",
                 margin: "0px",
                 height: "3vh",
+                width: "100%",
             }}
             key={index}
         >
-            {string}
+            <p className="result">{string}</p>
         </div>
     ));
 
