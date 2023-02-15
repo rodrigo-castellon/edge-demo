@@ -110,10 +110,17 @@ export default class Home extends React.Component {
 
     panelHandler() {
         this.setState(function (state, props) {
-            return {
-                panelActive: !state.panelActive,
-                currentTimestamp: Date.now() - state.playStartTimestamp,
-            };
+            if (state.playing) {
+                return {
+                    panelActive: !state.panelActive,
+                    currentTimestamp: Date.now() - state.playStartTimestamp,
+                };
+            } else {
+                return {
+                    panelActive: !state.panelActive,
+                    playStartTimestamp: Date.now() - state.currentTimestamp,
+                };
+            }
         });
     }
 
