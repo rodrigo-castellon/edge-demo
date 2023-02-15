@@ -3,7 +3,7 @@ import Display from "../../components/Display";
 import Search from "../../components/Search";
 import Panel from "../../components/Panel";
 import SongCarousel from "../../components/SongCarousel";
-import React from "react";
+import React, { useEffect } from "react";
 import Loading from "react-fullscreen-loading";
 import { useGLTF } from "@react-three/drei";
 
@@ -12,6 +12,7 @@ export default class Home extends React.Component {
         super(props);
         this.nextSongHandler = this.nextSongHandler.bind(this);
         this.prevSongHandler = this.prevSongHandler.bind(this);
+        this.playHandler = this.playHandler.bind(this);
 
         // AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug
 
@@ -50,12 +51,22 @@ export default class Home extends React.Component {
 
                 Promise.all(promises)
                     .then((titles) => {
-                        this.setState(function (state, props) {
-                            return {
-                                ready: true,
-                                queue: queue,
-                                queueTitles: titles,
-                            };
+                        const url =
+                            "https://storage.googleapis.com/edging-background/v1/mp3/1sqE6P3XyiQ.mp3";
+                        fetch(url).then((response) => {
+                            response.blob().then((blob) => {
+                                const audioURL =
+                                    window.URL.createObjectURL(blob);
+
+                                this.setState(function (state, props) {
+                                    return {
+                                        ready: true,
+                                        queue: queue,
+                                        queueTitles: titles,
+                                        audio: new Audio(audioURL),
+                                    };
+                                });
+                            });
                         });
                     })
                     .catch((error) => {
@@ -68,6 +79,7 @@ export default class Home extends React.Component {
             queue: ["background/1sqE6P3XyiQ"],
             queueTitles: ["You Should Be Dancing"],
             ready: false,
+            audio: null,
         };
     }
 
@@ -121,6 +133,21 @@ export default class Home extends React.Component {
                 queue: state.queue.slice(1).concat([state.queue[0]]),
             };
         });
+    }
+
+    playHandler() {
+        // play the audio
+        var resp = this.state.audio.play();
+
+        if (resp !== undefined) {
+            resp.then((_) => {
+                console.log("auto play starts!!");
+                // autoplay starts!
+            }).catch((error) => {
+                console.log(error);
+                //show error
+            });
+        }
     }
 
     render() {
@@ -188,6 +215,7 @@ export default class Home extends React.Component {
                             albumCovers={albumCovers}
                             nextSongHandler={this.nextSongHandler}
                             prevSongHandler={this.prevSongHandler}
+                            playHandler={this.playHandler}
                         ></SongCarousel>
                     </div>
                 </div>

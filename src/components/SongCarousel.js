@@ -7,6 +7,7 @@ const SongCarousel = ({
     albumCovers,
     prevSongHandler,
     nextSongHandler,
+    playHandler,
 }) => {
     // cut the current song name short if it's too long
 
@@ -34,7 +35,7 @@ const SongCarousel = ({
                 <button onClick={prevSongHandler}>
                     <BiIcons.BiSkipPrevious />
                 </button>
-                <button>
+                <button onClick={playHandler}>
                     <BiIcons.BiPlay />
                 </button>
                 <button onClick={nextSongHandler}>
