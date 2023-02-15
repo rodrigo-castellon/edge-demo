@@ -2,6 +2,7 @@
 import Display from "../../components/Display";
 import Search from "../../components/Search";
 import Panel from "../../components/Panel";
+import SongCarousel from "../../components/SongCarousel";
 import { Button } from "@mantine/core";
 import React from "react";
 import { useGLTF } from "@react-three/drei";
@@ -106,6 +107,29 @@ export default class Home extends React.Component {
                         </p>
                         <Search />
                     </Panel>
+                    <div
+                        style={{
+                            position: "absolute",
+                            // float: "right",
+                            top: 0,
+                            right: 0,
+                            height: "25%",
+                            width: "25%",
+                            backgroundColor: "white",
+                            color: "white",
+                        }}
+                    >
+                        yooooo
+                        <SongCarousel
+                            currentSongName={"hello"}
+                            currentArtistName={"world"}
+                            albumCovers={[
+                                "/assets/album1.png",
+                                "/assets/album2.png",
+                                "/assets/album3.png",
+                            ]}
+                        ></SongCarousel>
+                    </div>
                 </div>
             </div>
         );
