@@ -49,6 +49,7 @@ const SongCarousel = ({
     playStartTimestamp,
     currentTimestamp,
     directingUserAttention,
+    currentVideoId,
 }) => {
     const [currentTimePercent, setCurrentTimePercent] = useState("0%");
 
@@ -82,7 +83,7 @@ const SongCarousel = ({
                     onClick={prevSongHandler}
                 />
                 <a
-                    href="https://www.youtube.com/watch?v=RnBT9uUYb1w"
+                    href={"https://www.youtube.com/watch?v=" + currentVideoId}
                     target="_blank"
                 >
                     <img

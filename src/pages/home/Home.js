@@ -38,7 +38,7 @@ export default class Home extends React.Component {
             // absolute unix time for when playing started (can be
             // false)
             playStartTimestamp: 0,
-            panelActive: true,
+            panelActive: false,
         };
     }
 
@@ -96,7 +96,6 @@ export default class Home extends React.Component {
                 queueTitle: "Dua Lipa - Levitating Feat. DaBaby",
                 ready: true,
                 queue: queue,
-                panelActive: true,
                 audio: new Audio(audioURL),
             };
         });
@@ -229,7 +228,18 @@ export default class Home extends React.Component {
                 this.nextSongHandler();
             }
         }, 50);
+        document.addEventListener("keydown", this.handleKeyPress);
     }
+
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyPress);
+    }
+
+    handleKeyPress = (event) => {
+        if (event.key === " ") {
+            this.playHandler();
+        }
+    };
 
     render() {
         const elementsStyle = {
@@ -334,6 +344,7 @@ export default class Home extends React.Component {
                             directingUserAttention={
                                 this.state.directingUserAttention
                             }
+                            currentVideoId={this.state.queue[0].split("/")[1]}
                         ></SongCarousel>
                     </div>
                 </div>
