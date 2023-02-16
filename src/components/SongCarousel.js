@@ -68,8 +68,6 @@ const SongCarousel = ({
         return () => clearTimeout(timeoutId);
     });
 
-    console.log(currentTimePercent);
-
     return (
         <div>
             <div

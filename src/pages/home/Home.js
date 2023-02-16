@@ -20,6 +20,7 @@ export default class Home extends React.Component {
         this.panelHandler = this.panelHandler.bind(this);
         this.nextSongHandlerHelper = this.nextSongHandlerHelper.bind(this);
         this.initOurState = this.initOurState.bind(this);
+        this.getCurrentTimestamp = this.getCurrentTimestamp.bind(this);
 
         this.initOurState();
 
@@ -209,6 +210,25 @@ export default class Home extends React.Component {
                 };
             });
         }
+    }
+
+    getCurrentTimestamp() {
+        // gets current timestamp, regardless of whether we are playing or not
+        if (this.state.playing) {
+            return Date.now() - this.state.playStartTimestamp;
+        } else {
+            return this.state.currentTimestamp;
+        }
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            // check if we've overrun the current song and force a nextSongHandler() call
+            if (this.getCurrentTimestamp() / 1000 > 30) {
+                console.log("moving to the next song");
+                this.nextSongHandler();
+            }
+        }, 50);
     }
 
     render() {
