@@ -80,8 +80,6 @@ export default class Home extends React.Component {
             "background/LPYw3jXjd74",
         ];
 
-        const title = "Dua Lipa - Levitating Feat. DaBaby";
-
         const blob = await fetch(
             "https://storage.googleapis.com/edging-background/v1/mp3/" +
                 queue[0].split("/")[1] +
@@ -94,7 +92,7 @@ export default class Home extends React.Component {
 
         this.setState(function (state, props) {
             return {
-                queueTitle: title,
+                queueTitle: "Dua Lipa - Levitating Feat. DaBaby",
                 ready: true,
                 queue: queue,
                 panelActive: true,

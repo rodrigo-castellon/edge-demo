@@ -4,11 +4,19 @@
     border-radius: 10px;
 }
 
+.song:hover {
+    transform: scale(1.1);
+}
+
 .left-song {
     width: 100px;
     height: 100px;
     transform: perspective(400px) rotateY(50deg);
     border-radius: 10px;
+}
+
+.left-song:hover {
+    transform: perspective(400px) rotateY(50deg) scale(1.1);
 }
 
 .right-song {
@@ -18,6 +26,10 @@
     border-radius: 10px;
 }
 
+.right-song:hover {
+    transform: perspective(400px) rotateY(-50deg) scale(1.1);
+}
+
 .centered-elems-container {
     display: flex;
     justify-content: center;
@@ -25,9 +37,10 @@
 }
 
 .title {
-    max-width: 80%; /* Change this value to adjust the maximum width */
+    max-width: 90%; /* Change this value to adjust the maximum width */
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
 }
 

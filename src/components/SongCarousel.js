@@ -78,12 +78,23 @@ const SongCarousel = ({
                     src={albumCovers[0]}
                     alt="Previous Song"
                     className="left-song"
+                    onClick={prevSongHandler}
                 />
-                <img src={albumCovers[1]} alt="Current Song" className="song" />
+                <a
+                    href="https://www.youtube.com/watch?v=RnBT9uUYb1w"
+                    target="_blank"
+                >
+                    <img
+                        src={albumCovers[1]}
+                        alt="Current Song"
+                        className="song"
+                    />
+                </a>
                 <img
                     src={albumCovers[2]}
                     alt="Next Song"
                     className="right-song"
+                    onClick={nextSongHandler}
                 />
             </div>
             <div className="centered-elems-container">
