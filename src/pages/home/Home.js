@@ -233,7 +233,6 @@ export default class Home extends React.Component {
                 <div style={elementsStyle}>
                     <div
                         style={{
-                            fontFamily: "Montserrat",
                             position: "absolute",
                             top: 0,
                             left: 0,
@@ -262,7 +261,6 @@ export default class Home extends React.Component {
                                 panelHandler={this.panelHandler}
                                 isActive={this.state.panelActive}
                             />
-                            {/* <div style={{ width: "3vh" }}></div> */}
                             {/* https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side */}
                             <h1
                                 style={{

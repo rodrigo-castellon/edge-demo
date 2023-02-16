@@ -47,7 +47,6 @@ const SongCarousel = ({
     playHandler,
     isPlaying,
 }) => {
-    console.log("the current song is", currentSong);
     return (
         <div>
             <div
@@ -70,6 +69,38 @@ const SongCarousel = ({
                 <p className="title" color={"white"}>
                     {currentSong || "\u00a0"}
                 </p>
+            </div>
+            <div
+                style={{
+                    margin: "auto",
+                    width: "75%",
+                    height: "2vh",
+                    padding: "0px",
+                }}
+            >
+                <div
+                    style={{
+                        height: "15%",
+                        width: "100%",
+                        top: "42.5%",
+                        position: "relative",
+                        // color: "white",
+                        backgroundColor: "rgba(126,133,138,1)",
+                        borderColor: "white",
+                    }}
+                ></div>
+                <div
+                    style={{
+                        height: "100%",
+                        width: "2vh",
+                        // top was manually fit
+                        top: "-16.5%",
+                        position: "relative",
+                        backgroundColor: "white",
+                        borderRadius: "10px",
+                    }}
+                ></div>
+                {/* <p>heyo</p> */}
             </div>
             <div className="centered-elems-container">
                 <button className="button" onClick={prevSongHandler}>
