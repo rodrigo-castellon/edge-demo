@@ -37,16 +37,19 @@ export default class Home extends React.Component {
                 // }
 
                 const promises = queue.map((item) => {
-                    const apiKey = "AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug";
-                    const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${
-                        item.split("/")[1]
-                    }&key=${apiKey}&part=snippet`;
+                    // const apiKey = "AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug";
+                    // const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${
+                    //     item.split("/")[1]
+                    // }&key=${apiKey}&part=snippet`;
 
-                    return fetch(apiUrl)
+                    return fetch(
+                        "/api/youtube_title?videoid=" + item.split("/")[1]
+                    )
                         .then((response) => response.json())
                         .then((data) => {
-                            // console.log("THE DATA HERE IS", data);
-                            return data.items[0].snippet.title;
+                            console.log("THE DATA HERE IS", data);
+                            return data.message;
+                            data.items[0].snippet.title;
                         })
                         .catch((error) => {
                             console.log(error);
@@ -260,6 +263,8 @@ export default class Home extends React.Component {
             );
         });
 
+        // console.log("AT THIS POINT QUEUETITLES IS", this.state.queueTitles);
+
         if (this.state.ready) {
             return (
                 <div style={elementsStyle}>
@@ -303,21 +308,17 @@ export default class Home extends React.Component {
                                     margin: "0px",
                                 }}
                             >
-                                Incredible Title
+                                Groove Genie
                             </h1>
                         </div>
                         <DisappearingDiv disappeared={!this.state.panelActive}>
                             <p>
-                                Incredible Description. Lorem ipsum dolor sit
-                                amet, consectetur adipiscing elit. Nulla
-                                efficitur id ipsum vitae mollis. Phasellus
-                                luctus libero ut nisi auctor vestibulum. Cras
-                                pulvinar augue non risus dictum ornare. Ut at
-                                fringilla enim. Quisque eu egestas urna, et
-                                pretium tortor. Etiam arcu magna, varius eu
-                                sagittis vel, vestibulum in mi. Nullam ac
-                                ultricies sem. Mauris at magna ut magna
-                                scelerisque commodo.
+                                Unleash the magic of music and dance with Groove
+                                Genie. Our technology generates custom dancing
+                                robot choreographies for any song you choose.
+                                Experience mesmerizing moves and stunning
+                                visuals like never before. Get started now and
+                                let the music take you on a journey!
                             </p>
                         </DisappearingDiv>
                         <div style={{ gridArea: "inner-div" }}>

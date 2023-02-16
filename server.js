@@ -25,6 +25,7 @@ var admin = require("firebase-admin");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const https = require("https");
+const youtubesearchapi = require("youtube-search-api");
 
 // https://firebase.google.com/docs/database/admin/save-data
 // https://console.firebase.google.com/u/0/project/edging-abb31/database/edging-abb31-default-rtdb/data
@@ -330,32 +331,61 @@ app.get("/api/get_linked_list", function (req, res) {
         });
 });
 
-app.get("/api/youtube_autocomplete", function (req, res) {
-    https
-        .get(
-            "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
-                req.query.query,
-            (googleRes) => {
-                let data = "";
-
-                googleRes.on("data", (chunk) => {
-                    data += chunk;
-                });
-
-                googleRes.on("end", () => {
-                    console.log(JSON.parse(data));
-                    res.send({
-                        status: 200,
-                        message: JSON.stringify(JSON.parse(data)),
-                    });
-                    // do something with the data here
-                });
-            }
-        )
-        .on("error", (err) => {
-            console.log("Error: " + err.message);
+// modified because otherwise it will fail (code has bug)
+// /Users/rodrigo-castellon/edging/node_modules/youtube-search-api/index.js
+app.get("/api/youtube_title", function (req, res) {
+    // get title based on the video id
+    youtubesearchapi
+        .GetVideoDetails(req.query.videoid)
+        .then((result) => {
+            // console.log("RESULT IS");
+            // console.log(result);
+            res.send({ status: 200, message: result.title });
+        })
+        .catch((error) => {
+            console.log(error);
             res.send({ status: 500, message: "error encountered" });
         });
+});
+
+app.get("/api/youtube_autocomplete", function (req, res) {
+    youtubesearchapi
+        .GetListByKeyword(req.query.query, false, 10)
+        .then((result) => {
+            res.send({ status: 200, message: result.items });
+            // console.log(result);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.send({ status: 500, message: "error encountered" });
+        });
+
+    // https
+    //     .get(
+    //         "https://serpapi.com/search.json?engine=youtube&search_query=star+wars",
+    //         // "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+    //         //     req.query.query,
+    //         (googleRes) => {
+    //             let data = "";
+
+    //             googleRes.on("data", (chunk) => {
+    //                 data += chunk;
+    //             });
+
+    //             googleRes.on("end", () => {
+    //                 console.log(JSON.parse(data));
+    //                 res.send({
+    //                     status: 200,
+    //                     message: JSON.stringify(JSON.parse(data)),
+    //                 });
+    //                 // do something with the data here
+    //             });
+    //         }
+    //     )
+    //     .on("error", (err) => {
+    //         console.log("Error: " + err.message);
+    //         res.send({ status: 500, message: "error encountered" });
+    //     });
 });
 
 function mod(n, m) {

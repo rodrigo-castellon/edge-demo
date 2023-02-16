@@ -47,6 +47,7 @@ const SongCarousel = ({
     playHandler,
     isPlaying,
 }) => {
+    console.log("the current song is", currentSong);
     return (
         <div>
             <div
@@ -101,7 +102,6 @@ const SongCarousel = ({
                     >
                         <path d="M7 7v10l7-5zm9 10V7h-2v10z"></path>
                     </svg>
-                    {/* <BiIcons.BiSkipNext /> */}
                 </button>
             </div>
         </div>

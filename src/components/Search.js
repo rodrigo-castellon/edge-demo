@@ -3,11 +3,7 @@ import "./SearchStyle.css";
 
 function Search({}) {
     const [searchField, setSearchField] = useState("");
-    const [searchResults, setSearchResults] = useState([
-        "hello one",
-        "hello two",
-        "hello three",
-    ]);
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleChange = (e) => {
         setSearchField(e.target.value);
@@ -20,8 +16,6 @@ function Search({}) {
                     return item.channelTitle + " - " + item.title;
                 });
                 setSearchResults(titles);
-                // console.log(titles);
-                // console.log(data);
             });
     };
 
