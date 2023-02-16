@@ -1,11 +1,92 @@
 .searchbar {
-    border: 0;
+    width: 100%;
+    color: white;
+    background-color: rgba(77, 77, 77, 0.5);
+    padding-left: 20px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: rgba(80, 80, 80, 1);
+    border-style: solid;
     height: 5vh;
-    border-radius: 1vh;
+    outline-width: 0;
+    outline: none;
+}
+
+.searchbar:focus {
+    color: white;
+    /* outline-color: transparent; */
+    /* rgba(0, 0, 0, 1); */
+    /* outline-width: thin; */
+    border-color: rgba(120, 120, 120, 1);
 }
 .result {
-    max-width: 80%; /* Change this value to adjust the maximum width */
+    max-width: 90%; /* Change this value to adjust the maximum width */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    /* font stuff */
+    font-size: 10pt;
+}
+
+.round-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.round-bottom {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.result-div {
+    /* background-color: rgba(77, 77, 77, 0.3); */
+    background-color: white;
+    color: black;
+    /* padding: "0px";
+    margin: "0px"; */
+    font-stretch: ultra-expanded;
+    -webkit-transform: scale(1.05, 1); /* Safari and Chrome */
+    -moz-transform: scale(1.05, 1); /* Firefox */
+    -ms-transform: scale(1.05, 1); /* IE 9 */
+    -o-transform: scale(1.05, 1); /* Opera */
+    transform: scale(1.05, 1); /* W3C */
+    margin: 1pt;
+    /* border-radius: 5px; */
+    padding-left: 0.5vw;
+    border: 1px solid transparent;
+    height: 5vh;
+    margin: auto;
+    width: 95%;
+    /* width: 97%; */
+    user-select: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.result-div:hover {
+    /* border: 1px solid white; */
+    background-color: rgba(239, 239, 239, 0.866);
+    /* color: white; */
+    cursor: pointer;
+}
+
+.boldtext {
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* For webkit-based browsers */
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+/* For Microsoft Edge and Internet Explorer */
+input[type="search"]::-ms-clear {
+    display: none;
 }

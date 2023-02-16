@@ -13,7 +13,7 @@ function Search({}) {
             .then((response) => response.json())
             .then((data) => {
                 let titles = data.message.map((item) => {
-                    return item.channelTitle + " - " + item.title;
+                    return [item.channelTitle, item.title];
                 });
                 setSearchResults(titles);
             });
@@ -36,36 +36,55 @@ function Search({}) {
                 });
         }
     }
-    const divElements = searchResults.map((string, index) => (
-        <div
-            style={{
-                backgroundColor: "darkgrey",
-                padding: "0px",
-                margin: "0px",
-                height: "3vh",
-                width: "100%",
-            }}
-            key={index}
-        >
-            <p className="result">{string}</p>
-        </div>
-    ));
+
+    const divElements = searchResults.map(([channel, title], index) => {
+        let extraClass = "";
+        if (index === 0) {
+            extraClass = "round-top";
+        } else if (index === searchResults.length - 1) {
+            extraClass = "round-bottom";
+        }
+
+        console.log(extraClass);
+
+        return (
+            <div
+                className={`result-div ${extraClass}`}
+                style={{ userSelect: "none" }}
+                key={index}
+            >
+                <p className="result" style={{ userSelect: "none" }}>
+                    <span className="boldtext">[{channel}]</span>{" "}
+                    <span>{title}</span>
+                </p>
+            </div>
+        );
+    });
 
     return (
         <section style={{ width: "100%" }}>
-            <div className="pa2" style={{ width: "100%" }}>
+            <div
+                // className="results-container"
+                style={{
+                    width: "100%",
+                    cursor: "pointer",
+                    userSelect: "none",
+                }}
+            >
+                <div style={{ height: "1vh" }}></div>
                 <input
                     className="searchbar"
                     type="search"
-                    placeholder=""
+                    placeholder="Search / Youtube URL"
                     onChange={handleChange}
                     onKeyDown={handleKeyDown}
-                    style={{
-                        width: "100%",
-                        backgroundColor: "rgba(77, 77, 77, 0.5)",
-                    }}
                 />
-                {divElements}
+                <div
+                    style={{
+                        height: "1vh",
+                    }}
+                ></div>
+                <div className="results-container">{divElements}</div>
             </div>
         </section>
     );

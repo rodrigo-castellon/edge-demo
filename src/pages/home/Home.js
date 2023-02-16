@@ -236,7 +236,7 @@ export default class Home extends React.Component {
     }
 
     handleKeyPress = (event) => {
-        if (event.key === " ") {
+        if (event.key === " " && document.activeElement == document.body) {
             this.playHandler();
         }
     };
@@ -318,21 +318,6 @@ export default class Home extends React.Component {
                             <Search />
                         </div>
                     </Panel>
-                    {/* <div
-                        style={{
-                            position: "absolute",
-                            margin: "20px",
-                            top: 0,
-                            right: 0,
-                            // height: "25%",
-                            width: "30vw",
-                            background: "rgba(72, 72, 72, 0.3)",
-                            border: "0px solid #ccc",
-                            borderRadius: "15px",
-                            color: "white",
-                            padding: "10px",
-                        }}
-                    > */}
                     <SongCarousel
                         currentSong={this.state.queueTitle}
                         // currentArtistName={"Britney Spears"}
@@ -348,7 +333,6 @@ export default class Home extends React.Component {
                         }
                         currentVideoId={this.state.queue[0].split("/")[1]}
                     ></SongCarousel>
-                    {/* </div> */}
                 </div>
             );
         } else {
