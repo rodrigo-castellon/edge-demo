@@ -127,9 +127,11 @@ export default class Home extends React.Component {
         );
 
         this.setState(function (state, props) {
-            // avoid race condition
-            state.audio.pause();
-            newAudio.play();
+            if (state.playing) {
+                // avoid race condition
+                state.audio.pause();
+                newAudio.play();
+            }
             return {
                 ready: true,
                 queueTitle: title,
@@ -159,9 +161,12 @@ export default class Home extends React.Component {
         const newAudio = await fetchAudioObj(this.state.queue[1].split("/")[1]);
 
         this.setState(function (state, props) {
-            // avoid race condition
-            state.audio.pause();
-            newAudio.play();
+            if (state.playing) {
+                // avoid race condition
+                state.audio.pause();
+                newAudio.play();
+            }
+
             return {
                 queueTitle: title,
                 queue: state.queue.slice(1).concat([state.queue[0]]),
