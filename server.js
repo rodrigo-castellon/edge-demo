@@ -331,6 +331,21 @@ app.get("/api/get_linked_list", function (req, res) {
         });
 });
 
+app.get("/api/youtube_channel", function (req, res) {
+    // get title based on the video id
+    youtubesearchapi
+        .GetVideoDetails(req.query.videoid)
+        .then((result) => {
+            // console.log("RESULT IS");
+            // console.log(result);
+            res.send({ status: 200, message: result.channel });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.send({ status: 500, message: "error encountered" });
+        });
+});
+
 // modified because otherwise it will fail (code has bug)
 // /Users/rodrigo-castellon/edging/node_modules/youtube-search-api/index.js
 app.get("/api/youtube_title", function (req, res) {

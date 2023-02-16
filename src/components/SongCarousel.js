@@ -48,6 +48,7 @@ const SongCarousel = ({
     isPlaying,
     playStartTimestamp,
     currentTimestamp,
+    directingUserAttention,
 }) => {
     const [currentTimePercent, setCurrentTimePercent] = useState("0%");
 
@@ -164,7 +165,12 @@ const SongCarousel = ({
                         <path d="m16 7-7 5 7 5zm-7 5V7H7v10h2z"></path>
                     </svg>
                 </button>
-                <button className="button" onClick={playHandler}>
+                <button
+                    className={`button ${
+                        directingUserAttention ? "button-active" : ""
+                    }`}
+                    onClick={playHandler}
+                >
                     <PlayPauseSVG isPlaying={isPlaying} />
                 </button>
                 <button className="button" onClick={nextSongHandler}>

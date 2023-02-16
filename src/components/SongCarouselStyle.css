@@ -7,6 +7,24 @@
 .song:hover {
     transform: scale(1.1);
 }
+@keyframes pulse {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.2); /* Scale up */
+    }
+    100% {
+        transform: scale(1); /* Back to initial scale */
+    }
+}
+
+.button-active {
+    animation-name: pulse;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
 
 .left-song {
     width: 100px;

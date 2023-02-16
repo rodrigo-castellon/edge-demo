@@ -31,6 +31,7 @@ export default class Home extends React.Component {
             ready: false,
             audioMap: null,
             playing: false,
+            directingUserAttention: true,
             // number of seconds elapsed since the beginning of the
             // clip
             currentTimestamp: 0,
@@ -194,6 +195,7 @@ export default class Home extends React.Component {
             this.setState(function (state, props) {
                 this.state.audio.play();
                 return {
+                    directingUserAttention: false,
                     playing: true,
                     playStartTimestamp: Date.now() - state.currentTimestamp,
                 };
@@ -329,6 +331,9 @@ export default class Home extends React.Component {
                             isPlaying={this.state.playing}
                             playStartTimestamp={this.state.playStartTimestamp}
                             currentTimestamp={this.state.currentTimestamp}
+                            directingUserAttention={
+                                this.state.directingUserAttention
+                            }
                         ></SongCarousel>
                     </div>
                 </div>
