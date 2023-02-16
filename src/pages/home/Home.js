@@ -309,6 +309,8 @@ export default class Home extends React.Component {
                             prevSongHandler={this.prevSongHandler}
                             playHandler={this.playHandler}
                             isPlaying={this.state.playing}
+                            playStartTimestamp={this.state.playStartTimestamp}
+                            currentTimestamp={this.state.currentTimestamp}
                         ></SongCarousel>
                     </div>
                 </div>

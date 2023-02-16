@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import * as BiIcons from "react-icons/bi";
+import React, { useState, useEffect } from "react";
+// import * as BiIcons from "react-icons/bi";
 import "./SongCarouselStyle.css";
 
 function PlayPauseSVG({ isPlaying }) {
@@ -46,7 +46,30 @@ const SongCarousel = ({
     nextSongHandler,
     playHandler,
     isPlaying,
+    playStartTimestamp,
+    currentTimestamp,
 }) => {
+    const [currentTimePercent, setCurrentTimePercent] = useState("0%");
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            // Update the progress bar after 200ms
+            if (isPlaying) {
+                currentTimestamp = Date.now() - playStartTimestamp;
+            }
+
+            setCurrentTimePercent(
+                JSON.stringify((100 * (currentTimestamp / 1000)) / 30) + "%"
+            );
+            // setProgress((prevProgress) => prevProgress + 1);
+        }, 10);
+
+        // Clean up the timeout when the component unmounts or the progress state changes
+        return () => clearTimeout(timeoutId);
+    });
+
+    console.log(currentTimePercent);
+
     return (
         <div>
             <div
@@ -84,7 +107,6 @@ const SongCarousel = ({
                         width: "100%",
                         top: "42.5%",
                         position: "relative",
-                        // color: "white",
                         backgroundColor: "rgba(126,133,138,1)",
                         borderColor: "white",
                     }}
@@ -95,6 +117,7 @@ const SongCarousel = ({
                         width: "2vh",
                         // top was manually fit
                         top: "-16.5%",
+                        left: currentTimePercent,
                         position: "relative",
                         backgroundColor: "white",
                         borderRadius: "10px",
