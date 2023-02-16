@@ -19,8 +19,6 @@ export default class Home extends React.Component {
         this.playHandler = this.playHandler.bind(this);
         this.panelHandler = this.panelHandler.bind(this);
         this.nextSongHandlerHelper = this.nextSongHandlerHelper.bind(this);
-        // this.fetchTitle = this.fetchTitle.bind(this);
-        // this.fetchAudioObj = this.fetchAudioObj.bind(this);
         this.initOurState = this.initOurState.bind(this);
 
         this.initOurState();
@@ -98,7 +96,6 @@ export default class Home extends React.Component {
                 queueTitle: title,
                 ready: true,
                 queue: queue,
-                // queueTitles: titles,
                 panelActive: true,
                 audio: new Audio(audioURL),
             };
@@ -139,8 +136,7 @@ export default class Home extends React.Component {
                 queue: [state.queue[state.queue.length - 1]].concat(
                     state.queue.slice(0, state.queue.length - 1)
                 ),
-                // this will be overwritten on playHandler() anyways...
-                playStartTimestamp: -1,
+                playStartTimestamp: Date.now(),
                 currentTimestamp: 0,
                 audio: newAudio,
             };
@@ -169,8 +165,7 @@ export default class Home extends React.Component {
             return {
                 queueTitle: title,
                 queue: state.queue.slice(1).concat([state.queue[0]]),
-                // this will be overwritten on playHandler() anyways...
-                playStartTimestamp: -1,
+                playStartTimestamp: Date.now(),
                 currentTimestamp: 0,
                 audio: newAudio,
             };
@@ -191,16 +186,16 @@ export default class Home extends React.Component {
     playHandler() {
         if (!this.state.playing) {
             // play the audio
-            var resp = this.state.audio.play();
 
             this.setState(function (state, props) {
+                this.state.audio.play();
                 return {
                     playing: true,
                     playStartTimestamp: Date.now() - state.currentTimestamp,
                 };
             });
         } else {
-            var resp = this.state.audio.pause();
+            this.state.audio.pause();
 
             this.setState(function (state, props) {
                 return {
@@ -209,23 +204,9 @@ export default class Home extends React.Component {
                 };
             });
         }
-        console.log("resp was", resp);
-
-        if (resp !== undefined) {
-            resp.then((_) => {
-                console.log("auto play starts!!");
-                // autoplay starts!
-            }).catch((error) => {
-                console.log(error);
-                //show error
-            });
-        } else {
-            console.log("response was undefined!!");
-        }
     }
 
     render() {
-        console.log("currently the queueTitle is", this.state.queueTitle);
         const elementsStyle = {
             width: "75%",
             margin: "auto",
@@ -236,14 +217,11 @@ export default class Home extends React.Component {
             this.state.queue[this.state.queue.length - 1],
         ].concat(this.state.queue.slice(0, 2));
 
-        console.log("this.state.queue[0] in render", this.state.queue[0]);
         const albumCovers = threeSongs.map((song) => {
             return (
                 "https://img.youtube.com/vi/" + song.split("/")[1] + "/0.jpg"
             );
         });
-
-        // console.log("AT THIS POINT QUEUETITLES IS", this.state.queueTitles);
 
         if (this.state.ready) {
             return (
