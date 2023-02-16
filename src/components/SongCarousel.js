@@ -71,7 +71,21 @@ const SongCarousel = ({
     });
 
     return (
-        <div>
+        <div
+            style={{
+                position: "absolute",
+                margin: "20px",
+                top: 0,
+                right: 0,
+                height: "40%",
+                width: "30vw",
+                background: "rgba(72, 72, 72, 0.3)",
+                border: "0px solid #ccc",
+                borderRadius: "15px",
+                color: "white",
+                padding: "10px",
+            }}
+        >
             <div
                 className="centered-elems-container"
                 style={{ overflow: "hidden" }}

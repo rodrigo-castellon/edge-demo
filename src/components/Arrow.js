@@ -17,15 +17,4 @@ export default function Arrow(props) {
             />
         </div>
     );
-
-    return (
-        <div className={`arrow-box ${props.isActive ? "active" : "inactive"}`}>
-            <a
-                href="#"
-                onClick={() => {
-                    props.panelHandler();
-                }}
-            ></a>
-        </div>
-    );
 }

@@ -297,7 +297,9 @@ export default class Home extends React.Component {
                                     flexGrow: 1,
                                     padding: "0px",
                                     margin: "0px",
+                                    cursor: "pointer",
                                 }}
+                                onClick={this.panelHandler}
                             >
                                 Groove Genie
                             </h1>
@@ -316,37 +318,37 @@ export default class Home extends React.Component {
                             <Search />
                         </div>
                     </Panel>
-                    <div
+                    {/* <div
                         style={{
                             position: "absolute",
                             margin: "20px",
                             top: 0,
                             right: 0,
                             // height: "25%",
-                            width: "25%",
+                            width: "30vw",
                             background: "rgba(72, 72, 72, 0.3)",
                             border: "0px solid #ccc",
                             borderRadius: "15px",
                             color: "white",
                             padding: "10px",
                         }}
-                    >
-                        <SongCarousel
-                            currentSong={this.state.queueTitle}
-                            // currentArtistName={"Britney Spears"}
-                            albumCovers={albumCovers}
-                            nextSongHandler={this.nextSongHandler}
-                            prevSongHandler={this.prevSongHandler}
-                            playHandler={this.playHandler}
-                            isPlaying={this.state.playing}
-                            playStartTimestamp={this.state.playStartTimestamp}
-                            currentTimestamp={this.state.currentTimestamp}
-                            directingUserAttention={
-                                this.state.directingUserAttention
-                            }
-                            currentVideoId={this.state.queue[0].split("/")[1]}
-                        ></SongCarousel>
-                    </div>
+                    > */}
+                    <SongCarousel
+                        currentSong={this.state.queueTitle}
+                        // currentArtistName={"Britney Spears"}
+                        albumCovers={albumCovers}
+                        nextSongHandler={this.nextSongHandler}
+                        prevSongHandler={this.prevSongHandler}
+                        playHandler={this.playHandler}
+                        isPlaying={this.state.playing}
+                        playStartTimestamp={this.state.playStartTimestamp}
+                        currentTimestamp={this.state.currentTimestamp}
+                        directingUserAttention={
+                            this.state.directingUserAttention
+                        }
+                        currentVideoId={this.state.queue[0].split("/")[1]}
+                    ></SongCarousel>
+                    {/* </div> */}
                 </div>
             );
         } else {
