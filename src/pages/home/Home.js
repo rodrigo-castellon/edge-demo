@@ -129,10 +129,12 @@ export default class Home extends React.Component {
             this.state.queue[this.state.queue.length - 1].split("/")[1]
         );
 
-        newAudio.play();
-
         this.setState(function (state, props) {
+            // avoid race condition
+            state.audio.pause();
+            newAudio.play();
             return {
+                ready: true,
                 queueTitle: title,
                 queue: [state.queue[state.queue.length - 1]].concat(
                     state.queue.slice(0, state.queue.length - 1)
@@ -153,8 +155,6 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
-        this.state.audio.pause();
-
         this.prevSongHandlerHelper();
     }
 
@@ -162,9 +162,10 @@ export default class Home extends React.Component {
         const title = await fetchTitle(this.state.queue[1].split("/")[1]);
         const newAudio = await fetchAudioObj(this.state.queue[1].split("/")[1]);
 
-        newAudio.play();
-
         this.setState(function (state, props) {
+            // avoid race condition
+            state.audio.pause();
+            newAudio.play();
             return {
                 queueTitle: title,
                 queue: state.queue.slice(1).concat([state.queue[0]]),
@@ -183,8 +184,6 @@ export default class Home extends React.Component {
                 this.state.queue[2].split("/")[1] +
                 ".glb"
         );
-
-        this.state.audio.pause();
 
         this.nextSongHandlerHelper();
     }
