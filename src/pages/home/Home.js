@@ -9,6 +9,7 @@ import Loading from "react-fullscreen-loading";
 import { useGLTF } from "@react-three/drei";
 import "../../main.css";
 import DisappearingDiv from "../../components/DisappearingDiv";
+import { fetchTitle, fetchAudioObj } from "../../util.js";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -17,78 +18,17 @@ export default class Home extends React.Component {
         this.prevSongHandler = this.prevSongHandler.bind(this);
         this.playHandler = this.playHandler.bind(this);
         this.panelHandler = this.panelHandler.bind(this);
+        this.nextSongHandlerHelper = this.nextSongHandlerHelper.bind(this);
+        // this.fetchTitle = this.fetchTitle.bind(this);
+        // this.fetchAudioObj = this.fetchAudioObj.bind(this);
+        this.initOurState = this.initOurState.bind(this);
 
-        // AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug
-
-        // ask firebase for linked list
-        fetch("/api/get_linked_list")
-            .then((response) => response.json())
-            .then((data) => {
-                let queue = JSON.parse(data.message);
-
-                // preload to make things fast
-                // let idxToPreload = [queue.length - 1, 0, 1];
-                // for (const idx of idxToPreload) {
-                //     useGLTF.preload(
-                //         "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
-                //             queue[idx].split("/")[1] +
-                //             ".glb"
-                //     );
-                // }
-
-                const promises = queue.map((item) => {
-                    // const apiKey = "AIzaSyCf78Sm0soXX8XZA1IGSC0UBLS5aCAzmug";
-                    // const apiUrl = `https://www.googleapis.com/youtube/v3/videos?id=${
-                    //     item.split("/")[1]
-                    // }&key=${apiKey}&part=snippet`;
-
-                    return fetch(
-                        "/api/youtube_title?videoid=" + item.split("/")[1]
-                    )
-                        .then((response) => response.json())
-                        .then((data) => {
-                            console.log("THE DATA HERE IS", data);
-                            return data.message;
-                            data.items[0].snippet.title;
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                });
-
-                Promise.all(promises)
-                    .then((titles) => {
-                        // get the first musics: download and save to our dictionary
-                        fetch(
-                            "https://storage.googleapis.com/edging-background/v1/mp3/" +
-                                queue[0].split("/")[1] +
-                                ".mp3"
-                        ).then((response) => {
-                            response.blob().then((blob) => {
-                                const audioURL =
-                                    window.URL.createObjectURL(blob);
-
-                                this.setState(function (state, props) {
-                                    return {
-                                        ready: true,
-                                        queue: queue,
-                                        queueTitles: titles,
-                                        panelActive: true,
-                                        audio: new Audio(audioURL),
-                                    };
-                                });
-                            });
-                        });
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            })
-            .catch((error) => console.error(error));
+        this.initOurState();
 
         this.state = {
             queue: ["background/1sqE6P3XyiQ"],
-            queueTitles: ["You Should Be Dancing"],
+            // queueTitles: ["You Should Be Dancing"],
+            queueTitle: "You Should Be Dancing",
             ready: false,
             audioMap: null,
             playing: false,
@@ -100,6 +40,69 @@ export default class Home extends React.Component {
             playStartTimestamp: 0,
             panelActive: true,
         };
+    }
+
+    async initOurState() {
+        // async because we depend on fetching the audio
+        const queue = [
+            "background/niewe7xfoWs",
+            "background/nsXwi67WgOo",
+            "background/OPf0YbXqDm0",
+            "background/q0KZuZF01FA",
+            "background/qK5KhQG06xU",
+            "background/qw7WNwMyagw",
+            "background/Rfr9bhSmfXc",
+            "background/s__rX_WL100",
+            "background/SwYN7mTi6HM",
+            "background/uSD4vsh1zDA",
+            "background/ViwtNLUqkMY",
+            "background/VJ2rlci9PE0",
+            "background/XnAB7kJEO-Y",
+            "background/yURRmWtbTbo",
+            "background/Zi_XLOBDo_Y",
+            "background/1sqE6P3XyiQ",
+            "background/-CCgDvUM4TM",
+            "background/2RicaUqd9Hg",
+            "background/3gMG_FZMavU",
+            "background/6lxBcKB3Ohc",
+            "background/8Jtokmp8zoE",
+            "background/9i6bCWIdhBw",
+            "background/9KhbM2mqhCQ",
+            "background/9vMLTcftlyI",
+            "background/ABfQuZqq8wg",
+            "background/BerNfXSuvJ0",
+            "background/BRG03PZXo2w",
+            "background/g7X9X6TlrUo",
+            "background/god7hAPv8f0",
+            "background/HCq1OcAEAm0",
+            "background/I_izvAbhExY",
+            "background/JYIaWeVL1JM",
+            "background/LOZuxwVk7TU",
+            "background/LPYw3jXjd74",
+        ];
+
+        const title = "Dua Lipa - Levitating Feat. DaBaby";
+
+        const blob = await fetch(
+            "https://storage.googleapis.com/edging-background/v1/mp3/" +
+                queue[0].split("/")[1] +
+                ".mp3"
+        ).then((response) => {
+            return response.blob();
+        });
+
+        const audioURL = window.URL.createObjectURL(blob);
+
+        this.setState(function (state, props) {
+            return {
+                queueTitle: title,
+                ready: true,
+                queue: queue,
+                // queueTitles: titles,
+                panelActive: true,
+                audio: new Audio(audioURL),
+            };
+        });
     }
 
     panelHandler() {
@@ -118,14 +121,31 @@ export default class Home extends React.Component {
         });
     }
 
+    async prevSongHandlerHelper() {
+        const title = await fetchTitle(
+            this.state.queue[this.state.queue.length - 1].split("/")[1]
+        );
+        const newAudio = await fetchAudioObj(
+            this.state.queue[this.state.queue.length - 1].split("/")[1]
+        );
+
+        newAudio.play();
+
+        this.setState(function (state, props) {
+            return {
+                queueTitle: title,
+                queue: [state.queue[state.queue.length - 1]].concat(
+                    state.queue.slice(0, state.queue.length - 1)
+                ),
+                // this will be overwritten on playHandler() anyways...
+                playStartTimestamp: -1,
+                currentTimestamp: 0,
+                audio: newAudio,
+            };
+        });
+    }
+
     prevSongHandler() {
-        // check time and see if we're close to the beginning
-        const requestOptions = {
-            method: "POST",
-        };
-
-        fetch("/api/prev_song", requestOptions);
-
         // preload to make things fast
         useGLTF.preload(
             "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
@@ -133,43 +153,30 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
-        fetch(
-            "https://storage.googleapis.com/edging-background/v1/mp3/" +
-                this.state.queue[this.state.queue.length - 1].split("/")[1] +
-                ".mp3"
-        ).then((response) => {
-            response.blob().then((blob) => {
-                const audioURL = window.URL.createObjectURL(blob);
+        this.state.audio.pause();
 
-                this.setState(function (state, props) {
-                    state.audio.pause();
-                    let newAudio = new Audio(audioURL);
+        this.prevSongHandlerHelper();
+    }
 
-                    newAudio.play();
+    async nextSongHandlerHelper() {
+        const title = await fetchTitle(this.state.queue[1].split("/")[1]);
+        const newAudio = await fetchAudioObj(this.state.queue[1].split("/")[1]);
 
-                    return {
-                        queueTitles: [
-                            state.queueTitles[state.queueTitles.length - 1],
-                        ].concat(state.queueTitles.slice(0, -1)),
-                        queue: [state.queue[state.queue.length - 1]].concat(
-                            state.queue.slice(0, -1)
-                        ),
-                        // this will be overwritten on playHandler() anyways...
-                        playStartTimestamp: -1,
-                        currentTimestamp: 0,
-                        audio: newAudio,
-                    };
-                });
-            });
+        newAudio.play();
+
+        this.setState(function (state, props) {
+            return {
+                queueTitle: title,
+                queue: state.queue.slice(1).concat([state.queue[0]]),
+                // this will be overwritten on playHandler() anyways...
+                playStartTimestamp: -1,
+                currentTimestamp: 0,
+                audio: newAudio,
+            };
         });
     }
 
     nextSongHandler() {
-        // tell firebase we're onto the next song
-        const requestOptions = {
-            method: "POST",
-        };
-
         // preload to make things fast
         useGLTF.preload(
             "https://storage.googleapis.com/edging-background/v1/glb_videoids/" +
@@ -177,37 +184,9 @@ export default class Home extends React.Component {
                 ".glb"
         );
 
-        console.log(this.state.audioMap);
+        this.state.audio.pause();
 
-        fetch("/api/next_song", requestOptions);
-
-        fetch(
-            "https://storage.googleapis.com/edging-background/v1/mp3/" +
-                this.state.queue[1].split("/")[1] +
-                ".mp3"
-        ).then((response) => {
-            response.blob().then((blob) => {
-                const audioURL = window.URL.createObjectURL(blob);
-
-                this.setState(function (state, props) {
-                    state.audio.pause();
-                    let newAudio = new Audio(audioURL);
-
-                    newAudio.play();
-
-                    return {
-                        queueTitles: state.queueTitles
-                            .slice(1)
-                            .concat([state.queueTitles[0]]),
-                        queue: state.queue.slice(1).concat([state.queue[0]]),
-                        playStartTimestamp: Date.now(),
-                        currentTimestamp: 0,
-                        // this will be overwritten on playHandler() anyways...
-                        audio: newAudio,
-                    };
-                });
-            });
-        });
+        this.nextSongHandlerHelper();
     }
 
     playHandler() {
@@ -247,6 +226,7 @@ export default class Home extends React.Component {
     }
 
     render() {
+        console.log("currently the queueTitle is", this.state.queueTitle);
         const elementsStyle = {
             width: "75%",
             margin: "auto",
@@ -257,6 +237,7 @@ export default class Home extends React.Component {
             this.state.queue[this.state.queue.length - 1],
         ].concat(this.state.queue.slice(0, 2));
 
+        console.log("this.state.queue[0] in render", this.state.queue[0]);
         const albumCovers = threeSongs.map((song) => {
             return (
                 "https://img.youtube.com/vi/" + song.split("/")[1] + "/0.jpg"
@@ -341,7 +322,7 @@ export default class Home extends React.Component {
                         }}
                     >
                         <SongCarousel
-                            currentSong={this.state.queueTitles[0]}
+                            currentSong={this.state.queueTitle}
                             // currentArtistName={"Britney Spears"}
                             albumCovers={albumCovers}
                             nextSongHandler={this.nextSongHandler}
