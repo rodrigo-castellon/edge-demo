@@ -1,16 +1,14 @@
 .div-inactive {
     color: transparent;
     max-height: 0vh;
-    /* background-color: blue; */
-    /* color: white; */
-    transition: color 0.3s ease, max-height 0.3s ease;
-    transition-delay: 0s, 0.3s;
+    font-size: 1pt;
+    transition: color 0.3s ease, font-size 0.3s ease, max-height 0.3s ease;
+    transition-delay: 0s, 0s, 0s;
 }
 
 .div-active {
     color: white;
     max-height: 100vh;
-    transition: max-height 0.3s ease, color 0.3s ease;
-    transition-delay: 0s, 0.3s;
-    /* color: 10px; */
+    transition: max-height 0.3s ease, font-size 0.3s ease, color 0.3s ease;
+    transition-delay: 0s, 0s, 0s;
 }

@@ -258,6 +258,9 @@ export default class Home extends React.Component {
             );
         });
 
+        let userSelect = this.state.panelActive ? "text" : "none";
+        let fontSize = this.state.panelActive ? "12pt" : "12pt"; // "0.01pt";
+
         if (this.state.ready) {
             return (
                 <div style={elementsStyle}>
@@ -305,7 +308,12 @@ export default class Home extends React.Component {
                             </h1>
                         </div>
                         <DisappearingDiv disappeared={!this.state.panelActive}>
-                            <p>
+                            <p
+                                style={{
+                                    userSelect: userSelect,
+                                    // fontSize: fontSize,
+                                }}
+                            >
                                 Unleash the magic of music and dance with Groove
                                 Genie. Our technology generates custom dancing
                                 robot choreographies for any song you choose.
