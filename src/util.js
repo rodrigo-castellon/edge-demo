@@ -39,6 +39,8 @@ const TITLE_CACHE = {
     LPYw3jXjd74: "Macarena - Original version",
 };
 
+let AUDIO_CACHE = {};
+
 export const fetchTitle = async (videoid) => {
     if (Object.keys(TITLE_CACHE).includes(videoid)) {
         return TITLE_CACHE[videoid];
@@ -53,14 +55,22 @@ export const fetchTitle = async (videoid) => {
 };
 
 export const fetchAudioObj = async (videoid) => {
-    const blob = await fetch(
+    let url =
         "https://storage.googleapis.com/edging-background/v1/mp3/" +
-            videoid +
-            ".mp3"
-    ).then((response) => response.blob());
+        videoid +
+        ".mp3";
+
+    if (Object.keys(AUDIO_CACHE).includes(url)) {
+        return AUDIO_CACHE[url];
+    }
+
+    // cache miss
+    const blob = await fetch(url).then((response) => response.blob());
 
     const audioURL = window.URL.createObjectURL(blob);
     let newAudio = new Audio(audioURL);
+
+    AUDIO_CACHE[url] = newAudio;
 
     return newAudio;
 };

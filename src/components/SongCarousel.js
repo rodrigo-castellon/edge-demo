@@ -99,15 +99,28 @@ const SongCarousel = ({
                     width: "75%",
                     height: "2vh",
                     padding: "0px",
+                    position: "sticky",
                 }}
             >
                 <div
                     style={{
                         height: "15%",
                         width: "100%",
+                        position: "absolute",
                         top: "42.5%",
-                        position: "relative",
+                        left: "0",
                         backgroundColor: "rgba(126,133,138,1)",
+                        borderColor: "white",
+                    }}
+                ></div>
+                <div
+                    style={{
+                        height: "15%",
+                        width: currentTimePercent,
+                        position: "absolute",
+                        top: "42.5%",
+                        left: "0",
+                        backgroundColor: "white",
                         borderColor: "white",
                     }}
                 ></div>
@@ -116,9 +129,11 @@ const SongCarousel = ({
                         height: "100%",
                         width: "2vh",
                         // top was manually fit
-                        top: "-16.5%",
+                        position: "absolute",
+                        top: "0",
+                        // top: "-16.5%",
                         left: currentTimePercent,
-                        position: "relative",
+                        // position: "relative",
                         backgroundColor: "white",
                         borderRadius: "10px",
                     }}
