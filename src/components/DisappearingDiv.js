@@ -10,8 +10,4 @@ export default function DisappearingDiv(props) {
             {props.children}
         </div>
     );
-    // if (props.disappeared) {
-    //     return <div></div>;
-    // } else {
-    // }
 }

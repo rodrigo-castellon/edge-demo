@@ -286,32 +286,6 @@ async function getLinkedList(uuid) {
     }
 
     return songs;
-
-    // while (true) {
-    //     userRef.get().then((snapshot) => {
-
-    //     })
-    // }
-
-    usersRef
-        .child(uuid)
-        .get()
-        .then((snapshot) => {
-            const queueIds = [];
-            snapshot.forEach((childSnapshot) => {
-                const childData = childSnapshot.val();
-                queueIds.push(childData.queueId + "/" + childData.videoId);
-            });
-
-            console.log("got linked list from inside the function");
-            console.log(queueIds);
-
-            return queueIds;
-        })
-        .catch((error) => {
-            console.log(error);
-            return [];
-        });
 }
 
 app.get("/api/get_linked_list", function (req, res) {
@@ -368,39 +342,11 @@ app.get("/api/youtube_autocomplete", function (req, res) {
         .GetListByKeyword(req.query.query, false, 10)
         .then((result) => {
             res.send({ status: 200, message: result.items });
-            // console.log(result);
         })
         .catch((error) => {
             console.log(error);
             res.send({ status: 500, message: "error encountered" });
         });
-
-    // https
-    //     .get(
-    //         "https://serpapi.com/search.json?engine=youtube&search_query=star+wars",
-    //         // "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
-    //         //     req.query.query,
-    //         (googleRes) => {
-    //             let data = "";
-
-    //             googleRes.on("data", (chunk) => {
-    //                 data += chunk;
-    //             });
-
-    //             googleRes.on("end", () => {
-    //                 console.log(JSON.parse(data));
-    //                 res.send({
-    //                     status: 200,
-    //                     message: JSON.stringify(JSON.parse(data)),
-    //                 });
-    //                 // do something with the data here
-    //             });
-    //         }
-    //     )
-    //     .on("error", (err) => {
-    //         console.log("Error: " + err.message);
-    //         res.send({ status: 500, message: "error encountered" });
-    //     });
 });
 
 function mod(n, m) {
@@ -412,53 +358,6 @@ function mod(n, m) {
 async function createUserFunc(uuid) {
     return new Promise((resolve, reject) => {
         const dateObject = new Date();
-
-        // const videoIds = [
-        //     "RnBT9uUYb1w",
-        //     "5dJG_DdOuOM",
-        //     "uhA55hYnoHw",
-        //     "W2TE0DjdNqI",
-        //     "gEABPD4wNCg",
-        // ];
-
-        // const videoIds = [
-        //     "test_aint_no_mountain_high_enough",
-        //     "test_andrew_belle_in_my_veins_official_song",
-        //     "test_baby_one_more_time_britney_spears_lyrics",
-        //     "test_bee_gees_stayin_alive_official_music_video",
-        //     "test_beyonce_crazy_in_love_ft_jay_z",
-        //     "test_britney_spears_toxic_official_hd_video",
-        //     "test_chubby_checker_the_twist_official_music_video",
-        //     "test_doja_cat_kiss_me_more_lyrics_ft_sza",
-        //     "test_doja_cat_woman_lyrics",
-        //     "test_dua_lipa_levitating_featuring_dababy_official_music_video_tuvczfqe",
-        //     "test_earth_wind_fire_boogie_wonderland_official_video",
-        //     "test_ed_sheeran_shape_of_you_lyrics",
-        //     "test_holiday",
-        //     "test_jump",
-        //     "test_justin_bieber_sorry_lyrics",
-        //     "test_katrina_and_the_waves_walking_on_sunshine_lyrics",
-        //     "test_kenny_loggins_footloose_lyrics",
-        //     "test_kylie_minogue_cant_get_you_out_of_my_head_official_video",
-        //     "test_le_freak_2006_remaster",
-        //     "test_like_a_virgin",
-        //     "test_lil_nas_x_industry_baby_lyrics_ft_jack_harlow",
-        //     "test_lil_nas_x_montero_call_me_by_your_name_lyrics",
-        //     "test_luis_fonsi_despacito_lyrics___lyric_video_ft_daddy_yankee_gm3",
-        //     "test_macarena_original_version",
-        //     "test_mark_ronson_uptown_funk_official_video_ft_bruno_mars",
-        //     "test_martha_reeves_the_vandellas_dancing_in_the_street_1964",
-        //     "test_michael_jackson_billie_jean_official_video",
-        //     "test_michael_jackson_dont_stop_til_you_get_enough_official_video",
-        //     "test_rhythm_is_a_dancer_p",
-        //     "test_sia_cheap_thrills_lyrics",
-        //     "test_the_black_eyed_peas_i_gotta_feeling_official_music_video",
-        //     "test_the_four_tops_i_cant_help_myself_sugar_pie_honey_bunch",
-        //     "test_toxic",
-        //     "test_twist_and_shout_remastered_2009",
-        //     "test_usher_yeah_official_video_ft_lil_jon_ludacris",
-        //     "test_you_should_be_dancing",
-        // ];
 
         const videoIds = [
             "1sqE6P3XyiQ", // you should be dancing
@@ -574,8 +473,6 @@ app.post("/api/prev_song", function (req, res) {
 
     const uuid = req.cookies.uuid;
 
-    console.log("uuid", uuid);
-
     const userRef = usersRef.child(uuid);
 
     userRef
@@ -613,8 +510,6 @@ app.post("/api/next_song", function (req, res) {
     // under the hood, this just shifts things around (delete song from foreground queue if it’s foreground, reassign the “firstSong” pointer) and computes new motions
 
     const uuid = req.cookies.uuid;
-
-    console.log("uuid", uuid);
 
     const userRef = usersRef.child(uuid);
 

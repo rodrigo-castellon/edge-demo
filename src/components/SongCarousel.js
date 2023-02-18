@@ -77,7 +77,7 @@ const SongCarousel = ({
                 margin: "20px",
                 top: 0,
                 right: 0,
-                height: "40%",
+                // height: "40%",
                 width: "30vw",
                 background: "rgba(72, 72, 72, 0.3)",
                 border: "0px solid #ccc",
@@ -98,12 +98,19 @@ const SongCarousel = ({
                 />
                 <a
                     href={"https://www.youtube.com/watch?v=" + currentVideoId}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                    }}
                     target="_blank"
                 >
                     <img
                         src={albumCovers[1]}
                         alt="Current Song"
                         className="song"
+                        style={{
+                            margin: "auto",
+                        }}
                     />
                 </a>
                 <img
@@ -163,7 +170,6 @@ const SongCarousel = ({
                         borderRadius: "10px",
                     }}
                 ></div>
-                {/* <p>heyo</p> */}
             </div>
             <div className="centered-elems-container">
                 <button className="button" onClick={prevSongHandler}>
