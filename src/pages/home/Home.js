@@ -275,9 +275,14 @@ export default class Home extends React.Component {
                     >
                         <Display
                             path={
-                                "https://storage.googleapis.com/edging-background/v1/glb_videoids_new/" +
-                                this.state.queue[0].split("/")[1] +
-                                ".glb"
+                                "copies/Zi_XLOBDo_Y.glb"
+                                //"copies/gCYcHz2k5x0.glb" // works
+                                //"copies/znlFu_lemsU.glb" doesn't workj
+                                //"copies/-0xLZpERmoI.glb" doesn't work
+                                //"hiphop.glb"
+                                //"https://storage.googleapis.com/edging-background/v1/glb_videoids_new/" +
+                                //this.state.queue[0].split("/")[1] +
+                                //".glb"
                             }
                             playElement={this.state.playing}
                             startTimestamp={this.state.currentTimestamp / 1000}
